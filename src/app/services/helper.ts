@@ -24,7 +24,7 @@ if (window.location.hostname === 'localhost') {
 export default baseUrl;
 */
 
-/* ok  */
+/* ok  
 
 let baserUrl = '';
 
@@ -36,7 +36,7 @@ if (window.location.protocol === 'https:') {
 
 export default baserUrl;
 
-
+*/
 
 
 /*
@@ -51,3 +51,11 @@ if (window.location.protocol === 'https:') {
 
 export default baserUrl;
 */
+
+
+import { environment } from '../../environments/environment';
+
+const baserUrl = environment.backendUrl;
+
+export default baserUrl;
+
