@@ -1,0 +1,47 @@
+/* Estilo para el título */
+.dialog-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff; /* Azul */
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .dialog-title1 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff0000; /* Azul */
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  /* Estilo para el contenido */
+  .dialog-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    max-height: 300px; /* Limita el tamaño del contenido */
+    overflow-y: auto; /* Agrega scroll si hay demasiados elementos */
+    padding: 10px;
+  }
+  
+  /* Estilo para las acciones */
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinea el botón a la derecha */
+    padding: 10px;
+  }
+  
+  /* Estilo para el botón de cerrar */
+  .close-btn {
+    background-color: #dc3545; /* Rojo */
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+  }
+  
+  .close-btn:hover {
+    background-color: #c82333;
+  }
+  

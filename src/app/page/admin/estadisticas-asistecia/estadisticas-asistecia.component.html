@@ -1,0 +1,73 @@
+<div class="panel-container">
+  <mat-card class="mat-elevation-z6 asistencia-card">
+    <h2 class="titulo-panel" style="text-align: center; margin-bottom: 20px;">
+  <mat-icon style="vertical-align: middle; margin-right: 6px;">insights</mat-icon>
+  Asistencias agrupadas
+</h2>
+    <br>
+
+
+
+
+
+    
+ <div class="filtros-usuario-container">
+  <!-- Campo de búsqueda compacto con ícono -->
+  <mat-form-field appearance="outline" class="buscador">
+    <mat-icon matPrefix>search</mat-icon>
+    <mat-label>Buscar usuario</mat-label>
+    <input matInput [(ngModel)]="filtroUsuario" placeholder="Escribe un nombre">
+  </mat-form-field>
+
+  <!-- Selector de ítems por página -->
+  <mat-form-field appearance="outline" class="selector-paginacion">
+    <mat-label>Mostrar</mat-label>
+    <mat-select [(ngModel)]="itemsPorPagina" (selectionChange)="paginaActual = 0">
+      <mat-option value="3">3</mat-option>
+      <mat-option value="5">5</mat-option>
+      <mat-option value="10">10</mat-option>
+      <mat-option value="15">15</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+
+    <br><br>
+
+    <!-- Selector con ícono y botón Exportar -->
+
+    <div class="contenedor-boton-exportar">
+      <button mat-raised-button color="accent" (click)="exportarEstadisticasExcel()">
+        <mat-icon style="margin-right: 6px;">file_download</mat-icon>
+        Exportar
+      </button>
+    </div>
+  
+<br>
+    <!-- Total de asistencias agrupadas -->
+    <h3 style="margin-bottom: 10px;">📈 Total de asistencias agrupadas</h3>
+    <div class="resultado" style="margin-bottom: 20px;">
+      <mat-card *ngFor="let item of clavesAgrupadasPaginadas" class="mini-card">
+        <strong>{{ item[0] }}</strong>: {{ item[1] }}
+      </mat-card>
+
+    
+    </div>
+<br>
+    <!-- Porcentaje global -->
+    <mat-card class="mini-card resumen-tipo" style="margin-bottom: 20px;">
+      <h4>⚖️ Porcentaje de Entradas vs Salidas</h4>
+      <div class="porcentaje-linea">
+        <span>🚪 Entradas:</span>
+        <strong>{{ porcentajeEntradas | number:'1.0-2' }}%</strong>
+      </div>
+      <div class="porcentaje-linea">
+        <span>🚶‍♂️ Salidas:</span>
+        <strong>{{ porcentajeSalidas | number:'1.0-2' }}%</strong>
+      </div>
+    </mat-card>
+<br>
+    <!-- Porcentaje por usuario -->
+    
+  </mat-card>
+</div>

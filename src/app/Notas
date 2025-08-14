@@ -1,0 +1,1266 @@
+html reportes: con los valores de indicacores
+
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        
+        <!-- Sidebar Izquierdo -->
+        <div class="col-md-3">
+          <mat-card>
+            <mat-action-list>
+              <div mat-subheader>Categorías </div>
+              <button routerLink="/user-dashboard/0" mat-list-item>
+                <mat-icon mat-list-icon>card_travel</mat-icon>Solicitudes
+              </button>
+              <button routerLink="/reportes" mat-list-item>
+                <mat-icon mat-list-icon>perm_media</mat-icon>Reportes
+              </button>
+              <button routerLink="/indicadores" mat-list-item>
+                <mat-icon mat-list-icon>bar_chart</mat-icon>Indicadores
+              </button>
+              <button routerLink="/buscar" mat-list-item>
+                <mat-icon mat-list-icon>search</mat-icon>Buscar
+              </button>
+            </mat-action-list>
+          </mat-card>
+        </div>
+   
+        <!-- Contenido Principal -->
+        <div class="col-md-9">
+          <br><h1>Reportes del sistema</h1>
+          
+           <!-- Inicio Contenedor de Búsquedas y Filtros -->         
+              
+                <!-- ************************************************************************** -->
+                 <!-- Inicio Panel de Búsqueda y Filtros -->
+                 <mat-card-content>
+                  <mat-expansion-panel [expanded]="panelExpandido">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Panel de Búsqueda y Filtros</mat-panel-title>
+                    </mat-expansion-panel-header>
+                
+                    <!-- Contenedor para organizar los filtros en dos filas -->
+                    <div class="form-container">
+                      <!-- Primera fila -->
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Escriba su búsqueda</mat-label>
+                            <textarea [(ngModel)]="searchQuery" matInput rows="1"></textarea>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Calificación CTLC</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionadoCalificacion">
+                              <mat-option *ngFor="let estadoCalificacion of estadoDeCalificacionDeLosCentros" [value]="estadoCalificacion">
+                                {{ estadoCalificacion }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Estado del Servicio</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionado">
+                              <mat-option *ngFor="let estado of estadosDelServicio" [value]="estado">
+                                {{ estado }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                
+                      <!-- Segunda fila -->
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Evaluación</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionadoEvaluacion">
+                              <mat-option *ngFor="let estadoEvaluacion of evaluacion" [value]="estadoEvaluacion">
+                                {{ estadoEvaluacion }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fecha desde</mat-label>
+                            <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicio">
+                            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerInicio></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fecha hasta</mat-label>
+                            <input matInput [matDatepicker]="pickerFin" [(ngModel)]="fechaFin">
+                            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerFin></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="button-container">
+                      <button mat-raised-button class="btn-violet" (click)="search()" style="margin-right: 10px;">Buscar</button>
+                      <button mat-raised-button class="btn-red" (click)="limpiarBusqueda()">Limpiar</button>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-card-content>
+          <br>          
+         <!-- Inicio Vínculos a Reportes -->
+         <div class="reportes-container">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Reportes</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div>
+                <button mat-button color="accent" (click)="search()">Demanda de conectividad Operaciones / Desarrollo</button>
+                <button mat-button color="prymary" (click)="exportarExcel()">Exp .xlsx 📄</button>
+            <p>
+                <button mat-button color="accent" (click)="search()">Tabla demandas de conectividad de entidades por programas y prioridad</button>
+                <button mat-button color="prymary" (click)="exportarExcelDmandaConectividadDeEntidadesPorProgramaYPrioridad()">Exp .xlsx 📄</button>
+            </p> 
+            <p>
+              <button mat-button color="accent" (click)="search()">Demandas a ejecutar en el periodo</button>
+              <button mat-button color="prymary" (click)="exportarExcelMovimientosNuevosServiciosDatosEmpresariales()">Exp .xlsx 📄</button>
+          </p>
+         
+            </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <!-- Fin Vínculos a Reportes -->
+        <br><br>
+
+
+
+         <!-- Inicio indicadores -->
+       
+          <!-- ************************************************************************** -->  
+          <br>
+          
+          <!-- Inicio totalExamenesDI y  totalExamenesDIAnterior -->
+          <div class="reportes-container">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>Indicadores</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+            <!--<h2>Total demandas insatisfechas del backend: {{ totalExamenesDI }}</h2>-->
+            <h3>Total de Demandas a Gestionar: {{ totalExamenesDIAGestionar }}</h3>
+            <h3>Total demandas insatisfechas del año en curso: {{ totalExamenesDIActual }}</h3>
+            <h3>Total demandas insatisfechas al cierre del año anterior: {{ totalExamenesDIAnterior }}</h3>
+            <br>
+            <!--<h2>Total demandas Gestionadas</h2>-->
+            <h3>Total de demandas Gestionadas: {{ totalExamenesDIGestionadas }}</h3>
+            <h3>Total de DI conciliadas con Operaciones de la Red: {{ totalExamenesDIOperaciones }}</h3>
+            <h3>Total de DI conciliadas con Inversiones: {{ totalExamenesDIInversiones}}</h3>
+            <h3> Pendientes instalación de las solicitudes que estaban en DI : {{ totalExamenesDIReparador }}</h3>
+            <br>
+            <!--<h2>Total DI  Solucionadas (Suma de las DI solucionadas (Acumulado)</h2>-->
+            <!--Sume las OK y las OK_Red_Movil segun el estadoDelServicio-->
+            <h3>Total DI  Solucionadas: {{ totalExamenesDISolucionadas }}</h3>
+            <br>
+            <!--<h2>DI  Solucionadas en el mes</h2>-->
+            <!--ver el ts jugue con el mes actual-->
+            <h3>DI  Solucionadas en el mes: {{ totalExamenesDISolucionadasMesActual }}</h3>
+            <br>
+            <h3>DI Canceladas {{ totalExamenesDICanceladas }}</h3>
+            <br>
+            <!--<h2>Nivel de gestión de la DI</h2>-->
+            <h3>Nivel de gestión de la DI: {{ totalExamenesDINivelDeGestion }}</h3>
+            <br>
+            <!--<h2>Nivel de gestión de la DI</h2>-->
+            <h3>Nivel de gestión de clientes corporativos: {{ totalExamenesDINivelDeGestionClientesCorporativos }}</h3>
+
+
+              
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <!-- Fin totalExamenesDI -->
+
+        
+        <!-- Fin indicadores -->
+         
+         <br>
+          <!-- Resultados con paginación -->
+          <div *ngIf="searchResults.length > 0" class="search-results mt20">
+          
+            
+            <div style="display: flex; justify-content: flex-end;">
+              <button mat-raised-button class="btn-violet" (click)="exportarExcel()">Exp .xlsx 📄</button>
+            </div>
+           
+            <div class="row">
+              <div class="col-md-6" *ngFor="let result of searchResultsFiltrados()">
+                <mat-card class="mb20">
+                  <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{ result.titulo }}</mat-card-title>
+                    <mat-card-subtitle>{{ result.categoria?.titulo }}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <p>{{ result.descripcion }}</p>
+                    
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-button color="primary">Solicitud: {{ result.solicitud }}</button>
+                    <button mat-button color="primary">{{ result.velocidad }}</button>
+                    <button mat-button color="accent">Calificación: {{ result.estadoDeCalificacionDeLosCentros }}</button>
+                    <div class="espacio-abajo"></div>    
+                    <div class="botones-derecha">
+                      <button mat-raised-button class='btn-violet' [routerLink]="['/user-dashboard/instrucciones', result.examenId]">
+                        Empezar   
+                      </button>
+                    </div>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+            </div>
+  
+            
+            <div class="pagination-container">
+            <!-- Selector de número de elementos por página -->
+            <div class="pagination-settings">
+              <label for="numElementos">Elementos por página:</label>
+              <select id="numElementos" (change)="cambiarElementosPorPagina($event)">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div> 
+            <!-- Controles de paginación --> 
+            <div class="pagination">
+              <button (click)="paginaAnterior()" [disabled]="paginaActual === 1">Anterior</button>
+              <span>{{ paginaActual }} - {{ totalPaginas() }}</span>
+              <button (click)="paginaSiguiente()" [disabled]="paginaActual >= totalPaginas()">Siguiente</button>
+            </div>
+            </div> 
+  
+          </div>
+        </div>  
+      </div> 
+    </div> 
+  </div>
+
+
+
+
+
+
+
+
+
+
+  
+
+  ////////////////////////////inicio pagina indicadores con los valores en prosa////////////////////////////////////////////////
+  <div class="bootstrap-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        
+        <!-- Sidebar Izquierdo -->
+        <div class="col-md-3">
+          <mat-card>
+            <mat-action-list>
+              <div mat-subheader>Categorías </div>
+              <button routerLink="/user-dashboard/0" mat-list-item>
+                <mat-icon mat-list-icon>card_travel</mat-icon>Solicitudes
+              </button>
+              <button routerLink="/reportes" mat-list-item>
+                <mat-icon mat-list-icon>perm_media</mat-icon>Reportes
+              </button>
+              <button routerLink="/indicadores" mat-list-item>
+                <mat-icon mat-list-icon>bar_chart</mat-icon>Indicadores
+              </button>
+              <button routerLink="/buscar" mat-list-item>
+                <mat-icon mat-list-icon>search</mat-icon>Buscar
+              </button>
+            </mat-action-list>
+          </mat-card>
+        </div>
+   
+        <!-- Contenido Principal -->
+        <div class="col-md-9">
+          <br><h1>Indicadores</h1>
+         
+           <!-- Inicio Contenedor de Búsquedas y Filtros -->         
+              
+                <!-- ************************************************************************** -->
+                 <!-- Inicio Panel de Búsqueda y Filtros -->
+                 <mat-card-content>
+                  <mat-expansion-panel [expanded]="panelExpandido">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Panel de Búsqueda y Filtros</mat-panel-title>
+                    </mat-expansion-panel-header>
+                
+                    <!-- Contenedor para organizar los filtros en dos filas -->
+                    <div class="form-container">
+                      <!-- Primera fila -->
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Escriba su búsqueda</mat-label>
+                            <textarea [(ngModel)]="searchQuery" matInput rows="1"></textarea>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Calificación CTLC</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionadoCalificacion">
+                              <mat-option *ngFor="let estadoCalificacion of estadoDeCalificacionDeLosCentros" [value]="estadoCalificacion">
+                                {{ estadoCalificacion }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Estado del Servicio</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionado">
+                              <mat-option *ngFor="let estado of estadosDelServicio" [value]="estado">
+                                {{ estado }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                
+                      <!-- Segunda fila -->
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Evaluación</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionadoEvaluacion">
+                              <mat-option *ngFor="let estadoEvaluacion of evaluacion" [value]="estadoEvaluacion">
+                                {{ estadoEvaluacion }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fecha desde</mat-label>
+                            <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicio">
+                            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerInicio></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fecha hasta</mat-label>
+                            <input matInput [matDatepicker]="pickerFin" [(ngModel)]="fechaFin">
+                            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerFin></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="button-container">
+                      <button mat-raised-button class="btn-violet" (click)="search()" style="margin-right: 10px;">Buscar</button>
+                      <button mat-raised-button class="btn-red" (click)="limpiarBusqueda()">Limpiar</button>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-card-content>
+                
+              <!-- ************************************************************************** -->  
+                <br>
+
+                  <!-- Inicio tabla -->
+         <div class="reportes-container">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Indicadores               
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <br>
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <!-- Columna de descripción -->
+                <ng-container matColumnDef="descripcion">
+                  <th mat-header-cell *matHeaderCellDef> INDICADORES </th>
+                  <td mat-cell *matCellDef="let element"> {{ element.descripcion }} </td>
+                </ng-container>
+              
+                <!-- Columna de valores -->
+                <ng-container matColumnDef="valor">
+                  <th mat-header-cell *matHeaderCellDef> VALOR </th>
+                  <td mat-cell *matCellDef="let element"> {{ element.valor }} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <br>  
+              <button mat-button color="primary" (click)="exportarExcelIndicadores()">Exp .xlsx 📄</button>        
+                  
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <!-- Fin Vínculos a Reportes -->
+        <br><br>
+          
+          <!-- Inicio totalExamenesDI y  totalExamenesDIAnterior -->
+          <div class="reportes-container">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>Indicadores </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+
+            <!--<h2>Total demandas insatisfechas del backend: {{ totalExamenesDI }}</h2>-->
+            <h3>Total de Demandas a Gestionar: {{ totalExamenesDIAGestionar }}</h3>
+            <h3>Total demandas insatisfechas del año en curso: {{ totalExamenesDIActual }}</h3>
+            <h3>Total demandas insatisfechas al cierre del año anterior: {{ totalExamenesDIAnterior }}</h3>
+            <br>
+            <!--<h2>Total demandas Gestionadas</h2>-->
+            <h3>Total de demandas Gestionadas: {{ totalExamenesDIGestionadas }}</h3>
+            <h3>Total de DI conciliadas con Operaciones de la Red: {{ totalExamenesDIOperaciones }}</h3>
+            <h3>Total de DI conciliadas con Inversiones: {{ totalExamenesDIInversiones}}</h3>
+            <h3> Pendientes instalación de las solicitudes que estaban en DI : {{ totalExamenesDIReparador }}</h3>
+            <br>
+            <!--<h2>Total DI  Solucionadas (Suma de las DI solucionadas (Acumulado)</h2>-->
+            <!--Sume las OK y las OK_Red_Movil segun el estadoDelServicio-->
+            <h3>Total DI  Solucionadas: {{ totalExamenesDISolucionadas }}</h3>
+            <br>
+            <!--<h2>DI  Solucionadas en el mes</h2>-->
+            <!--ver el ts jugue con el mes actual-->
+            <h3>DI  Solucionadas en el mes: {{ totalExamenesDISolucionadasMesActual }}</h3>
+            <br>
+            <h3>DI Canceladas {{ totalExamenesDICanceladas }}</h3>
+            <br>
+            <!--<h2>Nivel de gestión de la DI</h2>-->
+            <h3>Nivel de gestión de la DI: {{ totalExamenesDINivelDeGestion }}</h3>
+            <br>
+            <!--<h2>Nivel de gestión de la DI</h2>-->
+            <h3>Nivel de gestión de clientes corporativos: {{ totalExamenesDINivelDeGestionClientesCorporativos }}</h3>
+              
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <!-- Fin totalExamenesDI -->
+
+          <mat-divider></mat-divider><br>
+          <br>
+
+          
+        <!-- Fin Vínculos a Reportes -->
+        <br><br>
+
+         
+         
+         <br>
+          <!-- Resultados con paginación -->
+         
+
+        </div>  
+      </div> 
+    </div> 
+  </div>
+  
+
+
+
+
+
+////////////////////////   load-examen /////////////////////////////
+
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <br><h1>Solicitudes disponibles</h1>
+
+    <!-- Selector de elementos por página -->
+    <div class="form-group mb-0">
+      <label for="itemsPerPage" class="font-weight-bold">Elementos por página:</label>
+      <select id="itemsPerPage" class="form-control w-auto d-inline-block" (change)="actualizarElementosPorPagina($event)">
+        <option *ngFor="let cantidad of [10, 20, 50, 100]" [value]="cantidad">{{ cantidad }}</option>
+      </select>
+    </div>
+
+    <!-- Exámenes existentes -->
+    <div class="row mt20" *ngIf="examenes">
+      <div class="col-md-6" *ngFor="let e of examenes.slice((paginaActual - 1) * elementosPorPagina, paginaActual * elementosPorPagina)">
+        <mat-card class="mb20">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ e.titulo }}</mat-card-title>
+            <mat-card-subtitle>{{ e.categoria.titulo }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ e.descripcion }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary">Solicitud: {{ e.solicitud }}</button>
+            <button mat-button color="primary">{{ e.velocidad }}</button>
+            <button mat-button color="accent">Estado: {{ e.estadoDeCalificacionDeLosCentros }}</button>
+    <div class="espacio-abajo"></div>
+            <div class="botones-derecha">
+              <button mat-flat-button class="detalles-btn" (click)="infoExamen(e)">Detalles</button>
+              <button mat-raised-button class="btn-violet" [routerLink]="'/user-dashboard/instrucciones/'+e.examenId">
+                Empezar
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div class="col-md-12" *ngIf="examenes.length == 0">
+        <mat-card>
+          <mat-card-content>
+            <h1>No hay datos en esta categoría</h1>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <br><br>
+
+  
+         
+      <!-- Botones de paginación -->
+      <div class="pagination mb-0">
+        <button (click)="paginaAnterior()" [disabled]="paginaActual === 1" class="btn btn-primary">Anterior</button>
+        <span class="mx-3">{{ paginaActual }} - {{ totalPaginas() }}</span>
+        <button (click)="paginaSiguiente()" [disabled]="paginaActual >= totalPaginas()" class="btn btn-primary">Siguiente</button>
+      </div>
+    
+
+  </div>
+</div>
+
+
+
+ <!-- nabvar -->
+
+<mat-toolbar color="primary">
+  <a [routerLink]="'/'" mat-icon-button class="example-icon" aria-label="Home">
+    <mat-icon>lan</mat-icon>
+    
+  </a>
+  <span class="soltxd-highlight">SolTxD</span>
+  <span class="soltxd-title">
+    <h5>Sistema de solicitud de Transmisión de Datos</h5>
+  </span>
+
+  <span class="example-spacer"></span>
+
+  <a *ngIf="!login.isLoggedIn()" [routerLink]="'/login'" mat-icon-button class="example-icon" aria-label="Iniciar sesión">
+    Iniciar sesión
+  </a>
+<!--  
+  <a *ngIf="!login.isLoggedIn()" [routerLink]="'/signup'" mat-icon-button class="example-icon favorite-icon mr20 ml70" aria-label="Registrar">
+    Registrar
+  </a>
+-->
+
+<a *ngIf="!login.isLoggedIn()" [routerLink]="'/admin'" mat-icon-button class="example-icon favorite-icon mr20 ml70" aria-label="Registrar">
+  Registrar
+</a>
+
+  <a *ngIf="login.isLoggedIn()" (click)="logout()" style="margin-right: 50px;" mat-icon-button class="example-icon" aria-label="Cerrar sesión">
+    Cerrar sesión
+  </a>
+
+  <button *ngIf="login.isLoggedIn()" mat-button style="margin-right: 10px;" class="example-icon" aria-label="Perfil" routerLink="/admin/profile">
+    {{ login.getUser().username }}
+  </button>
+
+  <!-- Notificación de exámenes pendientes -->
+  <mat-badge *ngIf="cantidadExamenesPendientes > 0" [matBadge]="cantidadExamenesPendientes" matBadgePosition="above after" matBadgeColor="warn">
+    <mat-icon (click)="mostrarDetalles()">notifications</mat-icon>
+  </mat-badge>
+
+  <!-- Insignia de exámenes con estado Con_OS_Siprec -->
+  <mat-badge *ngIf="totalExamenesEstadoDelServicio_Con_OS_Siprec > 0" [matBadge]="totalExamenesEstadoDelServicio_Con_OS_Siprec" matBadgePosition="above after" matBadgeColor="accent">
+    <mat-icon>assignment</mat-icon>
+  </mat-badge>
+
+</mat-toolbar>
+
+
+
+
+/////////////////////sidebar/////////////****************************
+
+<mat-card>
+  <mat-action-list>
+    <div mat-subheader>Menu</div>
+    <button routerLink = "/admin" mat-list-item>
+      <mat-icon mat-list-icon>home</mat-icon> Inicio
+    </button>
+    <button mat-list-item routerLink = "/admin/profile">
+      <mat-icon mat-list-icon>account_circle</mat-icon>Perfil
+    </button>
+
+    <button mat-list-item routerLink = "/admin/categorias">
+      <mat-icon mat-list-icon>list</mat-icon>Centros de TLC
+    </button>
+    <button mat-list-item routerLink = "/admin/add-categoria">
+      <mat-icon mat-list-icon>add_circle_outline</mat-icon>Agregar CTLC
+    </button>
+    <button mat-list-item routerLink = "/admin/examenes">
+      <mat-icon mat-list-icon>quiz</mat-icon>Solicitudes
+    </button>
+    <button mat-list-item routerLink = "/admin/add-examen">
+      <mat-icon mat-list-icon>add</mat-icon>Agregar solicitud
+    </button>
+    <button routerLink="/admin/reportes" mat-list-item>
+      <mat-icon mat-list-icon>perm_media</mat-icon>Reportes
+    </button>
+    <button routerLink="/admin/indicadores" mat-list-item>
+      <mat-icon mat-list-icon>bar_chart</mat-icon>Indicadores
+    </button>
+    <button routerLink="/admin/signup" mat-list-item>
+      <mat-icon mat-list-icon>person_add</mat-icon>Registro de usuarios
+    </button>
+    <button routerLink="/admin/usuarios" mat-list-item>
+      <mat-icon mat-list-icon>person</mat-icon>Usuarios
+    </button>
+    <button mat-list-item (click) = "logout()">
+      <mat-icon mat-list-icon>logout</mat-icon>Salir
+    </button>
+
+
+  </mat-action-list>
+</mat-card>
+
+
+
+
+
+///////////////////////////sidebar admin/////////////////////////////////
+
+
+
+
+<mat-card>
+  <div class="sidebar-container">
+    <mat-action-list>
+
+      <div class="sidebar-title">
+        <img src="/assets/admin-sidebar.png" class="perfil-imagen" title="Inicio">
+        Panel de Admin        
+      </div>
+
+      <button routerLink="/admin" mat-list-item class="aligned-button">
+        <img src="/assets/home.png" class="perfil-imagen" title="Inicio">
+        Inicio
+      </button>
+
+      <button routerLink="/admin/profile" mat-list-item class="aligned-button">
+        <img src="/assets/perfil-sidebar.png" class="perfil-imagen" title="perfil">
+        Perfil
+      </button>
+
+      <button routerLink="/admin/asistencia-admin" mat-list-item class="aligned-button">
+        <img src="/assets/perfil-sidebar.png" class="perfil-imagen" title="asistencia">
+        Asistencia
+      </button>
+
+      <button routerLink="/admin/asignar-horarios/id" mat-list-item class="aligned-button">
+        <img src="/assets/perfil-sidebar.png" class="perfil-imagen" title="asignar-horarios">
+        Asignar horarios
+      </button>
+
+      <button routerLink="/admin/resumen-horarios" mat-list-item class="aligned-button">
+        <img src="/assets/perfil-sidebar.png" class="perfil-imagen" title="resumen-horarios">
+        Resumen horarios
+      </button>
+
+      <button routerLink="/admin/empleados" mat-list-item class="aligned-button">
+        <img src="/assets/perfil-sidebar.png" class="perfil-imagen" title="empleados">
+        Empleados
+      </button>
+
+      <button routerLink="/admin/registro-asistencia-diaria" mat-list-item class="aligned-button">
+        <img src="/assets/perfil-sidebar.png" class="perfil-imagen" title="registro-asistencia-diaria">
+        Registro asistencia diaria
+      </button>
+
+      <button routerLink="/admin/horas-trabajadas-mensualmente" mat-list-item class="aligned-button">
+        <img src="/assets/perfil-sidebar.png" class="perfil-imagen" title="horas-trabajadas-mensualmente">
+        Horas trabajadas mensualmente
+      </button>
+
+       <button routerLink="/admin/inasistencias" mat-list-item class="aligned-button">
+        <img src="/assets/list-sidebar.png" class="perfil-imagen" title="inasistencias">
+        Reporte de inasistencias
+      </button>
+
+      <button routerLink="/admin/horas-extras" mat-list-item class="aligned-button">
+        <img src="/assets/list-sidebar.png" class="perfil-imagen" title="horas-extras">
+        Reporte de horas extras
+      </button>
+
+       <button routerLink="/admin/estadisticas-asistecia" mat-list-item class="aligned-button">
+              <img src="/assets/perfil-sidebar.png" class="perfil-imagen" title="asistencia">
+                Resumen de asistencias agrupadas
+     </button>
+
+      <button routerLink="/admin/signup" mat-list-item class="aligned-button">
+        <img src="/assets/person_add-sidebar.png" class="perfil-imagen" title="perfil">
+        Registro de usuarios
+      </button>
+
+      <button routerLink="/admin/usuarios" mat-list-item class="aligned-button">
+        <img src="/assets/person-sidebar.png" class="perfil-imagen" title="perfil">
+        Usuarios
+      </button>
+
+    <!--  <button routerLink="/admin/categorias" mat-list-item class="aligned-button">
+        <img src="/assets/list-sidebar.png" class="perfil-imagen" title="perfil">
+        Centros de TLC
+      </button>
+
+      <button routerLink="/admin/add-categoria" mat-list-item class="aligned-button">
+        <img src="/assets/add_circle_outline-sidebar.png" class="perfil-imagen" title="perfil">
+        Agregar CTLC
+      </button>
+
+      <button routerLink="/admin/examenes" mat-list-item class="aligned-button">
+        <img src="/assets/quiz-sidebar.png" class="perfil-imagen" title="perfil">
+        Solicitudes
+      </button>
+
+      <button routerLink="/admin/add-examen" mat-list-item class="aligned-button">
+        <img src="/assets/add-sidebar.png" class="perfil-imagen" title="perfil">
+        Agregar solicitud
+      </button>
+
+      <button routerLink="/admin/reportes" mat-list-item class="aligned-button">
+        <img src="/assets/perm_media-sidebar.png" class="perfil-imagen" title="perfil">
+        Reportes
+      </button>
+
+      <button routerLink="/admin/indicadores" mat-list-item class="aligned-button">
+        <img src="/assets/indicadores-sidebar.png" class="perfil-imagen" title="perfil">
+        Indicadores
+      </button>
+-->
+         
+
+      <!-- 📊 Menú desplegable de Estadísticas -->
+      <mat-expansion-panel class="menu-estadisticas">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="/assets/indicadores-sidebar.png" class="perfil-imagen" title="estadísticas">
+            Estadísticas
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-action-list>
+          <button routerLink="/admin/estadisticas/asistencia" mat-list-item class="aligned-button">
+            <img src="/assets/insights.png" class="perfil-imagen" title="Estadísticas asistencia">
+            Asistencia
+          </button>
+          <!-- Aquí puedes agregar más opciones estadísticas -->
+           <button routerLink="/admin/asistencia-admin" mat-list-item class="aligned-button">
+              <img src="/assets/perfil-sidebar.png" class="perfil-imagen" title="asistencia">
+                Asistencia
+          </button>
+          <button routerLink="/admin/estadisticas-asistecia" mat-list-item class="aligned-button">
+              <img src="/assets/perfil-sidebar.png" class="perfil-imagen" title="asistencia">
+                Resumen de asistencias agrupadas
+          </button>
+          
+        </mat-action-list>
+      </mat-expansion-panel>
+
+      
+
+      <button (click)="logout()" mat-list-item class="aligned-button">
+        <img src="/assets/logout-sidebar.png" class="perfil-imagen" title="perfil">
+        Salir
+      </button>
+
+    </mat-action-list>
+  </div>
+</mat-card>
+
+
+
+/**********************************LOGIN ASISTENCIA HTML OK**   18-7-2025***************************************/
+
+<div class="registro-manual">
+  <h2>Registro de asistencia</h2>
+
+  <div class="acciones">
+    <button mat-raised-button color="primary" (click)="registrar('ENTRADA')">Registrar ENTRADA</button>
+    <button mat-raised-button color="accent" (click)="registrar('SALIDA')">Registrar SALIDA</button>
+    <button mat-raised-button color="warn" (click)="registrar('ALMUERZO')">Registrar ALMUERZO</button>
+  </div>
+
+  <p class="reloj">{{ fechaHoraActual | date:'shortTime' }}</p>
+</div>
+
+<div class="historial">
+  <h3>Historial de hoy</h3>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="fechaHora">
+      <th mat-header-cell *matHeaderCellDef> Fecha y hora </th>
+      <td mat-cell *matCellDef="let element"> {{ element.fechaHora | date:'short' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef> Tipo </th>
+      <td mat-cell *matCellDef="let element"> {{ element.tipo }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+
+  <mat-paginator [pageSize]="5"></mat-paginator>
+</div>
+
+<!-- 🔍 Escaneo de QR del kiosko -->
+<div class="scanner-container" style="margin-top: 30px;">
+  <h3 style="text-align:center;">Escanear QR del kiosko</h3>
+
+  <div style="text-align:center;">
+    <button mat-raised-button color="accent" (click)="iniciarEscaneoQr()">📷 Escanear QR</button>
+  </div>
+
+  <!-- Vista previa de cámara -->
+  <div style="margin-top: 20px; display: flex; justify-content: center;">
+    <video #video autoplay muted style="width:100%; max-width:400px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2);"></video>
+    <canvas #canvas style="display:none;"></canvas>
+  </div>
+
+  <!-- Panel visual con resultado -->
+  <mat-card 
+    [ngClass]="{ 'success': tokenEscaneado && !escaneoActivo, 'error': !tokenEscaneado && !escaneoActivo }"
+    style="margin: 30px auto; max-width: 450px; padding: 15px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); transition: background-color 0.3s ease;">
+    
+    <!-- Escaneo en curso -->
+    <div *ngIf="escaneoActivo">
+      <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+      <p style="margin-top: 10px; font-weight: bold; color: #444;">
+        ⏳ Escaneando... QR expira en {{ qrExpiraEnSegundos }} segundos
+      </p>
+    </div>
+
+    <!-- Resultado exitoso -->
+    <div *ngIf="tokenEscaneado && !escaneoActivo" style="margin-top: 10px;">
+      <p>
+        <span style="font-size: 26px; color: #4caf50;">✅</span>
+        <strong> Token escaneado:</strong>
+      </p>
+      <code style="background:#f4f4f4; padding:8px; display:block; border-radius:5px; word-break: break-word;">
+        {{ tokenEscaneado }}
+      </code>
+    </div>
+
+    <!-- Resultado fallido -->
+    <div *ngIf="!tokenEscaneado && !escaneoActivo" style="margin-top: 10px;">
+      <p>
+        <span style="font-size: 26px; color: #f44336;">❌</span>
+        <strong> No se pudo leer el QR.</strong>
+      </p>
+    </div>
+  </mat-card>
+
+  <!-- Mensaje adicional -->
+  <p *ngIf="mensajeQr" style="margin-top:10px; text-align:center; font-weight: bold; color: green;">
+    {{ mensajeQr }}
+  </p>
+</div>
+
+
+
+
+
+/************************inicio app-routin-module con movil, si quiero quitarlo elimiar comentarios y ajustar***********************************************/
+
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { SignupComponent } from './page/signup/signup.component';
+import { LoginComponent } from './page/login/login.component';
+import { HomeComponent } from './page/home/home/home.component';
+import { WelcomeComponent } from './page/admin/welcome/welcome.component';
+
+import { NormalGuard } from './services/normal.guard';
+import { AdminGuard } from './services/admin.guard';
+import { DashboardComponent } from './page/admin/dashboard/dashboard.component';
+import { UserDashboardComponent } from './page/user/user-dashboard/user-dashboard.component';
+import { ProfileComponent } from './page/profile/profile.component';
+import { ViewCategoriasComponent } from './page/admin/view-categorias/view-categorias.component';
+import { AddCategoriaComponent } from './page/admin/add-categoria/add-categoria.component';
+import { ViewExamenesComponent } from './page/admin/view-examenes/view-examenes.component';
+import { AddExamenComponent } from './page/admin/add-examen/add-examen.component';
+import { ActualizarExamenComponent } from './page/admin/actualizar-examen/actualizar-examen.component';
+import { ViewExamenPreguntasComponent } from './page/admin/view-examen-preguntas/view-examen-preguntas.component';
+import { AddPreguntaComponent } from './page/admin/add-pregunta/add-pregunta.component';
+import { ActualizarPreguntaComponent } from './page/admin/actualizar-pregunta/actualizar-pregunta.component';
+import { LoadExamenComponent } from './page/user/load-examen/load-examen.component';
+import { InstruccionesComponent } from './page/user/instrucciones/instrucciones.component';
+import { StartComponent } from './page/user/start/start.component';
+import { ActualizarCategoriaComponent } from './page/admin/actualizar-categoria/actualizar-categoria.component';
+import { OperacionesComponent } from './page/user/operaciones/operaciones.component';
+import { InversionesComponent } from './page/user/inversiones/inversiones.component';
+import { BuscarComponent } from './page/buscar/buscar.component'; 
+import { ReportesComponent } from './page/reportes/reportes.component'; 
+import { IndicadoresComponent } from './page/indicadores/indicadores.component';
+import { UsuarioComponent } from './page/admin/usuario/usuario.component';
+import { AsistenciaAdminComponent } from './page/admin/asistencia-admin/asistencia-admin.component';
+
+
+import { IndicadoresUserComponent } from './page/user/indicadores-user/indicadores-user.component';
+import { ReportesUserComponent } from './page/user/reportes-user/reportes-user.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { LoginAsistenciaComponent } from './page/user/login-asistencia/login-asistencia.component';
+import { ProfileUserComponent } from './page/user/profile-user/profile-user.component';
+import { HistorialComponent } from './page/user/historial/historial.component';
+import { HistorialUserComponent } from './page/user/historial-user/historial-user.component';
+import { Historial1Component } from './page/user/historial1/historial1.component';
+import { EstadisticasAsisteciaComponent } from './page/admin/estadisticas-asistecia/estadisticas-asistecia.component';
+import { AsignarHorarioComponent } from './page/admin/asignar-horarios/asignar-horarios.component';
+import { ResumenHorariosComponent } from './page/admin/resumen-horarios/resumen-horarios.component';
+import { EmpleadosComponent } from './page/admin/empleados/empleados.component';
+import { RegistroAsistenciaDiariaComponent } from './page/admin/registro-asistencia-diaria/registro-asistencia-diaria.component';
+import { HorasTrabajadasMensualmenteComponent } from './page/admin/horas-trabajadas-mensualmente/horas-trabajadas-mensualmente.component';
+
+import { InasistenciasComponent } from './page/admin/inasistencias/inasistencias.component';
+import { HorasExtrasComponent } from './page/admin/horas-extras/horas-extras.component';
+import { KioskAsistenciaComponent } from './kiosk-asistencia/kiosk-asistencia.component';
+
+import { QrPersonalComponent } from './page/user/qr-personal/qr-personal.component';
+import { HorarioPersonalComponent } from './page/user/horario-personal/horario-personal.component';
+import { SidebarComponent } from './page/user/sidebar/sidebar.component';
+
+
+export const routes: Routes = [
+  {
+    path : '',
+    component : HomeComponent,
+    pathMatch : 'full'
+  },
+  {                                        // original
+    path : 'login',
+    component : LoginComponent,
+    pathMatch : 'full'
+  },  
+  {
+    path : 'admin',
+    component : DashboardComponent,
+    //pathMatch : 'full',
+   canActivate:[AdminGuard],
+   children:[
+    {
+       path:'profile',
+       component:ProfileComponent
+    },
+    {
+      path:'usuarios',
+      component:UsuarioComponent,
+      pathMatch : 'full'
+    },
+    {
+      path : 'signup',
+      component : SignupComponent,
+      pathMatch : 'full'
+    },
+    {
+      path : '',
+       component : WelcomeComponent
+    },
+    {
+      path: "categorias",
+      component:ViewCategoriasComponent
+    },
+    {
+      path: "add-categoria",
+      component:AddCategoriaComponent
+    },
+    {
+      path: "examenes",
+      component:ViewExamenesComponent 
+    },
+    {
+      path:'add-examen',
+      component:AddExamenComponent
+    },
+    {
+      path:'examen/:examenId',
+      component:ActualizarExamenComponent
+    },
+    
+    {
+      path:'ver-preguntas/:examenId/:titulo',
+      component:ViewExamenPreguntasComponent
+    },
+    
+    {
+      path:'add-pregunta/:examenId/:titulo',
+        component : AddPreguntaComponent
+    },
+    
+    {
+      path:'pregunta/:preguntaId',
+      component:ActualizarPreguntaComponent
+    },
+    
+    {
+      path:'categoria/:categoriaId',
+      component:ActualizarCategoriaComponent
+    },
+    {
+      path : 'indicadores',
+      component : IndicadoresComponent               // tdx buscar
+      //canActivate:[NormalGuard]
+      
+    },
+    {
+      path : 'reportes',
+      component : ReportesComponent               // tdx buscar
+     // canActivate:[NormalGuard]
+      
+    },
+    {
+      path : 'asistencia-admin',
+      component : AsistenciaAdminComponent              
+     // canActivate:[NormalGuard]
+      
+    },
+    {
+      path : 'estadisticas-asistecia',
+      component : EstadisticasAsisteciaComponent              
+     // canActivate:[NormalGuard]
+      
+    },
+   
+    { path: 'asignar-horarios/:id', 
+      component : AsignarHorarioComponent   //error
+     },
+
+     { path: 'resumen-horarios',
+       component: ResumenHorariosComponent } ,    //resumen-horarios
+
+    { path: 'empleados',
+       component: EmpleadosComponent },
+       
+    { path: 'registro-asistencia-diaria',
+       component: RegistroAsistenciaDiariaComponent
+    },     
+
+    { path: 'horas-trabajadas-mensualmente',
+       component: HorasTrabajadasMensualmenteComponent
+    },
+    { path: 'inasistencias',
+       component: InasistenciasComponent
+    },
+    { path: 'horas-extras',
+       component: HorasExtrasComponent
+    }
+   
+
+
+
+   ]
+  },
+
+      /* Usuario */
+
+      {
+  path : 'user-dashboard', 
+  component : SidebarComponent,
+  canActivate : [NormalGuard],
+  children : [
+    {
+      path: '',
+      component: UserDashboardComponent // si tienes una vista principal
+    },
+    {
+      path: ':catId',
+      component: LoadExamenComponent
+    },
+    {
+      path: 'instrucciones/:examenId',
+      component: InstruccionesComponent
+    },
+    {
+      path: 'user/reportes-user',
+      component: ReportesUserComponent
+    },
+    {
+      path: 'user/indicadores-user',
+      component: IndicadoresUserComponent
+    },
+    {
+      path: 'buscar',
+      component: BuscarComponent
+    },
+    {
+      path: 'user/login-asistencia',
+      component: LoginAsistenciaComponent
+    },
+    {
+      path: 'user/profile-user',
+      component: ProfileUserComponent
+    },
+    {
+      path: 'user/historial',
+      component: HistorialComponent
+    },
+    {
+      path: 'user/historial-user',
+      component: HistorialUserComponent
+    },
+    {
+      path: 'user/historial1',
+      component: Historial1Component
+    },
+    {
+      path: 'user/qr-personal',
+      component: QrPersonalComponent
+    },
+    {
+      path: 'user/horario-personal',
+      component: HorarioPersonalComponent
+    }
+  ]
+},
+
+
+      /*
+  {
+    path : 'user-dashboard', 
+    component : UserDashboardComponent,
+    canActivate : [NormalGuard],
+    children : [
+      {
+        path:':catId',
+        component:LoadExamenComponent
+      },
+      {
+        path: 'instrucciones/:examenId',
+        component:InstruccionesComponent
+      },
+      {
+        path : 'user/reportes-user',
+        component : ReportesUserComponent               
+      },
+      {
+        path : 'user/indicadores-user',
+        component : IndicadoresUserComponent                     
+      },
+      {
+        path : 'buscar',
+        component : BuscarComponent               // tdx buscar
+        //canActivate:[NormalGuard] 
+      },
+      {                                        // asistencia
+       path : 'user/login-asistencia',
+       component : LoginAsistenciaComponent
+       
+      },
+      {                                        // asistencia
+       path : 'user/profile-user',
+       component : ProfileUserComponent
+       
+      },
+
+      {                                        // asistencia
+       path : 'user/historial',
+       component : HistorialComponent
+       
+      },
+      {                                        // asistencia
+       path : 'user/historial-user',
+       component : HistorialUserComponent
+       
+      },
+      {                                        // asistencia
+       path : 'user/historial1',
+       component : Historial1Component
+       
+      },
+
+      {
+         path: 'user/qr-personal',
+         component: QrPersonalComponent
+    },
+    {
+         path: 'user/horario-personal',
+         component: HorarioPersonalComponent
+    }
+
+
+          
+    ]   
+  },
+*/
+
+  {
+    path:"start/:examenId",
+    component:StartComponent,
+    canActivate:[NormalGuard]
+  },
+  {
+    path: 'operaciones/:examenId',
+    component:OperacionesComponent,
+    canActivate:[NormalGuard] 
+  },
+  {
+    path: 'inversiones/:examenId',
+    component:InversionesComponent,
+    canActivate:[NormalGuard] 
+  },
+
+
+  // Ruta con acceso abierto (sin restricciones)
+  {
+    path: 'pregunta/:preguntaId',
+    component: ActualizarPreguntaComponent
+  },
+  //{ path: 'home', component: HomeComponent },
+  //{ path: '**', redirectTo: 'home' }, // Redirige cualquier ruta incorrecta
+
+   { path: 'kiosk-asistencia', component: KioskAsistenciaComponent },
+   { path: '**', redirectTo: 'home' }
+//{ path: 'kiosk-asistencia', component: KioskAsistenciaComponent }
+
+
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }] // Usamos HashLocationStrategy para ocultar las rutas en el navegador
+})
+export class AppRoutingModule { }
+
+
+
+/********************de copitot********************/
+Relacionado con esConfiguracion que es de horario
+
+2. Asegúrate de que nunca sea null
+Si prefieres mantenerlo como boolean, entonces garantiza que siempre tenga un valor:
+
+En la entidad, usa:
+
+java
+@Column(nullable = false)
+private boolean esConfiguracion = false;
+En la base de datos, asegúrate de que no haya NULL:
+
+sql
+UPDATE horarios SET es_configuracion = false WHERE es_configuracion IS NULL;
+ALTER TABLE horarios ALTER COLUMN es_configuracion SET DEFAULT false;
+ALTER TABLE horarios MODIFY es_configuracion BOOLEAN NOT NULL;

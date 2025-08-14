@@ -1,0 +1,102 @@
+
+<div class="panel-container">
+  <mat-card class="mat-elevation-z6 asistencia-card">
+    <h2 class="titulo-panel" style="text-align: center; margin-bottom: 20px;">
+  <mat-icon style="vertical-align: middle; margin-right: 6px;">group</mat-icon>
+  Lista de empleados
+</h2>
+
+<br>
+    
+    <div class="botones-accion">
+      <button mat-raised-button color="primary" (click)="mostrarFiltrosConSwal()">
+        <mat-icon class="icono-boton">filter_alt</mat-icon>
+        Filtrar
+      </button>
+    
+      <button mat-stroked-button color="warn" (click)="limpiarFiltros()">
+        <mat-icon class="icono-boton">delete</mat-icon>
+        Limpiar
+      </button>
+    </div>
+    
+    <br>
+    
+    
+      <button mat-icon-button color="accent" class="boton-mini" (click)="exportarExcel()" matTooltip="Exportar a Excel">
+        <mat-icon>file_download</mat-icon>
+      </button>
+    
+
+
+    <!-- Tabla -->
+    <table mat-table [dataSource]="dataSourceResumen" matSort class="mat-elevation-z2 asistencia-tabla">
+      
+      <!-- Usuario -->
+      <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
+        <td mat-cell *matCellDef="let a">
+          {{ a.usuario?.nombre || '—' }} 
+          
+        </td>
+      </ng-container>
+
+      <!-- DNI -->
+      <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DNI</th>
+        <td mat-cell *matCellDef="let a">{{ a.dni }}</td>
+      </ng-container>
+
+     
+
+      <!-- Centro -->
+      <ng-container matColumnDef="centro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Área</th>
+        <td mat-cell *matCellDef="let a">{{ a.centro }}</td>
+      </ng-container>
+
+      <!-- Fecha -->
+      <ng-container matColumnDef="fechaDeContrato">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de contrato</th>
+        <td mat-cell *matCellDef="let a">{{ a.fechaDeContrato }}</td>
+      </ng-container>
+
+      <!-- Puesto -->
+      <ng-container matColumnDef="puesto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Puesto</th>
+        <td mat-cell *matCellDef="let a">{{ a.puesto }}</td>
+      </ng-container>
+
+      <!-- Horario -->
+      <!-- Horario -->
+<ng-container matColumnDef="horario">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Horario</th>
+  <td mat-cell *matCellDef="let a">
+    {{ a.horario }}
+  </td>
+</ng-container>
+
+
+
+
+  
+      
+     <!-- Acciones -->
+<ng-container matColumnDef="acciones">
+  <th mat-header-cell *matHeaderCellDef> Acciones </th>
+  <td mat-cell *matCellDef="let fila">
+    <button mat-icon-button color="warn" aria-label="Eliminar usuario" (click)="eliminarUsuario(fila.usuario?.id)">
+      <mat-icon>person_remove</mat-icon>
+    </button>
+  </td>
+</ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="columnasResumen"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnasResumen;"></tr>
+    </table>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>

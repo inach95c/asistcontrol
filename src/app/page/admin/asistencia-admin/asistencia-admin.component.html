@@ -1,0 +1,149 @@
+<div class="panel-container">
+  <mat-card class="mat-elevation-z6 asistencia-card">
+    <h2 class="titulo-panel" style="text-align: center; margin-bottom: 20px;">
+  <mat-icon style="vertical-align: middle; margin-right: 6px;">fact_check</mat-icon>
+  Panel de Asistencias
+</h2>
+
+<br>
+
+<div class="botones-accion" style="display: flex; justify-content: flex-start; gap: 10px; margin-bottom: 20px;">
+  <button mat-raised-button color="primary" (click)="mostrarFiltrosConSwal()">
+    <mat-icon>filter_alt</mat-icon> Filtrar
+  </button>
+
+  <button mat-stroked-button color="warn" (click)="limpiarFiltros()">
+    <mat-icon>delete</mat-icon> Limpiar
+  </button>
+</div>
+
+
+   <br>
+    
+    <div class="contenedor-boton-exportar">
+      <button mat-raised-button color="accent" (click)="exportarExcel()">
+        <mat-icon style="margin-right: 6px;">file_download</mat-icon>
+        Exportar
+      </button>
+    </div>
+    
+
+    <!-- Tabla -->
+     
+    
+    <table mat-table [dataSource]="dataSourceResumen" matSort class="mat-elevation-z2 asistencia-tabla">
+      
+      <!-- Usuario -->
+      <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
+        <td mat-cell *matCellDef="let a">
+          {{ a.usuario?.nombre || '—' }} 
+          
+        </td>
+      </ng-container>
+
+      <!-- DNI -->
+      <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DNI</th>
+        <td mat-cell *matCellDef="let a">{{ a.dni }}</td>
+      </ng-container>
+
+      <!-- Teléfono 
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Teléfono</th>
+        <td mat-cell *matCellDef="let a">{{ a.telefono }}</td>
+      </ng-container>-->
+
+      <!-- Email 
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let a">{{ a.email }}</td>
+      </ng-container>-->
+
+      <!-- Centro -->
+      <ng-container matColumnDef="centro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Área</th>
+        <td mat-cell *matCellDef="let a">{{ a.centro }}</td>
+      </ng-container>
+
+      <!-- Fecha -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+        <td mat-cell *matCellDef="let a">{{ a.fecha }}</td>
+      </ng-container>
+
+      <!-- Entrada -->
+      <ng-container matColumnDef="entrada">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Entrada</th>
+        <td mat-cell *matCellDef="let a">
+          {{ a.entrada ? (a.entrada | date: 'shortTime') : '—' }}
+        </td>
+      </ng-container>
+
+      <!-- Salida -->
+      <ng-container matColumnDef="salida">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Salida</th>
+        <td mat-cell *matCellDef="let a">
+          {{ a.salida ? (a.salida | date: 'shortTime') : '—' }}
+        </td>
+      </ng-container>
+
+      <!-- Horas trabajadas 
+      <ng-container matColumnDef="horasTrabajadas">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Horas Trabajadas</th>
+        <td mat-cell *matCellDef="let a">
+          {{ a.horasTrabajadas || '—' }}
+        </td>
+      </ng-container>-->
+
+      <!-- Horas Extras -->
+      <ng-container matColumnDef="horasExtras">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Horas Extras</th>
+        <td mat-cell *matCellDef="let a">
+          <span [ngClass]="{ 'extra-alta': esExtraAlta(a.horasExtras) }">
+            {{ a.horasExtras || '—' }}
+          </span>
+        </td>
+
+      </ng-container>
+
+      <!-- Estado -->
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+        <td mat-cell *matCellDef="let a">
+          <span [ngClass]="{
+        'estado-tarde': a.estado === 'Tarde',
+        'estado-puntual': a.estado === 'Puntual' || a.estado === 'Puntual*'
+      }">
+            {{ a.estado }}
+          </span>
+      
+        </td>
+      </ng-container>
+
+      
+
+
+      <!-- Acciones -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let fila">
+          <mat-form-field appearance="outline" class="acciones-select">
+            <mat-select placeholder="⚙️" (selectionChange)="accionSeleccionada($event.value, fila)">
+
+              <mat-option value="editar">✏️ Editar</mat-option>
+              <mat-option *ngIf="fila.idEntrada" value="eliminarEntrada">🗑️ Eliminar Entrada</mat-option>
+              <mat-option *ngIf="fila.idSalida" value="eliminarSalida">🗑️ Eliminar Salida</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnasResumen"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnasResumen;"></tr>
+    </table>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>

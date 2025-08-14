@@ -1,0 +1,57 @@
+<div class="formulario-container">
+  <mat-card class="formulario-card mat-elevation-z6">
+    <h2 class="formulario-titulo">📋 Resumen de Asistencia</h2>
+
+    <div *ngIf="fechaYHoraDelRegistro" class="registro-confirmado">
+      ✅ {{ fechaYHoraDelRegistro }}
+    </div>
+
+    <app-historial1
+      *ngIf="dataSource.data.length > 0"
+      [data]="dataSource.data"
+      [columnas]="columnas">
+    </app-historial1>
+  </mat-card>
+</div>
+
+<div class="historial-card-container">
+  <mat-card class="historial-card mat-elevation-z2">
+    <h3 class="subtitulo-asistencia">📃 Historial detallado</h3>
+
+    <div class="filtro-fechas">
+      <mat-form-field appearance="outline">
+        <mat-label>Desde</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicio">
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Hasta</mat-label>
+        <input matInput [matDatepicker]="pickerFin" [(ngModel)]="fechaFin">
+        <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFin></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="filtrarPorFechas()">🕒 Filtrar</button>
+      <button mat-stroked-button color="warn" (click)="restablecerFiltro()">🧹 Limpiar</button>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 tabla-asistencia">
+      <ng-container matColumnDef="fechaHora">
+        <th mat-header-cell *matHeaderCellDef>Fecha y Hora</th>
+        <td mat-cell *matCellDef="let a">{{ a.fechaHora | date: 'short' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let a">{{ a.tipo }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>

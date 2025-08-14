@@ -1,0 +1,75 @@
+<div class="panel-container">
+  <mat-card class="mat-elevation-z6 asistencia-card">
+    <h2 class="titulo-panel" style="text-align: center; margin-bottom: 20px;">
+      <mat-icon style="vertical-align: middle; margin-right: 6px;">summarize</mat-icon>
+      Tu resumen de salario mensual
+    </h2>
+
+    <!-- Selector de mes -->
+    <div class="botones-accion">
+      <mat-form-field appearance="outline" class="campo-mini">
+        <mat-label>Mes</mat-label>
+        <input matInput [(ngModel)]="mesSeleccionado" (ngModelChange)="cargarResumen()" placeholder="YYYY-MM">
+      </mat-form-field>
+
+     
+    </div>
+
+     <div class="contenedor-boton-exportar">
+        <button mat-raised-button color="accent" (click)="exportarExcel()">
+          <mat-icon style="margin-right: 6px;">file_download</mat-icon>
+          Exportar
+        </button>
+      </div>
+
+    <!-- Tabla -->
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 asistencia-tabla">
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+        <td mat-cell *matCellDef="let row">{{ row.nombre }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DNI</th>
+        <td mat-cell *matCellDef="let row">{{ row.dni }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="horasNormales">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Horas normales</th>
+        <td mat-cell *matCellDef="let row">{{ row.horasNormales | number:'1.2-2' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="horasExtras">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Horas extras</th>
+        <td mat-cell *matCellDef="let row">{{ row.horasExtras | number:'1.2-2' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tarifa">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tarifa</th>
+        <td mat-cell *matCellDef="let row">{{ row.tarifa | currency:'USD' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tarifaExtra">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tarifa extra</th>
+        <td mat-cell *matCellDef="let row">{{ row.tarifaExtra | number:'1.2-2' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="salarioExtra">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Salario extra</th>
+        <td mat-cell *matCellDef="let row">{{ row.salarioExtra | currency:'USD':'symbol':'1.2-2' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="salarioTotal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Salario total</th>
+        <td mat-cell *matCellDef="let row">{{ row.salarioTotal | currency:'USD' }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>
+

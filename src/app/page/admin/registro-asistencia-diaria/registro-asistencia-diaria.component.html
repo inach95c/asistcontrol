@@ -1,0 +1,97 @@
+<div class="panel-container">
+  <mat-card class="mat-elevation-z6 asistencia-card">
+      <h2 class="titulo-panel" style="text-align: center; margin-bottom: 20px;">
+  <mat-icon style="vertical-align: middle; margin-right: 6px;">how_to_reg</mat-icon>
+  Registro de Asistencia Diaria
+</h2>
+
+<br>
+
+      <div class="botones-accion" style="display: flex; justify-content: flex-start; gap: 10px; margin-bottom: 20px;">
+  <button mat-raised-button color="primary" (click)="mostrarFiltrosConSwal()">
+    <mat-icon>filter_alt</mat-icon> Filtrar
+  </button>
+
+  <button mat-stroked-button color="warn" (click)="limpiarFiltros()">
+    <mat-icon>delete</mat-icon> Limpiar
+  </button>
+</div>
+
+
+   <br>
+    
+    <div class="contenedor-boton-exportar">
+      <button mat-raised-button color="accent" (click)="exportarExcel()">
+        <mat-icon style="margin-right: 6px;">file_download</mat-icon>
+        Exportar
+      </button>
+    </div>
+
+
+   
+
+    <!-- Tabla -->
+    <table mat-table [dataSource]="dataSourceResumen" matSort class="mat-elevation-z2 asistencia-tabla">
+
+      <!-- Usuario -->
+      <ng-container matColumnDef="usuario">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
+        <td mat-cell *matCellDef="let a">
+          {{ a.usuario?.nombre || '—' }} {{ a.usuario?.apellido || '' }}
+        </td>
+      </ng-container>
+
+      <!-- DNI -->
+      <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DNI</th>
+        <td mat-cell *matCellDef="let a">{{ a.dni }}</td>
+      </ng-container>
+
+      <!-- Puesto -->
+      <ng-container matColumnDef="puesto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Puesto</th>
+        <td mat-cell *matCellDef="let a">{{ a.puesto }}</td>
+      </ng-container>
+
+      <!-- Hora Entrada -->
+      <ng-container matColumnDef="horaEntrada">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora Entrada</th>
+        <td mat-cell *matCellDef="let a">{{ a.horaEntrada }}</td>
+      </ng-container>
+
+      <!-- Hora Salida -->
+      <ng-container matColumnDef="horaSalida">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora Salida</th>
+        <td mat-cell *matCellDef="let a">{{ a.horaSalida }}</td>
+      </ng-container>
+
+      <!-- Tiempo de trabajo -->
+      <ng-container matColumnDef="tiempoTrabajo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tiempo Trabajo</th>
+        <td mat-cell *matCellDef="let a">{{ a.tiempoTrabajo }}</td>
+      </ng-container>
+
+      <!-- Estado -->
+<ng-container matColumnDef="estado">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+  <td mat-cell *matCellDef="let a">
+  <span [ngClass]="{
+  'estado-tarde': a.estado === 'Tarde',
+  'estado-puntual': a.estado === 'Puntual' || a.estado === 'Puntual*'
+}">
+  {{ a.estado }}
+  
+</span>
+
+  </td>
+</ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="columnasResumen"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnasResumen;"></tr>
+    </table>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>

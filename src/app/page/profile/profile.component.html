@@ -1,0 +1,39 @@
+<div class="perfil-container">
+  <mat-card class="perfil-card mat-elevation-z6">
+    <h2 class="perfil-titulo">👤 Detalles del perfil</h2>
+
+    <mat-card-content>
+      <div class="text-center">
+        <img src="../../../assets/perfil.png" class="profile-image" alt="Foto de perfil">
+        <h3 class="perfil-nombre">{{user.nombre}} {{user.apellido}}</h3>
+      </div>
+
+      <table class="table">
+        <tr>
+          <td>Nombre de usuario</td>
+          <td>{{user.username}}</td>
+        </tr>
+        <tr>
+          <td>ID</td>
+          <td>{{user.id}}</td>
+        </tr>
+        <tr>
+          <td>Teléfono</td>
+          <td>{{user.telefono}}</td>
+        </tr>
+        <tr>
+          <td>Rol</td>
+          <td>{{user.authorities[0].authority}}</td>
+        </tr>
+        <tr>
+          <td>Estado</td>
+          <td [ngClass]="user.enabled ? 'perfil-estado-activo' : 'perfil-estado-inactivo'">
+            {{user.enabled ? "Activo" : "No activo"}}
+          </td>
+        </tr>
+      </table>
+
+     
+    </mat-card-content>
+  </mat-card>
+</div>

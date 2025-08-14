@@ -1,0 +1,35 @@
+
+
+<h2 mat-dialog-title>Editar Horario</h2>
+<mat-dialog-content>
+  <p><strong>Usuario:</strong> {{ data.usuario.nombre }} {{ data.usuario.apellido }}</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Hora de entrada</mat-label>
+    <input matInput type="time" [(ngModel)]="data.horaEntrada">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Hora de salida</mat-label>
+    <input matInput type="time" [(ngModel)]="data.horaSalida">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Inicio</mat-label>
+    <input matInput [matDatepicker]="fi" [(ngModel)]="data.fechaInicio">
+    <mat-datepicker-toggle matSuffix [for]="fi"></mat-datepicker-toggle>
+    <mat-datepicker #fi></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Fin</mat-label>
+    <input matInput [matDatepicker]="ff" [(ngModel)]="data.fechaFin">
+    <mat-datepicker-toggle matSuffix [for]="ff"></mat-datepicker-toggle>
+    <mat-datepicker #ff></mat-datepicker>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="guardar()">Guardar</button>
+</mat-dialog-actions>

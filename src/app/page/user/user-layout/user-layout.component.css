@@ -1,0 +1,53 @@
+.layout-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 64px); /* ajusta si el navbar es más alto */
+}
+
+.mobile-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #2c3e50;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.hamburguesa-btn {
+  color: white;
+  margin-right: 12px;
+}
+
+.toolbar-title {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+}
+
+app-sidebar-user {
+  flex: 0 0 240px;
+  height: 100%;
+}
+
+.layout-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f4f6f8;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .layout-wrapper {
+    flex-direction: column;
+  }
+
+  app-sidebar-user {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .layout-content {
+    padding: 12px;
+  }
+}

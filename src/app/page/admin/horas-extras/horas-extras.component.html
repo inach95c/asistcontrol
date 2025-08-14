@@ -1,0 +1,98 @@
+<div class="panel-container">
+  <mat-card class="mat-elevation-z6 asistencia-card">
+       <h2 class="titulo-panel" style="text-align: center; margin-bottom: 20px;">
+  <mat-icon style="vertical-align: middle; margin-right: 6px;">pending_actions</mat-icon>
+  Reporte de Horas Extras
+</h2>
+
+   
+   <br>
+    
+    <div class="botones-accion">
+      <button mat-raised-button color="primary" (click)="mostrarFiltrosConSwal()">
+        <mat-icon class="icono-boton">filter_alt</mat-icon>
+        Filtrar
+      </button>
+    
+      <button mat-stroked-button color="warn" (click)="limpiarFiltros()">
+        <mat-icon class="icono-boton">delete</mat-icon>
+        Limpiar
+      </button>
+    </div>
+    
+    <br>
+    
+    <div class="contenedor-boton-exportar">
+      <button mat-raised-button color="accent" (click)="exportarExcel()">
+        <mat-icon style="margin-right: 6px;">file_download</mat-icon>
+        Exportar
+      </button>
+    </div>
+   
+           <table mat-table [dataSource]="dataSourceResumen" matSort class="mat-elevation-z2 asistencia-tabla">
+
+      <!-- Nombre -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+        <td mat-cell *matCellDef="let r">{{ r.nombre }}</td>
+      </ng-container>
+
+      <!-- DNI -->
+      <ng-container matColumnDef="dni">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DNI</th>
+        <td mat-cell *matCellDef="let r">{{ r.dni }}</td>
+      </ng-container>
+
+      <!-- Área -->
+      <ng-container matColumnDef="centro">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Área</th>
+        <td mat-cell *matCellDef="let r">{{ r.centro }}</td>
+      </ng-container>
+
+      <!-- Fecha -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+        <td mat-cell *matCellDef="let r">{{ r.fecha }}</td>
+      </ng-container>
+
+      <!-- Horas Extras -->
+      <!-- Horas Extras -->
+<ng-container matColumnDef="horasExtras">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header>Horas Extras</th>
+  <td mat-cell *matCellDef="let r">
+    <span [ngClass]="getHorasExtrasInfo(r.horasExtras).clase">
+      {{ r.horasExtras || '—' }}
+      <mat-icon
+        *ngIf="getHorasExtrasInfo(r.horasExtras).tooltip"
+        [matTooltip]="getHorasExtrasInfo(r.horasExtras).tooltip"
+        [style.color]="getHorasExtrasInfo(r.horasExtras).iconColor"
+        style="font-size: 18px; vertical-align: middle; margin-left: 4px;"
+      >
+        {{ getHorasExtrasInfo(r.horasExtras).icon }}
+      </mat-icon>
+    </span>
+  </td>
+</ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="columnasResumen"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnasResumen;"></tr>
+    </table>
+
+<!-- mensaje -->
+   <div *ngIf="dataSourceResumen.data.length === 0" class="mensaje-vacio">
+  <mat-icon style="vertical-align: middle; margin-right: 6px; color: #999;">info</mat-icon>
+  No hay registros de horas extras disponibles.
+</div>
+
+<div *ngIf="dataSourceResumen.data.length > 0 && dataSourceResumen.filteredData.length === 0" class="mensaje-vacio">
+  <mat-icon style="vertical-align: middle; margin-right: 6px; color: #999;">search_off</mat-icon>
+  No se encontraron horas extras que coincidan con los filtros aplicados.
+</div>
+
+
+
+    <!-- Paginador -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>

@@ -1,0 +1,325 @@
+mat-form-field {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    padding: 10px;
+    background: #f4f4f4;
+    margin-bottom: 5px;
+    border-radius: 5px;
+  }
+  
+  .example-header-image {
+    background-image: url('/assets/exam.png');
+    background-size: cover;
+  }
+  
+  .btn-green {
+    background-color: #28a745; /* Verde */
+    color: white;
+  }
+  
+  .btn-red {
+    background-color: #dc3545; /* Rojo */
+    color: white;
+  }
+  
+  .btn-gray {
+    background-color: #6c757d; /* Gris */
+    color: white;
+  }
+  
+  .btn-yellow {
+    background-color: #ffc107; /* Amarillo */
+    color: black;
+  }
+  
+  .btn-violet {
+    background-color: #0992c9; /* Violeta */
+    color: white;
+  }
+  
+  .sidebar {
+    background-color: #f5f5f5;
+    padding: 20px;
+    height: 100vh;
+  }
+  
+  .mat-nav-list {
+    width: 100%;
+  }
+  
+  .mat-list-item {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .mat-list-item:hover {
+    background-color: #ddd;
+  }
+  
+  /* Contenedor de búsqueda y fechas alineadas en la misma fila */
+  .search-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  /* Grupo de campo con encabezado */
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Reducir tamaño de barra de búsqueda y fechas */
+  .small-input {
+    width: 160px;
+  }
+  
+  /* Estilo de resultados en dos columnas */
+  .search-results .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .col-md-6 {
+    padding: 10px;
+  }
+  
+  /* Alineación de fechas */
+  .fila-fechas {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  /* Paginación */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    background-color: #3ab779;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination button:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+  }
+  
+  .pagination button:hover:not(:disabled) {
+    background-color: #2d3fa8;
+  }
+  
+  .page-info {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    min-width: 120px;
+  }
+  
+  /* Estilo mejorado para el select */
+  .pagination-settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    gap: 10px;
+    font-size: 16px;
+  }
+  
+  .pagination-settings label {
+    font-weight: normal;
+    font-size: 12px; /* Tamaño más pequeño */
+    color: #333;
+  }
+  
+  .pagination-settings select {
+    padding: 5px; /* Reduce el espacio interno */
+    font-size: 12px; /* Tamaño de texto más pequeño */
+    border: 2px solid #673ab7;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  
+  .pagination-settings select:hover {
+    background-color: #a096a1;
+  }
+  
+  .pagination-settings select:focus {
+    border-color: #512da8;
+    outline: none;
+    box-shadow: 0 0 5px rgba(81, 45, 168, 0.5);
+  }
+  
+  
+  .pagination-container {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Alinea los elementos en la misma línea */
+    gap: 20px; /* Espacio entre los elementos */
+    flex-wrap: wrap; /* Evita problemas en pantallas pequeñas */
+    margin-top: 20px;
+  }
+
+/*para el panel de filtros y busqueda*/
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+  }
+  
+  .form-group {
+    flex: 1 1 250px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  /*fin para el panel de filtros y busqueda*/
+
+
+
+  /*tabla*/
+  .mat-column-descripcion {
+    width: 60%;
+}
+.mat-column-valor {
+    width: 40%;
+    text-align: right; /* Alinear valores numéricos a la derecha */
+}
+
+
+
+
+.reportes-container mat-card {             /*incluir sombras para mejorar*/
+  padding: 20px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 768px) {    /* reponsives para moviles*/
+  .mat-column-descripcion {
+      width: 100%;
+      display: block;
+  }
+  .mat-column-valor {
+      width: 100%;
+      display: block;
+      text-align: left;
+  }
+}
+
+
+
+.acciones-derecha {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.botones-derecha {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end; /* Mueve los botones al lado derecho */
+  flex: 1;
+}
+
+
+.example-header-image {
+  background-image: url('/assets/exam.png');
+  background-size: cover;
+}
+
+.espacio-abajo {
+  margin-bottom: 20px; /* Ajusta el valor según necesites */
+}
+
+
+table {
+  margin: auto;
+}
+
+
+
+
+/* Tabla mejorada*/
+
+/* Aplicar bordes a la tabla */
+table.mat-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilizar encabezados */
+th.mat-header-cell {
+  background-color: #36834d; /* Color de fondo */
+  color: white; /* Texto en blanco */
+  font-weight: bold;
+  text-align: center;
+  padding: 12px;
+}
+
+/* Estilizar celdas */
+td.mat-cell {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd; /* Separación entre filas */
+}
+
+/* Efecto hover en filas */
+tr.mat-row:hover {
+  background-color: rgba(63, 81, 181, 0.1); /* Sombra azul tenue */
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Ajustar tamaño de columna de indicadores */
+.ng-container[matColumnDef="descripcion"] td {
+  font-weight: bold;
+}
+
+/* Mejorar la apariencia de la tabla con una sombra */
+.mat-elevation-z8 {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+  
+  

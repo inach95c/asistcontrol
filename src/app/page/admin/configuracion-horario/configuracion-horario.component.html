@@ -1,0 +1,28 @@
+<div class="tolerancia-config-container">
+  <h2 class="config-title">Configuración de Tolerancia</h2>
+
+  <form class="tolerancia-form">
+    <mat-form-field appearance="outline" class="tolerancia-field">
+      <mat-label>Tolerancia de entrada (minutos)</mat-label>
+      <input matInput type="number" [(ngModel)]="toleranciaEntrada" name="entrada" min="0">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="tolerancia-field">
+      <mat-label>Tolerancia de salida (minutos)</mat-label>
+      <input matInput type="number" [(ngModel)]="toleranciaSalida" name="salida" min="0">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="tolerancia-field">
+  <mat-label>Horas normales por día</mat-label>
+  <input matInput type="number" [(ngModel)]="horasNormalesPorDia" name="horasNormales" min="1" max="24" step="0.25">
+</mat-form-field>
+
+
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="button" (click)="guardarConfiguracion()">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>
+

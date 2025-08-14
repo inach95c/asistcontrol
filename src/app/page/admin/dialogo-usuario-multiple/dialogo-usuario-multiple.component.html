@@ -1,0 +1,83 @@
+<h2 mat-dialog-title>
+  <mat-icon style="vertical-align: middle; margin-right: 6px;">schedule</mat-icon>
+  Asignar Horarios
+</h2>
+
+<mat-dialog-content class="dialog-content" [@fadeIn]>
+  <form [formGroup]="horarioForm" (ngSubmit)="onSubmit()">
+
+    <!-- Selector de usuarios -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Usuarios</mat-label>
+      <mat-select formControlName="usuariosIds" multiple (selectionChange)="toggleSeleccionarTodos($event)">
+        <mat-option [value]="allSelected" (click)="toggleTodos()">
+          <mat-icon style="vertical-align: middle;">group</mat-icon>
+          <span style="margin-left: 8px;">
+            {{ allSelected ? 'Deseleccionar todos' : 'Seleccionar todos' }}
+          </span>
+        </mat-option>
+
+        <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">
+          {{ usuario.nombre }} {{ usuario.apellido }} ({{ usuario.dni }})
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="horarioForm.get('usuariosIds')?.hasError('required')">
+        Selecciona al menos un usuario
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Fechas -->
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Desde</mat-label>
+        <input matInput [matDatepicker]="pickerInicio" formControlName="fechaInicio">
+        <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+        <mat-datepicker #pickerInicio></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Hasta</mat-label>
+        <input matInput [matDatepicker]="pickerFin" formControlName="fechaFin">
+        <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFin></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <!-- Horarios -->
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Hora de entrada</mat-label>
+        <input matInput type="time" formControlName="horaEntrada">
+        <mat-error *ngIf="horarioForm.get('horaEntrada')?.hasError('required')">
+          Ingrese hora de entrada
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Hora de salida</mat-label>
+        <input matInput type="time" formControlName="horaSalida">
+        <mat-error *ngIf="horarioForm.get('horaSalida')?.hasError('required')">
+          Ingrese hora de salida
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Botones -->
+    <div class="form-row buttons" style="margin-top: 10px;">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!horarioForm.valid">
+        <mat-icon>save</mat-icon> Guardar Horario
+      </button>
+
+      <button mat-raised-button color="warn" type="button"
+              (click)="eliminarHorariosSeleccionados()"
+              [disabled]="!horarioForm.value.usuariosIds?.length">
+        <mat-icon>delete</mat-icon> Eliminar horarios de usuario(s)
+      </button>
+    </div>
+  </form>
+
+ 
+  
+
+
+</mat-dialog-content>

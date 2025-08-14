@@ -1,0 +1,68 @@
+<div class="perfil-container">
+  <mat-card class="perfil-card mat-elevation-z6">
+    <h2 class="perfil-titulo">👤 Detalles del perfil</h2>
+
+    <mat-card-content>
+      <div class="text-center">
+        <img src="../../../assets/perfil.png" class="profile-image" alt="Foto de perfil">
+        <h3 class="perfil-nombre">{{user.nombre}} {{user.apellido}}</h3>
+      </div>
+
+      <table class="table">
+        <tr>
+          <td>Nombre de usuario</td>
+          <td>{{user.username}}</td>
+        </tr>
+        <tr>
+          <td>ID</td>
+          <td>{{user.id}}</td>
+        </tr>
+        <tr>
+          <td>Nombre</td>
+          <td>{{user.nombre}}</td>
+        </tr>
+        <tr>
+          <td>Apellido</td>
+          <td>{{user.apellido}}</td>
+        </tr>
+        <tr>
+          <td>DNI</td>
+          <td>{{user.dni}}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{user.email}}</td>
+        </tr>
+        <tr>
+          <td>Teléfono</td>
+          <td>{{user.telefono}}</td>
+        </tr>
+        <tr>
+          <td>Área</td>
+          <td>{{user.ctlc}}</td>
+        </tr>
+        <tr>
+          <td>Rol</td>
+          <td>{{user.authorities[0].authority}}</td>
+        </tr>
+        <tr>
+          <td>Estado</td>
+          <td [ngClass]="user.enabled ? 'perfil-estado-activo' : 'perfil-estado-inactivo'">
+            {{user.enabled ? "Activo" : "No activo"}}
+          </td>
+        </tr>
+        <tr>
+          <td>Fecha de Contrato</td>
+          <td>{{user.fechaDeContrato}}</td>
+        </tr>
+      </table>
+
+      <!-- Botón opcional de acción 
+      <div class="perfil-acciones text-center">
+        <button mat-raised-button color="primary">
+          ✏️ Actualizar perfil
+        </button>
+      </div>-->
+    </mat-card-content>
+  </mat-card>
+</div>

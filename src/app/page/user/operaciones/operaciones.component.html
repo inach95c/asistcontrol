@@ -1,0 +1,254 @@
+<div class="bootstrap-wrapper" *ngIf="!esEnviadoInversiones">
+  <div class="container-fluid">
+    <div class="row" >
+      <div class="col-md-2">
+        <!--Instrucciones-->
+        <mat-card style="margin-top: 70px;" >
+          <mat-card-content> 
+            <p class=" blue-text"><b>DETALLES</b></p>
+            <b>Solicitud </b><br>{{ examen.solicitud }}<br><br>
+            <b>Velocidad </b><br>{{ examen.velocidad }}<br><br>
+            <b>Enlace </b><br>{{ examen.enlace }}<br><br>
+            <b>No. de Teléfono </b><br>{{ examen.noAdsl }}<br><br>
+            <b>Telef. de Contacto </b><br>{{ examen.telefonoDeContacto }}<br><br>
+            <b>Fecha de Solicitud</b><br>{{ examen.fechaDeSolicitud }}           
+          </mat-card-content>
+        </mat-card>
+      </div>
+       
+      <!--INICIO DE PREGUNTAS-->
+      <div class="col-md-7">
+        <mat-card >
+          
+          Certificar solicitud de TxD: <b>{{ examen.titulo }}, {{ examen.descripcion }}</b>
+          <br><br>
+          <mat-divider></mat-divider><br>
+          <p class="center-text blue-text"><b>OPERACIONES</b></p>
+          <div class="row">
+            <div class="col-md-8 offset-md-2">
+              <form *ngIf = "examen" (submit) = "actualizarDatos()">
+        <!----------------------------------------------1-------------------------------------------- -->  
+         
+     
+              
+      <!------------------INICIO--OPERACIONES---------------------{{examen.fechaDeSolicitud }}-------------------------->
+
+<div class="row">   
+  <div class="col-md-7">
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Estado de calificación de los centros</mat-label>                   
+      <mat-select 
+        name="estadoDeCalificacionDeLosCentros" required
+        [(ngModel)]="examen.estadoDeCalificacionDeLosCentros" 
+        [disabled]="examen.evaluacion === 'Inversiones'">
+        <mat-option value="Apto_Asimétrico">Apto_Asimétrico</mat-option>
+        <mat-option value="Apto_Simétrico">Apto_Simétrico</mat-option>
+        <mat-option value="Apto_Móvil">Apto_Móvil</mat-option>
+        <mat-option value="No_Apto">No_Apto</mat-option>
+        <mat-option value="Pdte_Puerta">Pdte_Puerta</mat-option>
+        <mat-option value="DI">DI</mat-option>
+      </mat-select>
+    </mat-form-field>                           
+  </div>
+  <div class="col-md-6"> 
+     <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Fecha de calificación</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="examen.fechaRespuestaCalificacionOperaciones" name="fechaRespuestaCalificacionOperaciones"  required [disabled]="examen.evaluacion === 'Inversiones'">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    
+  </div>    
+</div>
+
+<div class="row">   
+  <div class="col-md-12">
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Observación CT</mat-label>
+      <textarea 
+        [(ngModel)]="examen.observacion"
+        type="text"
+        name="observacion"
+        placeholder="Dígite la observación"
+        matInput
+        rows="1"
+        [disabled]="examen.evaluacion === 'Inversiones'">
+      </textarea>
+    </mat-form-field>                     
+  </div>
+  <div class="col-md-12">     
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Observación Esp. Operaciones</mat-label>
+      <textarea 
+        [(ngModel)]="examen.observacionesEspecialistaDeOperaciones"
+        type="text"
+        name="observacionesEspecialistaDeOperaciones"
+        placeholder="Dígite las observaciones"
+        matInput
+        rows="1"
+        [disabled]="examen.evaluacion === 'Inversiones'">
+      </textarea>
+    </mat-form-field>                    
+  </div>
+</div>
+
+<div class="row">   
+  <div class="col-md-6">     
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Evaluación</mat-label>                   
+      <mat-select 
+        name="evaluacion" 
+        required
+        [(ngModel)]="examen.evaluacion">
+        <mat-option value="Operaciones">Operaciones</mat-option>
+        <mat-option value="Inversiones">Inversiones</mat-option>
+      </mat-select>
+    </mat-form-field>                    
+  </div>
+</div>
+
+
+
+<br><br>
+<div class="container text-center">
+  <button 
+    mat-raised-button 
+    color="primary" 
+    >
+    Guardar
+  </button>
+</div>
+<!---------------------------------------FIN---OPERACIONES------------------------------------------- -->
+
+      
+      <!----------------------------------------------original-------------------------------------------- -->  
+        
+        <!--
+                <mat-slide-toggle class="mt20" name = "activo" [(ngModel)] = "examen.activo" color="primary">
+                  Estado de publicación
+                </mat-slide-toggle>   
+              -->   
+
+       <!-------------------------------------INICIO-----INVERIONES-------------------------------------------- -->         
+       <br><br>
+       <mat-divider></mat-divider><br>
+       <p class="center-text blue-text"><b>INVERSIONES</b></p>
+       
+       <div class="row">   
+         <div class="col-md-12">
+           <mat-form-field class="mt20 w100" appearance="fill">
+             <mat-label>Propuesta de solucion técnica (Tipo de acceso)</mat-label>
+             <textarea 
+             [(ngModel)]="examen.propuestaDeSoluionTecnica"
+             type="text"
+             name="propuestaDeSoluionTecnica"
+             placeholder="Dígite la propuesta"
+             matInput
+             rows="1"
+             [disabled]="examen.evaluacion === 'Operaciones'"></textarea>
+          </mat-form-field> 
+         </div>
+         
+         <div class="col-md-12">   
+           <mat-form-field class="mt20 w100" appearance="fill">
+             <mat-label>Tipo de recursos a demandar</mat-label>
+             <textarea 
+             [(ngModel)]="examen.tipoDeRecursosADemandar"
+             type="text"
+             name="tipoDeRecursosADemandar"
+             placeholder="Dígite el tipo de recurso a demandar"
+             matInput
+             rows="1"
+             [disabled]="examen.evaluacion === 'Operaciones'"></textarea>
+          </mat-form-field>                    
+         </div>
+       </div>
+       
+       <div class="row">   
+         <div class="col-md-12">
+           <mat-form-field class="mt20 w100" appearance="fill">
+             <mat-label>Observación Esp. Inversiones</mat-label>
+             <textarea 
+             [(ngModel)]="examen.observacionEspInversiones"
+             type="text"
+             name="observacionEspInversiones"
+             placeholder="Dígite las observaciones Esp.(Inversiones)"
+             matInput
+             rows="1"
+             [disabled]="examen.evaluacion === 'Operaciones'"></textarea>
+          </mat-form-field> 
+         </div>
+         <div class="col-md-6"> 
+          <mat-form-field class="mt20 w100" appearance="fill">
+            <mat-label>Fecha estimada a proponer</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="examen.fechaDeEjecucionEstimadaAProponer" name="fechaDeEjecucionEstimadaAProponer">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+              
+         
+       </div> 
+       </div>
+       
+       <br><br>
+       <div class="container text-center">
+         <button mat-raised-button color="primary" [disabled]="examen.evaluacion === 'Operaciones'">Guardar</button>
+       </div>
+    
+       
+         <!------------------------------------------INVERIONES-------------------------------------------- -->           
+              </form>
+            </div>
+          </div>
+        </mat-card>
+      </div>          <!--FIN DE PREGUNTAS-->
+
+      <div class="col-md-3">
+        <!--Progreso-->
+        <mat-card style="margin-top:70px;">
+          <mat-card-header>
+            
+              <p class=" blue-text"><b>ESTADO DE LA SOLICITUD</b></p>
+           
+          </mat-card-header>
+          <mat-card-content>
+            <p style="text-align: center;">
+              <button mat-raised-button class="green-button">
+                {{ examen.estadoDelServicio }}
+              </button>
+            </p><br>
+            <b>Estado de calificación de los CTLC </b><br>{{ examen.estadoDeCalificacionDeLosCentros }}<br><br> 
+            <b>Evaluación CTLC </b><br>{{ examen.evaluacion }}<br><br>
+            <b>Fecha respuesta de calificación CTLC </b><br>{{ examen.fechaRespuestaCalificacionOperaciones | date:'yy/MM/dd' }}<br><br>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--no se usa-->
+<div class="bootstrap-wrapper" *ngIf="esEnviadoInversiones">
+  <div class="container mt20">
+    <div class="col-md-6 offset-md-3">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Resultado de la prueba
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="text-center">
+          <h1>Puntos conseguidos: {{ puntosConseguidos }}</h1>
+          <h1>Respuestas correctas: {{ respuestasCorrectas }}</h1>
+          
+        </mat-card-content>
+        <mat-card-actions class="text-center">
+          <button (click)="imprimirPagina()" mat-raised-button color="primary">Imprimir</button>
+          <button mat-raised-button color="accent" [routerLink]="'/user-dashboard/0'">Inicio</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,188 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+        <br><h1>Reportes del sistema</h1>
+        
+       
+   
+        <!-- Contenido Principal -->
+        <div class="col-md-12">
+
+          
+          
+           <!-- Inicio Contenedor de Búsquedas y Filtros -->         
+              
+                <!-- ************************************************************************** -->
+                 <!-- Inicio Panel de Búsqueda y Filtros -->
+                 <mat-card-content>
+                  <mat-expansion-panel [expanded]="panelExpandido">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Panel de Búsqueda y Filtros</mat-panel-title>
+                    </mat-expansion-panel-header>
+                
+                    <!-- Contenedor para organizar los filtros en dos filas -->
+                    <div class="form-container">
+                      <!-- Primera fila -->
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Escriba CTLC</mat-label>
+                            <textarea [(ngModel)]="searchQuery" matInput rows="1"></textarea>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Calificación CTLC</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionadoCalificacion">
+                              <mat-option *ngFor="let estadoCalificacion of estadoDeCalificacionDeLosCentros" [value]="estadoCalificacion">
+                                {{ estadoCalificacion }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Estado del Servicio</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionado">
+                              <mat-option *ngFor="let estado of estadosDelServicio" [value]="estado">
+                                {{ estado }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                
+                      <!-- Segunda fila -->
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Evaluación</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionadoEvaluacion">
+                              <mat-option *ngFor="let estadoEvaluacion of evaluacion" [value]="estadoEvaluacion">
+                                {{ estadoEvaluacion }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fecha desde</mat-label>
+                            <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicio">
+                            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerInicio></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fecha hasta</mat-label>
+                            <input matInput [matDatepicker]="pickerFin" [(ngModel)]="fechaFin">
+                            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerFin></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="button-container">
+                      <button mat-raised-button class="btn-violet" (click)="search()" style="margin-right: 10px;">Buscar</button>
+                      <button mat-raised-button class="btn-red" (click)="limpiarBusqueda()">Limpiar</button>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-card-content>
+          <br>          
+         <!-- Inicio Vínculos a Reportes -->
+         <div class="reportes-container">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Reportes</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div>
+                <button mat-button color="accent" (click)="search()">Demanda de conectividad Operaciones / Desarrollo</button>
+                <button mat-button color="prymary" (click)="exportarExcel()">Exp .xlsx 📄</button>
+            <p>
+                <button mat-button color="accent" (click)="search()">Tabla demandas de conectividad de entidades por programas y prioridad</button>
+                <button mat-button color="prymary" (click)="exportarExcelDmandaConectividadDeEntidadesPorProgramaYPrioridad()">Exp .xlsx 📄</button>
+            </p> 
+            <p>
+              <button mat-button color="accent" (click)="search()">Demandas a ejecutar en el periodo</button>
+              <button mat-button color="prymary" (click)="exportarExcelMovimientosNuevosServiciosDatosEmpresariales()">Exp .xlsx 📄</button>
+          </p>
+         
+            </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <!-- Fin Vínculos a Reportes -->
+        <br><br>
+
+
+
+        
+         <br>
+          <!-- Resultados con paginación -->
+          <div *ngIf="searchResults.length > 0" class="search-results mt20">
+          
+            
+            <div style="display: flex; justify-content: flex-end;">
+              <button mat-raised-button class="btn-violet" (click)="exportarExcel()">Exp .xlsx 📄</button>
+            </div>
+           
+            <div class="row">
+              <div class="col-md-6" *ngFor="let result of searchResultsFiltrados()">
+                <mat-card class="mb20">
+                  <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{ result.titulo }}</mat-card-title>
+                    <mat-card-subtitle>{{ result.categoria?.titulo }}</mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <p>{{ result.descripcion }}</p>
+                    
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-button color="primary">Solicitud: {{ result.solicitud }}</button>
+                    <button mat-button color="primary">{{ result.velocidad }}</button>
+                    <button mat-button color="accent">Calificación: {{ result.estadoDeCalificacionDeLosCentros }}</button>
+                    <div class="espacio-abajo"></div>    
+                    <div class="botones-derecha">
+                      <button mat-raised-button class='btn-violet' [routerLink]="['/user-dashboard/instrucciones', result.examenId]">
+                        Empezar   
+                      </button>
+                    </div>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+            </div>
+  
+            
+            <div class="pagination-container">
+            <!-- Selector de número de elementos por página -->
+            <div class="pagination-settings">
+              <label for="numElementos">Elementos por página:</label>
+              <select id="numElementos" (change)="cambiarElementosPorPagina($event)">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div> 
+            <!-- Controles de paginación --> 
+            <div class="pagination">
+              <button (click)="paginaAnterior()" [disabled]="paginaActual === 1">Anterior</button>
+              <span>{{ paginaActual }} - {{ totalPaginas() }}</span>
+              <button (click)="paginaSiguiente()" [disabled]="paginaActual >= totalPaginas()">Siguiente</button>
+            </div>
+            </div> 
+  
+          </div>
+        </div>  
+       
+    </div> 
+  </div>
+  
+

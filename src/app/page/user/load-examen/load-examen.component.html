@@ -1,0 +1,222 @@
+
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <br><h1>Solicitudes disponibles</h1>
+
+    <!-- Selector de elementos por página 
+    <div class="form-group mb-0">
+      <label for="itemsPerPage" class="font-weight-bold">Elementos por página:</label>
+      <select id="itemsPerPage" class="form-control w-auto d-inline-block" (change)="actualizarElementosPorPagina($event)">
+        <option *ngFor="let cantidad of [10, 20, 50, 100]" [value]="cantidad">{{ cantidad }}</option>
+      </select>
+    </div>
+    -->
+
+   <!--  Exámenes existentes 
+    <div class="row mt20" *ngIf="examenes">
+      <div class="col-md-6" *ngFor="let e of examenes.slice((paginaActual - 1) * elementosPorPagina, paginaActual * elementosPorPagina)">
+        <mat-card class="mb20">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ e.titulo }}</mat-card-title>
+            <mat-card-subtitle>{{ e.categoria.titulo }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ e.descripcion }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary">Solicitud: {{ e.solicitud }}</button>
+            <button mat-button color="primary">{{ e.velocidad }}</button>
+            <button mat-button color="accent">Estado: {{ e.estadoDeCalificacionDeLosCentros }}</button>
+    <div class="espacio-abajo"></div>
+            <div class="botones-derecha">
+              <button mat-flat-button class="detalles-btn" (click)="infoExamen(e)">Detalles</button>
+              <button mat-raised-button class="btn-violet" [routerLink]="'/user-dashboard/instrucciones/'+e.examenId">
+                Empezar
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div class="col-md-12" *ngIf="examenes.length == 0">
+        <mat-card>
+          <mat-card-content>
+            <h1>No hay datos en esta categoría</h1>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <br><br>
+-->
+  
+
+ <!-- Contenido Principal -->
+ <div class="col-md-12">
+  
+
+  <!-- Inicio Contenedor de Búsquedas y Filtros -->         
+        
+          <!-- ************************************************************************** -->
+           <!-- Inicio Panel de Búsqueda y Filtros -->
+           <mat-card-content>
+            <mat-expansion-panel [expanded]="panelExpandido">
+              <mat-expansion-panel-header>
+                <mat-panel-title>Panel de Búsqueda y Filtros</mat-panel-title>
+              </mat-expansion-panel-header>
+          
+              <!-- Contenedor para organizar los filtros en dos filas -->
+              <div class="form-container">
+                <!-- Primera fila -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Escriba CTLC</mat-label>
+                      <textarea [(ngModel)]="searchQuery" matInput rows="1"></textarea>
+                    </mat-form-field>
+                  </div>
+          
+                  <div class="form-group">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Calificación CTLC</mat-label>
+                      <mat-select [(ngModel)]="estadoSeleccionadoCalificacion">
+                        <mat-option *ngFor="let estadoCalificacion of estadoDeCalificacionDeLosCentros" [value]="estadoCalificacion">
+                          {{ estadoCalificacion }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+          
+                  <div class="form-group">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Estado del Servicio</mat-label>
+                      <mat-select [(ngModel)]="estadoSeleccionado">
+                        <mat-option *ngFor="let estado of estadosDelServicio" [value]="estado">
+                          {{ estado }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+          
+                <!-- Segunda fila -->
+                <div class="form-row">
+                  <div class="form-group">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Evaluación</mat-label>
+                      <mat-select [(ngModel)]="estadoSeleccionadoEvaluacion">
+                        <mat-option *ngFor="let estadoEvaluacion of evaluacion" [value]="estadoEvaluacion">
+                          {{ estadoEvaluacion }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+          
+                  <div class="form-group">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Fecha desde</mat-label>
+                      <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicio">
+                      <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                      <mat-datepicker #pickerInicio></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+          
+                  <div class="form-group">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Fecha hasta</mat-label>
+                      <input matInput [matDatepicker]="pickerFin" [(ngModel)]="fechaFin">
+                      <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                      <mat-datepicker #pickerFin></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+          
+              <div class="button-container">
+                <button mat-raised-button class="btn-violet" (click)="search()" style="margin-right: 10px;">Buscar</button>
+                <button mat-raised-button class="btn-red" (click)="limpiarBusqueda()">Limpiar</button>
+              </div>
+            </mat-expansion-panel>
+          </mat-card-content>
+          
+        <!-- ************************************************************************** -->
+
+        
+
+  <!-- Resultados con paginación -->
+  <div *ngIf="searchResults.length > 0" class="search-results mt20">
+  
+    <br>
+    <div style="display: flex; justify-content: flex-end;">
+      <button mat-raised-button class="btn-violet" (click)="exportarExcel()">Exp .xlsx 📄</button>
+    </div>
+   
+    <div class="row">
+      <div class="col-md-6" *ngFor="let result of searchResultsFiltrados()">
+        <mat-card class="mb20">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ result.titulo }}</mat-card-title>
+            <mat-card-subtitle>{{ result.categoria?.titulo }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ result.descripcion }}</p>
+            
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary">Solicitud: {{ result.solicitud }}</button>
+            <button mat-button color="primary">{{ result.velocidad }}</button>
+            <button mat-button color="accent">Calificación: {{ result.estadoDeCalificacionDeLosCentros }}</button>
+            <div class="espacio-abajo"></div>    
+            <div class="botones-derecha">
+              <button mat-flat-button class="detalles-btn" (click)="infoExamen(result)">Detalles</button>
+              <button mat-raised-button class='btn-violet' [routerLink]="['/user-dashboard/instrucciones', result.examenId]">
+                Empezar   
+              </button>
+            </div>
+
+                       
+
+
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
+    
+    <div class="pagination-container">
+    <!-- Selector de número de elementos por página -->
+    <div class="pagination-settings">
+      <label for="numElementos">Elementos por página:</label>
+      <select id="numElementos" (change)="cambiarElementosPorPagina($event)">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+    </div> 
+    <!-- Controles de paginación --> 
+    <div class="pagination">
+      <button (click)="paginaAnterior()" [disabled]="paginaActual === 1">Anterior</button>
+      <span>{{ paginaActual }} - {{ totalPaginas() }}</span>
+      <button (click)="paginaSiguiente()" [disabled]="paginaActual >= totalPaginas()">Siguiente</button>
+    </div>
+    </div> 
+
+  </div>
+</div>  <!-- div de buaquesa --> 
+       
+       
+
+
+         
+      <!-- Botones de paginación 
+      <div class="pagination mb-0">
+        <button (click)="paginaAnterior()" [disabled]="paginaActual === 1" class="btn btn-primary">Anterior</button>
+        <span class="mx-3">{{ paginaActual }} - {{ totalPaginas() }}</span>
+        <button (click)="paginaSiguiente()" [disabled]="paginaActual >= totalPaginas()" class="btn btn-primary">Siguiente</button>
+      </div>
+    -->
+
+  </div>
+</div>

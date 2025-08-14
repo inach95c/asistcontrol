@@ -1,0 +1,49 @@
+🧭 Funcionalidades clave para un panel de administrador de asistencia
+📊 Estadísticas y métricas
+Total de asistencias por día, semana o mes
+
+Porcentaje de entradas vs salidas
+
+Visualización por gráfico de barras o torta (con Angular + Chart.js o ngx-charts)
+
+⏱️ Control de tiempo
+Detección de llegadas tarde y salidas anticipadas
+
+Registro de duración entre ENTRADA y SALIDA
+
+Horarios promedio por usuario o por departamento
+
+🔄 Exportación y reportes
+Botón para exportar datos filtrados a Excel o PDF
+
+Reportes automáticos semanales o mensuales
+
+Generación de PDF individuales por usuario
+
+🔔 Sistema de notificaciones
+Aviso cuando un usuario olvidó marcar ENTRADA o SALIDA
+
+Alertas por comportamiento irregular
+
+Confirmaciones al guardar o editar asistencia
+
+🧑‍💻 Gestión avanzada de usuarios
+Editar roles (admin, supervisor, empleado)
+
+Ver historial de actividad de cada usuario
+
+Bloquear/desbloquear cuentas
+
+🕵️‍♂️ Trazabilidad y auditoría
+Registro de quién creó/modificó cada asistencia
+
+Historial de acciones (logs)
+
+Visibilidad de filtros aplicados por cada consulta
+
+🧩 Extras útiles
+Filtro por departamento o ubicación geográfica
+
+Soporte para múltiples zonas horarias
+
+Modo oscuro 🌙

@@ -1,0 +1,32 @@
+<!--<app-navbar></app-navbar>
+<router-outlet></router-outlet>-->
+
+
+<!--Progreso en circulo-->
+<!--<ngx-ui-loader
+   fgsColor = "#A569BD"
+   pbColor = "#A569BD"
+   text = "Espere por favor..."
+   textColor = "#A569BD">
+</ngx-ui-loader>
+<div ngxUiLoaderBlurred (blur) = "10">
+  <app-navbar></app-navbar>
+<router-outlet></router-outlet>
+</div>
+-->
+
+
+
+
+<!-- Antes: navbar SIEMPRE visible -->
+<!-- <app-navbar></app-navbar> -->
+<!-- <router-outlet></router-outlet> -->
+
+<!-- Después: solo renderiza la vista que incluye su propio layout 
+<router-outlet></router-outlet>
+
+-->
+
+<app-navbar *ngIf="mostrarNavbar"></app-navbar>
+<router-outlet></router-outlet>
+

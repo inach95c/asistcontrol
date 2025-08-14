@@ -1,0 +1,88 @@
+.full-width{
+    width: 100%;;
+  }
+
+.text-primary {
+  color: #2c3e50; /* Azul profesional */
+}
+
+.font-weight-bold {
+  font-weight: 600;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+
+
+.shadow-sm {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.py-5 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.ms-3 {
+  margin-left: 1rem;
+}
+
+
+.clock-letter {
+  display: inline-block;
+  position: relative;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  text-align: center;
+  line-height: 1em;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: currentColor;
+}
+
+.clock-letter::before {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  width: 2px;
+  height: 30%;
+  background-color: currentColor;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.clock-letter::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 20%;
+  background-color: currentColor;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.shadow-sm {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.py-5 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.ms-3 {
+  margin-left: 1rem;
+}
+
+.rounded-card {
+  border-radius: 16px;
+}

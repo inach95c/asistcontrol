@@ -1,0 +1,299 @@
+.resumen-tipo {
+  background-color: #34495e;
+  color: #ecf0f1;
+  margin-top: 16px;
+  padding: 12px;
+  border-left: 4px solid #00bcd4;
+  font-family: "Poppins", sans-serif;
+}
+
+.porcentaje-linea {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+
+.resumen-por-usuario {
+  margin-top: 20px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 16px;
+  border-left: 4px solid #2196f3;
+}
+
+.usuario-bloque {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(236, 240, 241, 0.2);
+}
+
+.porcentaje-linea {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+
+
+.titulo-panel {
+  text-align: center;
+  color: #3f51b5;
+  margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+
+
+/* Espaciado general */
+.agrupador,
+.resultado,
+.resumen-tipo,
+.resumen-por-usuario {
+  margin: 16px 0;
+}
+
+/* Selector */
+.agrupador mat-form-field {
+  width: 250px;
+}
+
+/* Tarjetas de agrupación */
+.resultado .mini-card {
+  background-color: #f5f5f5;
+  border-left: 4px solid #2196f3;
+  padding: 12px;
+  margin-bottom: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  transition: box-shadow 0.2s ease;
+}
+.resultado .mini-card:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tarjeta de resumen general */
+.resumen-tipo {
+  background-color: #e3f2fd;
+  padding: 16px;
+  border-left: 4px solid #1565c0;
+  color: #0d47a1;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Tarjeta por usuario */
+.resumen-por-usuario {
+  background-color: #fff3e0;
+  color: #bf360c;
+  padding: 16px;
+  border-left: 4px solid #ff9800;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Línea de porcentaje */
+.porcentaje-linea {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Bloque individual por usuario */
+.usuario-bloque {
+  margin-bottom: 12px;
+  border-bottom: 1px dashed rgba(191, 54, 12, 0.2);
+  padding-bottom: 6px;
+}
+
+/* Responsive paginator container */
+.mat-paginator {
+  margin-top: 8px;
+}
+
+
+:root {
+  --color-primario: #1565c0;
+  --color-secundario: #2196f3;
+  --color-acento: #ff9800;
+  --color-card-bg: #ffffff;
+  --color-panel-bg: #f9f9f9;
+  --color-borde: rgba(0, 0, 0, 0.08);
+  --color-titulo: #2c3e50;
+  --color-texto: #555555;
+  --fuente-principal: 'Segoe UI', 'Poppins', sans-serif;
+}
+
+/* Panel general */
+.panel-estadisticas {
+  padding: 32px;
+  background-color: var(--color-panel-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  font-family: var(--fuente-principal);
+}
+
+/* Título */
+.titulo-panel {
+  text-align: center;
+  font-size: 26px;
+  color: var(--color-titulo);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+/* Agrupador */
+.agrupador {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.agrupador mat-form-field {
+  width: 280px;
+}
+
+/* Tarjetas */
+.mini-card {
+  background-color: var(--color-card-bg);
+  border-left: 5px solid var(--color-secundario);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s ease;
+  color: var(--color-texto);
+}
+.mini-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Tarjeta de resumen general */
+.resumen-tipo {
+  border-left-color: var(--color-primario);
+  background-color: #e8f0fe;
+  color: #0d47a1;
+}
+
+/* Tarjeta resumen por usuario */
+.resumen-por-usuario {
+  border-left-color: var(--color-acento);
+  background-color: #fff8e1;
+  color: #b74c00;
+}
+
+/* Línea de porcentaje */
+.porcentaje-linea {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px dashed var(--color-borde);
+}
+
+/* Bloque por usuario */
+.usuario-bloque {
+  padding: 8px 0;
+}
+
+/* Paginador */
+::ng-deep .mat-paginator {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .panel-estadisticas {
+    padding: 20px;
+  }
+  .agrupador {
+    flex-direction: column;
+    align-items: center;
+  }
+  .agrupador mat-form-field {
+    width: 100%;
+  }
+  .titulo-panel {
+    font-size: 22px;
+  }
+}
+
+
+
+
+
+
+
+/*oooooooooooooooooooooooooooooooooooooooooooooooo*/
+
+/* Panel general */
+.panel-container {
+  padding: 20px;
+}
+
+/* Cards pequeñas */
+.mini-card {
+  margin-bottom: 12px;
+  padding: 12px;
+}
+
+/* Línea de porcentaje visual */
+.porcentaje-linea {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+
+/* Bloque de usuario */
+.usuario-bloque {
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 8px;
+}
+
+/* Selector compacto */
+mat-form-field[appearance="outline"] {
+  font-size: 13px;
+}
+
+mat-form-field .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+mat-form-field.mat-form-field {
+  height: 40px;
+}
+
+/* Responsive simplificado */
+@media screen and (max-width: 600px) {
+  .panel-container {
+    padding: 10px;
+  }
+
+  mat-form-field {
+    width: 100% !important;
+  }
+}
+
+
+
+.filtros-usuario-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Compacto en todas las resoluciones */
+.buscador {
+  flex: 0 0 160px;
+  max-width: 160px;
+}
+
+.selector-paginacion {
+  flex: 0 0 100px;
+  max-width: 100px;
+}

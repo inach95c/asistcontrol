@@ -1,0 +1,223 @@
+<div class="bootstrap-wrapper" *ngIf = "!esEnviadoInversiones">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <!--Instrucciones-->
+        <mat-card style = "margin-top: 70px;" *ngFor = "let p of preguntas;let i = index">
+          <mat-card-content> 
+            <h3><b>DETALLES</b></h3>
+            
+              <b>Solicitud </b><br>
+              {{ preguntas[0].examen.solicitud }} 
+              <br><br>
+              <b>Velocidad </b><br>
+              {{ preguntas[0].examen.velocidad }}
+              <br><br>
+              <b>Enlace </b><br>
+              {{ preguntas[0].examen.enlace }}
+              <br><br>
+              <b>No. de Teléfono </b><br>
+              {{ preguntas[0].examen.noAdsl }}
+             <br><br>
+             <b>Telef. de Contacto </b><br>
+              {{ preguntas[0].examen.telefonoDeContacto }}
+             <br><br>
+             <b>Fecha de Solicitud</b><br>
+              {{ preguntas[0].examen.fechaDeSolicitud }}           
+             
+          </mat-card-content>
+          
+        </mat-card>
+      </div>
+
+  <!--<form class="mt20" *ngIf = "preguntas" (ngSubmit) = "actualizarDatosDeLaPregunta()">  -->    
+      <div class="col-md-7">
+        <!--Preguntas-->
+        <ng-container *ngIf = "examen">
+          <h1 class="mt20">
+            Certificar solicitud de TxD: <b>{{ preguntas[0].examen.titulo }}, {{ preguntas[0].examen.descripcion }}</b> 
+          </h1>
+        </ng-container>
+
+        <mat-card *ngFor = "let p of preguntas;let i = index">      
+          <mat-card-content>          
+            <p><b>{{ i+1 }}) </b> <span [innerHTML] = "p.contenido"></span></p>
+            <mat-divider></mat-divider>
+           
+<!--
+            <div class="row mt20">
+              <div class="col-md-8 mt10">
+                <input [(ngModel)] = "p.respuestaDada" type="radio" [value] = "p.estadoDeCalificacionDeLosCentros" name = {{i}}> {{ p.estadoDeCalificacionDeLosCentros }}
+              
+              </div>
+              <div class="col-md-8 mt10">
+                <input [(ngModel)] = "p.respuestaDada" type="radio" [value] = "p.observacion" name = {{i}}> {{ p.observacion }}
+              </div>
+              <div class="col-md-8 mt10">
+                <input [(ngModel)] = "p.respuestaDada" type="radio" [value] = "p.evaluacion" name = {{i}}> {{ p.evaluacion }}
+              </div>
+              <div class="col-md-8 mt10">
+                <input [(ngModel)] = "p.respuestaDada" type="radio" [value] = "p.observacionesEspecialistaDeOperaciones" name = {{i}}> {{ p.observacionesEspecialistaDeOperaciones }}
+              </div>
+            </div>
+        
+          -->
+
+      <!----------------------------------------------1-------------------------------------------- -->
+<div class="row">   
+  <div class="col-md-6">
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Estado de calificación de los centros</mat-label>                   
+      <mat-select name="estadoDeCalificacionDeLosCentros" [(ngModel)] = "p.estadoDeCalificacionDeLosCentros" required>
+        <mat-option value="Apto_Asimétrico">Apto_Asimétrico</mat-option>
+        <mat-option value="Apto_Simétrico">Apto_Simétrico</mat-option>
+        <mat-option value="Apto_Móvil">Apto_Móvil</mat-option>
+        <mat-option value="No_Apto">No_Apto</mat-option>
+        <mat-option value="Pdte_Puerta">Pdte_Puerta</mat-option>
+        <mat-option value="DI">DI</mat-option>
+      </mat-select>
+  </mat-form-field>
+</div>
+
+
+  <div class="col-md-6">    
+        <mat-form-field class="mt20 w100" appearance="fill">
+          <mat-label>Observación de operación</mat-label>
+          <textarea 
+          [(ngModel)] = "p.observacion"
+          type="text"
+          name="observacion"
+          placeholder="Dígite la observación"
+          matInput
+          rows="1"></textarea>
+      </mat-form-field>                  
+</div>
+</div>
+
+
+<div class="row">   
+  <div class="col-md-6">
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Evaluación</mat-label>                   
+      <mat-select name="evaluacion" [(ngModel)] = "p.evaluacion" required>
+        <mat-option value="Operaciones">Operaciones</mat-option>
+        <mat-option value="Inversiones">Inversiones</mat-option>
+      </mat-select>
+  </mat-form-field>
+</div>
+
+  <div class="col-md-6">    
+        <mat-form-field class="mt20 w100" appearance="fill">
+          <mat-label>Observaciones especialista de operaciones</mat-label>
+          <textarea 
+          [(ngModel)] = "p.observacionesEspecialistaDeOperaciones"
+          type="text"
+          name="observacionesEspecialistaDeOperaciones"
+          placeholder="Dígite la observación"
+          matInput
+          rows="1"></textarea>
+      </mat-form-field>                  
+</div>
+</div>
+
+<!----------------------------------------------2-------------------------------------------- -->
+
+<div class="row">   
+  
+  <div class="col-md-6"><br><br>
+    <mat-form-field class="w100">
+      <mat-label>Seleccione la respuesta</mat-label>
+      <mat-select [(ngModel)] = "p.respuesta" name="respuesta">
+        <mat-option *ngIf = "p.estadoDeCalificacionDeLosCentros" [value] = "p.estadoDeCalificacionDeLosCentros">{{ p.estadoDeCalificacionDeLosCentros }}</mat-option>
+     <!--      <mat-option *ngIf = "pregunta.opcion2" [value] = "pregunta.opcion2">{{ pregunta.opcion2 }}</mat-option>
+        <mat-option *ngIf = "pregunta.opcion3" [value] = "pregunta.opcion3">{{ pregunta.opcion3 }}</mat-option>
+        <mat-option *ngIf = "pregunta.opcion4" [value] = "pregunta.opcion4">{{ pregunta.opcion4 }}</mat-option>
+     -->
+      </mat-select>
+    </mat-form-field>
+</div>
+<!--------<p>Fecha {{preguntas.fechaRespuestaCalificacionOperaciones | date:'yy/MM/dd' }}</p>------- -->
+  <div class="col-md-6">    
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Fecha de calificación</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="preguntas.fechaRespuestaCalificacionOperaciones" name="fechaRespuestaCalificacionOperaciones" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>                 
+</div>
+</div>
+
+<!------------------------------------------------2-------------------------------------------- -->
+
+
+          </mat-card-content>           
+        </mat-card>  
+
+        <div class="container text-center mt20 mb20">
+          <button (click) = "enviarCuestionario()"  mat-raised-button color="primary">Enviar cuestionario</button>
+        </div>
+
+        <div class="container text-center">
+          <button  mat-raised-button color="primary">Actualizar</button>
+        </div>
+
+        
+
+    </div>
+
+   <!-- </form> -->
+
+      <div class="col-md-3">
+        <!--Progreso-->
+        <mat-card style ="margin-top:70px;">
+          <mat-card-header>
+            <mat-card-title>
+              <h3><b >ESTADO DE LA SOLICITUD</b></h3>
+            </mat-card-title> 
+          </mat-card-header>
+          <mat-card-content>
+         <!--  <li> {{ preguntas[0].examen.estadoDelServicio }}</li><br>-->
+           <p style="text-align: center;">
+            <button mat-raised-button class="green-button">
+              {{ preguntas[0].examen.estadoDelServicio }}
+            </button>
+          </p><br>
+          
+            <b>Estado de calificación de los CTLC </b><br>
+           {{ preguntas[0].estadoDeCalificacionDeLosCentros }}            
+            <br><br> 
+            <b>Evaluación </b><br>
+            {{ preguntas[0].evaluacion }} 
+            <br><br> 
+            <b>Fecha respuesta de calificación CTLC </b><br>
+            {{preguntas.fechaRespuestaCalificacionOperaciones | date:'yy/MM/dd' }} 
+            <br><br>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bootstrap-wrapper" *ngIf = "esEnviadoInversiones">
+  <div class="container mt20">
+    <div class="col-md-6 offset-md-3">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Resultado de la prueba
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="text-center">
+          <h1>Puntos conseguidos : {{ puntosConseguidos }}</h1>
+          <h1>Respuestas correctas : {{ respuestasCorrectas }}</h1>
+          <h1>estadoDeCalificacionDeLosCentros :  {{ preguntas[0].estadoDeCalificacionDeLosCentros }} </h1>
+        </mat-card-content>
+        <mat-card-actions class="text-center">
+          <button (click) = "imprimirPagina()" mat-raised-button color="primary">Imprimir</button>
+          <button mat-raised-button color="accent" [routerLink] = "'/user-dashboard/0'">Inicio</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

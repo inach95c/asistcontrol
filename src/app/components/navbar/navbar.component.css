@@ -1,0 +1,165 @@
+
+
+.example-spacer{
+    flex: 1 1 auto;         
+  }
+
+  .search-input {
+    width: 300px; /* Ajusta el tamaño del campo de entrada    txd */  
+    margin-right: 30px;
+  }
+  
+  .soltxd-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff5722; /* Color llamativo */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  
+  .soltxd-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff5722; /* Color llamativo */
+    letter-spacing: 1px;
+  }
+  
+
+  .soltxd-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: #3f51b5; /* Azul */
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+  
+  .soltxd-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-transform: capitalize;
+  }
+
+
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .example-spacer {
+    flex-grow: 1;
+  }
+  
+  .soltxd-title h5 {
+    margin: 0;
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  .mat-toolbar {
+    padding: 0 16px;
+  }
+
+
+
+
+
+
+  
+  
+  /* registro */
+  .perfil-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre la imagen y el nombre */
+    background: none; /* Elimina el fondo */
+    border: none; /* Elimina cualquier borde */
+    padding: 0; /* Quita los espacios alrededor */
+  }
+  
+  .perfil-imagen {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Mantiene la imagen circular */
+    border: none; /* Quita cualquier borde */
+    box-shadow: none; /* Elimina la sombra */
+  }
+  
+
+/* cerrar secion */
+.cerrar-sesion-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre imagen y texto */
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px; /* Reduce el tamaño del texto */
+  padding: 5px 10px; /* Ajusta el espacio interno */
+  margin-left: 15px; /* Mueve un poco hacia la izquierda */
+}
+
+.perfil-imagen {
+  width: 20px; /* Reduce el tamaño de la imagen */
+  height: 20px;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+/* iniciarsecion */
+.iniciar-sesion-container {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre la imagen y el texto */
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 30px; /* Ajusta la separación según lo necesites */
+}
+
+.perfil-imagen {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /* Hace la imagen circular */
+}
+
+/* regisrar */
+
+.registrar-container {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre imagen y texto */
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 30px; /* Ajusta la separación según necesites */
+}
+
+.perfil-imagen {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+
+/*imahen de inicio del logo del nabvar*/
+mat-toolbar {
+  display: flex;
+  align-items: center; /* Centra los elementos */
+  min-height: 56px; /* Ajusta la altura mínima */
+}
+
+
+
+

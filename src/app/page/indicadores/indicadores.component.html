@@ -1,0 +1,141 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        
+        
+   
+        <!-- Contenido Principal -->
+        <div class="col-md-12">
+          <br><h1>Indicadores</h1>
+         
+           <!-- Inicio Contenedor de Búsquedas y Filtros -->         
+              
+                <!-- ************************************************************************** -->
+                 <!-- Inicio Panel de Búsqueda y Filtros -->
+                 <mat-card-content>
+                  <mat-expansion-panel [expanded]="panelExpandido">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Panel de Búsqueda y Filtros</mat-panel-title>
+                    </mat-expansion-panel-header>
+                
+                    <!-- Contenedor para organizar los filtros en dos filas -->
+                    <div class="form-container">
+                      <!-- Primera fila -->
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Escriba CTLC</mat-label>
+                            <textarea [(ngModel)]="searchQuery" matInput rows="1"></textarea>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Calificación CTLC</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionadoCalificacion">
+                              <mat-option *ngFor="let estadoCalificacion of estadoDeCalificacionDeLosCentros" [value]="estadoCalificacion">
+                                {{ estadoCalificacion }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Estado del Servicio</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionado">
+                              <mat-option *ngFor="let estado of estadosDelServicio" [value]="estado">
+                                {{ estado }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                
+                      <!-- Segunda fila -->
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Evaluación</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionadoEvaluacion">
+                              <mat-option *ngFor="let estadoEvaluacion of evaluacion" [value]="estadoEvaluacion">
+                                {{ estadoEvaluacion }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fecha desde</mat-label>
+                            <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicio">
+                            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerInicio></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fecha hasta</mat-label>
+                            <input matInput [matDatepicker]="pickerFin" [(ngModel)]="fechaFin">
+                            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerFin></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="button-container">
+                      <button mat-raised-button class="btn-violet" (click)="search()" style="margin-right: 10px;">Buscar</button>
+                      <button mat-raised-button class="btn-red" (click)="limpiarBusqueda()">Limpiar</button>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-card-content>
+                
+              <!-- ************************************************************************** -->  
+                <br>
+
+                  <!-- Inicio tabla -->
+         
+            <mat-card-content>
+                <br>
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <!-- Columna de descripción -->
+                <ng-container matColumnDef="descripcion">
+                  <th mat-header-cell *matHeaderCellDef> INDICADORES </th>
+                  <td mat-cell *matCellDef="let element"> {{ element.descripcion }} </td>
+                </ng-container>
+                <!-- Columna de valores -->
+                <ng-container matColumnDef="valor">
+                  <th mat-header-cell *matHeaderCellDef> VALOR </th>
+                  <td mat-cell *matCellDef="let element"> {{ element.valor }} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              <br>  
+              <button mat-button color="primary" (click)="exportarExcelIndicadores()">Exp .xlsx 📄</button>        
+                  
+            </mat-card-content>
+         
+        <!-- Fin Vínculos a Reportes -->
+       
+
+          
+        <!-- Fin Vínculos a Reportes -->
+        <br><br>
+
+         
+         
+         <br>
+          <!-- Resultados con paginación -->
+         
+
+        </div>  
+      </div> 
+    </div> 
+  </div>
+  
+

@@ -1,0 +1,799 @@
+<mat-card>
+    <h1>Actualizar solicitud: <b>{{ examen.titulo }}, {{ examen.descripcion }}</b></h1>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <form *ngIf = "examen" (submit) = "actualizarDatos()">
+  <!----------------------------------------------1-------------------------------------------- -->  
+  <p class=" center-text blue-text"><b>INFORMACION COMERCIAL</b></p> <br>
+   <p class=" "><b>Información del cliente</b></p> 
+   <!----------------------------------------------1-------------------------------------------- -->             
+   <div class="row">   
+    <div class="col-md-6">
+        <mat-form-field class="mt20 w100" appearance="fill">
+            <mat-label>Numero de solicitud</mat-label>
+            <textarea 
+            [(ngModel)] = "examen.numeroDeSolicitud"
+            type="text"
+            name="numeroDeSolicitud"
+            required
+            placeholder="Dígite el número de solicitud"
+            matInput
+            rows="1"></textarea>
+        </mat-form-field>
+  </div>
+
+    <div class="col-md-6">   
+            <mat-form-field class="mt20 w100" appearance="fill">
+              <mat-label>Prioridad</mat-label>                   
+              <mat-select name="prioridad" [(ngModel)] = "examen.prioridad">
+                <mat-option value="Alta">Alta</mat-option>
+                <mat-option value="Baja">Baja</mat-option>
+              </mat-select>
+          </mat-form-field>                    
+  </div>
+</div>
+<!-----------------------------------------------2--------------------------------------------->
+<div class="row">
+  <div class="col-md-6">
+      <mat-form-field class="mt20 w100" appearance="fill">
+          <mat-label>Categoría del cliente</mat-label>                   
+          <mat-select name="categoriaDelCliente" [(ngModel)] = "examen.categoriaDelCliente">
+            <mat-option value="Sin_Clasificación">Sin Clasificación</mat-option>
+            <mat-option value="Informatización_PCC">Informatización PCC</mat-option>
+            <mat-option value="Informatización_BCC">Informatización BCC</mat-option>
+            <mat-option value="Informatización_CTC">Informatización CTC</mat-option>
+            <mat-option value="Proyectos_Priorizados">Proyectos Priorizados</mat-option>
+            <mat-option value="MIPYMES">MIPYMES</mat-option>
+            <mat-option value="MINED">MINED</mat-option>
+            <mat-option value="Sin_Clasificación">Sin Clasificación</mat-option>
+          </mat-select>
+      </mat-form-field>
+</div>
+<div class="col-md-6">
+  
+<mat-form-field class="mt20 w100" appearance="fill">
+  <mat-label>Seguimiento</mat-label>                   
+  <mat-select name="seguimiento" [(ngModel)] = "examen.seguimiento">
+    <mat-option value="DT">DT</mat-option>
+    <mat-option value="VPCM">VPCM</mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+</div>
+
+<!--------------------------------------------3------------------------------------------------>
+<div class="row">   
+  <div class="col-md-6">
+      <mat-form-field class="mt20 w100" appearance="fill">
+          <mat-label>Organismo</mat-label>                   
+          <mat-select name="organismo" required [(ngModel)] = "examen.organismo">
+            <mat-option value="Otro">Otros</mat-option>
+            <mat-option value="PCC">PCC</mat-option>
+            <mat-option value="Artex">Artex</mat-option>
+            <mat-option value="CANEC_SA">CANEC_SA</mat-option>
+            <mat-option value="CIMEX">CIMEX</mat-option>
+            <mat-option value="CITMA">CITMA</mat-option>
+            <mat-option value="CONJUSOL">CONJUSOL</mat-option>
+            <mat-option value="EMPA">EMPA</mat-option>
+            <mat-option value="EPCONS">EPCONS</mat-option>
+            <mat-option value="Fondo_Cubano">Fondo_Cubano</mat-option>
+            <mat-option value="ICAP">ICAP</mat-option>
+            <mat-option value="INDER">INDER</mat-option>
+            <mat-option value="INRH">INRH</mat-option>
+            <mat-option value="MEP">MEP</mat-option>
+            <mat-option value="MES">MES</mat-option>
+            <mat-option value="MICONS">MICONS</mat-option>
+            <mat-option value="MINAG">MINAG</mat-option>
+            <mat-option value="MINAL">MINAL</mat-option>
+            <mat-option value="MINCIN">MINCIN</mat-option>
+            <mat-option value="MINCON">MINCON</mat-option>
+            <mat-option value="MINDUS">MINDUS</mat-option>
+            <mat-option value="MINED">MINED</mat-option>
+            <mat-option value="MINEN">MINEN</mat-option>
+            <mat-option value="MINFAR">MINFAR</mat-option>
+            <mat-option value="MININT">MININT</mat-option>
+            <mat-option value="MINJUS">MINJUS</mat-option>
+            <mat-option value="MINSAP">MINSAP</mat-option>
+            <mat-option value="MITRANS">MITRANS</mat-option>
+            <mat-option value="MTSS">MTSS</mat-option>
+            <mat-option value="Museo">Museo</mat-option>
+            <mat-option value="ONEI">ONEI</mat-option>
+            <mat-option value="UJC">UJC</mat-option>
+            <mat-option value="ONAT">ONAT</mat-option>
+            <mat-option value="CAP">CAP</mat-option>
+            <mat-option value="OSDE_GELECT">OSDE_GELECT</mat-option>
+            <mat-option value="ANAP">ANAP</mat-option>
+            <mat-option value="MINTUR">MINTUR</mat-option>
+            <mat-option value="ETECSA">ETECSA</mat-option>
+            <mat-option value="MFP">MFP</mat-option>
+            <mat-option value="GAF">GAF</mat-option>
+            <mat-option value="Farmacuba">Farmacuba</mat-option>
+            <mat-option value="GESIME">GESIME</mat-option>
+            <mat-option value="UPEC">UPEC</mat-option>
+            <mat-option value="TRD">TRD</mat-option>
+            <mat-option value="CGR">CGR</mat-option>
+            <mat-option value="CTC">CTC</mat-option>
+            <mat-option value="MINCULT">MINCULT</mat-option>
+            <mat-option value="CIP">CIP</mat-option>
+            <mat-option value="ACRC">ACRC</mat-option>
+            <mat-option value="SASA">SASA</mat-option>
+            <mat-option value="TRIMAGEN">TRIMAGEN</mat-option>
+            <mat-option value="ICRT">ICRT</mat-option>
+            <mat-option value="MFP">MFP</mat-option>
+            <mat-option value="ONAT">ONAT</mat-option>
+            <mat-option value="ANPP">ANPP</mat-option>
+            <mat-option value="MIPYMES">MIPYMES</mat-option>
+            <mat-option value="INOTU">INOTU</mat-option>
+            <mat-option value="ACPA">ACPA</mat-option>
+            <mat-option value="IGLESIAS">IGLESIAS</mat-option>
+            <mat-option value="AGROPECUARIA_MILITAR">AGROPECUARIA_MILITAR</mat-option>
+            <mat-option value="ALIMATIC">ALIMATIC</mat-option>
+            <mat-option value="ALOJAMIENTO">ALOJAMIENTO</mat-option>
+            <mat-option value="ALTO_SERRA">ALTO_SERRA</mat-option>
+            <mat-option value="AMBAR">AMBAR</mat-option>
+            <mat-option value="ATI">ATI</mat-option>
+            <mat-option value="BANDEC">BANDEC</mat-option>
+            <mat-option value="BPA">BPA</mat-option>
+            <mat-option value="BUFETE_COLECTIVO">BUFETE_COLECTIVO</mat-option>
+            <mat-option value="Centro_Mixto">Centro_Mixto</mat-option>
+            <mat-option value="Círculo_Infantil">Círculo_Infantil</mat-option>
+            <mat-option value="CITMATEL">CITMATEL</mat-option>
+            <mat-option value="Comercio">Comercio</mat-option>
+            <mat-option value="COPEXTEL">COPEXTEL</mat-option>
+            <mat-option value="CUPET">CUPET</mat-option>
+            <mat-option value="DIVEP">DIVEP</mat-option>
+            <mat-option value="ECNA">ECNA</mat-option>
+            <mat-option value="EDUCACION">EDUCACION</mat-option>
+            <mat-option value="EJT">EJT</mat-option>
+            <mat-option value="Emp_Gráfica_Caribe">Emp_Gráfica_Caribe</mat-option>
+            <mat-option value="Fondo_Cubano">Fondo_Cubano</mat-option>
+            <mat-option value="ESPECIAL">ESPECIAL</mat-option>
+            <mat-option value="ICAP">ICAP</mat-option>
+            <mat-option value="INASS">INASS</mat-option>
+            <mat-option value="JOVEN_CLUB">JOVEN_CLUB</mat-option>
+            <mat-option value="Materias_Primas">Materias_Primas</mat-option>
+            <mat-option value="MINFAR">MINFAR</mat-option>
+            <mat-option value="Muebles_Imperio">Muebles_Imperio</mat-option>
+            <mat-option value="OBE">OBE</mat-option>
+            <mat-option value="PEDAGOGICA">PEDAGOGICA</mat-option>
+            <mat-option value="Planificación_Física">Planificación_Física</mat-option>
+            <mat-option value="Politécnico">Politécnico</mat-option>
+            <mat-option value="Porcino">Porcino</mat-option>
+            <mat-option value="Primaria">Primaria</mat-option>
+            <mat-option value="PROVARI">PROVARI</mat-option>
+            <mat-option value="SALUD">SALUD</mat-option>
+            <mat-option value="Secundaria_Básica">Secundaria_Básica</mat-option>
+            <mat-option value="TRANSPORTE">TRANSPORTE</mat-option>
+            <mat-option value="Universidad">Universidad</mat-option>
+            <mat-option value="PEXAC">PEXAC</mat-option>
+            <mat-option value="GET">GET</mat-option>
+            <mat-option value="Auditoría">Auditoría</mat-option>
+            <mat-option value="Gaviota">Gaviota</mat-option>
+            <mat-option value="Palmares">Palmares</mat-option>
+            <mat-option value="AXESS">AXESS</mat-option>
+            <mat-option value="DESOFT">DESOFT</mat-option>
+            <mat-option value="ADSL_Hogar_Salud">ADSL_Hogar_Salud</mat-option>
+            <mat-option value="ADSL_Hogar_Emp">ADSL_Hogar_Emp</mat-option>
+            <mat-option value="Comunales">Comunales</mat-option>
+            <mat-option value="EMPA">EMPA</mat-option>
+            <mat-option value="ESCAMBRAY">ESCAMBRAY</mat-option>
+            <mat-option value="BFI">BFI</mat-option>
+            <mat-option value="Apicultura">Apicultura</mat-option>
+            <mat-option value="Siprot">Siprot</mat-option>
+            <mat-option value="UPEC">UPEC</mat-option>
+            <mat-option value="GEICON">GEICON</mat-option>
+            <mat-option value="CADECA">CADECA</mat-option>
+            <mat-option value="Contraloría">Contraloría</mat-option>
+            <mat-option value="CTC">CTC</mat-option>
+            <mat-option value="Valvo">Valvo</mat-option>
+            <mat-option value="UNAICC">UNAICC</mat-option>
+            <mat-option value="Inmobiliaria">Inmobiliaria</mat-option>
+            <mat-option value="Geocuba">Geocuba</mat-option>
+            <mat-option value="XETID">XETID</mat-option>
+            <mat-option value="Radiocuba">Radiocuba</mat-option>
+            <mat-option value="ANSOC">ANSOC</mat-option>
+            <mat-option value="CNEART">CNEART</mat-option>
+            <mat-option value="Correos">Correos</mat-option>
+            <mat-option value="Ferrocarriles">Ferrocarriles</mat-option>
+            <mat-option value="CIP">CIP</mat-option>
+            <mat-option value="ACRC">ACRC</mat-option>
+            <mat-option value="Justicia">Justicia</mat-option>
+            <mat-option value="CAN">CAN</mat-option>
+            <mat-option value="ISLAZUL">ISLAZUL</mat-option>
+            <mat-option value="Alimentaria">Alimentaria</mat-option>
+            <mat-option value="INRE">INRE</mat-option>
+            <mat-option value="ATM">ATM</mat-option>
+            <mat-option value="Campismo">Campismo</mat-option>
+            <mat-option value="CAP">CAP</mat-option>
+            <mat-option value="CEDIPAD">CEDIPAD</mat-option>
+            <mat-option value="DEDAI">DEDAI</mat-option>
+            <mat-option value="SEPSA">SEPSA</mat-option>
+            <mat-option value="DME">DME</mat-option>
+            <mat-option value="IPF">IPF</mat-option>
+            <mat-option value="ENSAL">ENSAL</mat-option>
+            <mat-option value="SERVITUR">SERVITUR</mat-option>
+            <mat-option value="INFOTUR">INFOTUR</mat-option>
+            <mat-option value="ENPA">ENPA</mat-option>
+            <mat-option value="Planificación_Económica">Planificación_Económica</mat-option>
+            <mat-option value="Havanatur">Havanatur</mat-option>
+            <mat-option value="SMC">SMC</mat-option>
+            <mat-option value="ACPA">ACPA</mat-option>
+            <mat-option value="CIGET">CIGET</mat-option>
+            <mat-option value="EPMALCO">EPMALCO</mat-option>
+            <mat-option value="ADMIN">ADMIN</mat-option>
+          </mat-select>
+      </mat-form-field>
+</div>
+
+  <div class="col-md-6">
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <!-- <mat-label>Titulo</mat-label> -->
+    <mat-label>Entidad</mat-label>                   
+    <mat-select name="titulo" required [(ngModel)] = "examen.titulo">
+      <mat-option value="Otros">Otros</mat-option>
+      <mat-option value="PCC">PCC</mat-option>
+      <mat-option value="Artex">Artex</mat-option>
+      <mat-option value="AZCUBA">AZCUBA</mat-option>
+      <mat-option value="CANEC_SA">CANEC_SA</mat-option>
+            <mat-option value="CIMEX">CIMEX</mat-option>
+            <mat-option value="CITMA">CITMA</mat-option>
+            <mat-option value="CONJUSOL">CONJUSOL</mat-option>
+            <mat-option value="EMPA">EMPA</mat-option>
+            <mat-option value="EPCONS">EPCONS</mat-option>
+            <mat-option value="Fondo_Cubano">Fondo_Cubano</mat-option>
+            <mat-option value="ICAP">ICAP</mat-option>
+            <mat-option value="INDER">INDER</mat-option>
+            <mat-option value="INRH">INRH</mat-option>
+            <mat-option value="MEP">MEP</mat-option>
+            <mat-option value="MES">MES</mat-option>
+            <mat-option value="MICONS">MICONS</mat-option>
+            <mat-option value="MINAG">MINAG</mat-option>
+            <mat-option value="MINAL">MINAL</mat-option>
+            <mat-option value="MINCIN">MINCIN</mat-option>
+            <mat-option value="MINCON">MINCON</mat-option>
+            <mat-option value="MINDUS">MINDUS</mat-option>
+            <mat-option value="MINED">MINED</mat-option>
+            <mat-option value="MINEN">MINEN</mat-option>
+            <mat-option value="MINFAR">MINFAR</mat-option>
+            <mat-option value="MININT">MININT</mat-option>
+            <mat-option value="MINJUS">MINJUS</mat-option>
+            <mat-option value="MINSAP">MINSAP</mat-option>
+            <mat-option value="MITRANS">MITRANS</mat-option>
+            <mat-option value="MTSS">MTSS</mat-option>
+            <mat-option value="Museo">Museo</mat-option>
+            <mat-option value="ONEI">ONEI</mat-option>
+            <mat-option value="UJC">UJC</mat-option>
+            <mat-option value="ONAT">ONAT</mat-option>
+            <mat-option value="CAP">CAP</mat-option>
+            <mat-option value="OSDE_GELECT">OSDE_GELECT</mat-option>
+            <mat-option value="ANAP">ANAP</mat-option>
+            <mat-option value="MINTUR">MINTUR</mat-option>
+            <mat-option value="ETECSA">ETECSA</mat-option>
+            <mat-option value="MFP">MFP</mat-option>
+            <mat-option value="GAF">GAF</mat-option>
+            <mat-option value="Farmacuba">Farmacuba</mat-option>
+            <mat-option value="GESIME">GESIME</mat-option>
+            <mat-option value="UPEC">UPEC</mat-option>
+            <mat-option value="TRD">TRD</mat-option>
+            <mat-option value="CGR">CGR</mat-option>
+            <mat-option value="CTC">CTC</mat-option>
+            <mat-option value="MINCULT">MINCULT</mat-option>
+            <mat-option value="CIP">CIP</mat-option>
+            <mat-option value="ACRC">ACRC</mat-option>
+            <mat-option value="SASA">SASA</mat-option>
+            <mat-option value="TRIMAGEN">TRIMAGEN</mat-option>
+            <mat-option value="ICRT">ICRT</mat-option>
+            <mat-option value="MFP">MFP</mat-option>
+            <mat-option value="ONAT">ONAT</mat-option>
+            <mat-option value="ANPP">ANPP</mat-option>
+            <mat-option value="MIPYMES">MIPYMES</mat-option>
+            <mat-option value="INOTU">INOTU</mat-option>
+            <mat-option value="ACPA">ACPA</mat-option>
+            <mat-option value="IGLESIAS">IGLESIAS</mat-option>
+            <mat-option value="AGROPECUARIA_MILITAR">AGROPECUARIA_MILITAR</mat-option>
+            <mat-option value="ALIMATIC">ALIMATIC</mat-option>
+            <mat-option value="ALOJAMIENTO">ALOJAMIENTO</mat-option>
+            <mat-option value="ALTO_SERRA">ALTO_SERRA</mat-option>
+            <mat-option value="AMBAR">AMBAR</mat-option>
+            <mat-option value="ATI">ATI</mat-option>
+            <mat-option value="BANDEC">BANDEC</mat-option>
+            <mat-option value="BPA">BPA</mat-option>
+            <mat-option value="BUFETE_COLECTIVO">BUFETE_COLECTIVO</mat-option>
+            <mat-option value="Centro_Mixto">Centro_Mixto</mat-option>
+            <mat-option value="Círculo_Infantil">Círculo_Infantil</mat-option>
+            <mat-option value="CITMATEL">CITMATEL</mat-option>
+            <mat-option value="Comercio">Comercio</mat-option>
+            <mat-option value="COPEXTEL">COPEXTEL</mat-option>
+            <mat-option value="CUPET">CUPET</mat-option>
+            <mat-option value="DIVEP">DIVEP</mat-option>
+            <mat-option value="ECNA">ECNA</mat-option>
+            <mat-option value="EDUCACION">EDUCACION</mat-option>
+            <mat-option value="EJT">EJT</mat-option>
+            <mat-option value="Emp_Gráfica_Caribe">Emp_Gráfica_Caribe</mat-option>
+            <mat-option value="Fondo_Cubano">Fondo_Cubano</mat-option>
+            <mat-option value="ESPECIAL">ESPECIAL</mat-option>
+            <mat-option value="ICAP">ICAP</mat-option>
+            <mat-option value="INASS">INASS</mat-option>
+            <mat-option value="JOVEN_CLUB">JOVEN_CLUB</mat-option>
+            <mat-option value="Materias_Primas">Materias_Primas</mat-option>
+            <mat-option value="MINFAR">MINFAR</mat-option>
+            <mat-option value="Muebles_Imperio">Muebles_Imperio</mat-option>
+            <mat-option value="OBE">OBE</mat-option>
+            <mat-option value="PEDAGOGICA">PEDAGOGICA</mat-option>
+            <mat-option value="Planificación_Física">Planificación_Física</mat-option>
+            <mat-option value="Politécnico">Politécnico</mat-option>
+            <mat-option value="Porcino">Porcino</mat-option>
+            <mat-option value="Primaria">Primaria</mat-option>
+            <mat-option value="PROVARI">PROVARI</mat-option>
+            <mat-option value="SALUD">SALUD</mat-option>
+            <mat-option value="Secundaria_Básica">Secundaria_Básica</mat-option>
+            <mat-option value="TRANSPORTE">TRANSPORTE</mat-option>
+            <mat-option value="Universidad">Universidad</mat-option>
+            <mat-option value="PEXAC">PEXAC</mat-option>
+            <mat-option value="GET">GET</mat-option>
+            <mat-option value="Auditoría">Auditoría</mat-option>
+            <mat-option value="Gaviota">Gaviota</mat-option>
+            <mat-option value="Palmares">Palmares</mat-option>
+            <mat-option value="AXESS">AXESS</mat-option>
+            <mat-option value="DESOFT">DESOFT</mat-option>
+            <mat-option value="ADSL_Hogar_Salud">ADSL_Hogar_Salud</mat-option>
+            <mat-option value="ADSL_Hogar_Emp">ADSL_Hogar_Emp</mat-option>
+            <mat-option value="Comunales">Comunales</mat-option>
+            <mat-option value="EMPA">EMPA</mat-option>
+            <mat-option value="ESCAMBRAY">ESCAMBRAY</mat-option>
+            <mat-option value="BFI">BFI</mat-option>
+            <mat-option value="Apicultura">Apicultura</mat-option>
+            <mat-option value="Siprot">Siprot</mat-option>
+            <mat-option value="UPEC">UPEC</mat-option>
+            <mat-option value="GEICON">GEICON</mat-option>
+            <mat-option value="CADECA">CADECA</mat-option>
+            <mat-option value="Contraloría">Contraloría</mat-option>
+            <mat-option value="CTC">CTC</mat-option>
+            <mat-option value="Valvo">Valvo</mat-option>
+            <mat-option value="UNAICC">UNAICC</mat-option>
+            <mat-option value="Inmobiliaria">Inmobiliaria</mat-option>
+            <mat-option value="Geocuba">Geocuba</mat-option>
+            <mat-option value="XETID">XETID</mat-option>
+            <mat-option value="Radiocuba">Radiocuba</mat-option>
+            <mat-option value="ANSOC">ANSOC</mat-option>
+            <mat-option value="CNEART">CNEART</mat-option>
+            <mat-option value="Correos">Correos</mat-option>
+            <mat-option value="Ferrocarriles">Ferrocarriles</mat-option>
+            <mat-option value="CIP">CIP</mat-option>
+            <mat-option value="ACRC">ACRC</mat-option>
+            <mat-option value="Justicia">Justicia</mat-option>
+            <mat-option value="CAN">CAN</mat-option>
+            <mat-option value="ISLAZUL">ISLAZUL</mat-option>
+            <mat-option value="Alimentaria">Alimentaria</mat-option>
+            <mat-option value="INRE">INRE</mat-option>
+            <mat-option value="ATM">ATM</mat-option>
+            <mat-option value="Campismo">Campismo</mat-option>
+            <mat-option value="CAP">CAP</mat-option>
+            <mat-option value="CEDIPAD">CEDIPAD</mat-option>
+            <mat-option value="DEDAI">DEDAI</mat-option>
+            <mat-option value="SEPSA">SEPSA</mat-option>
+            <mat-option value="DME">DME</mat-option>
+            <mat-option value="IPF">IPF</mat-option>
+            <mat-option value="ENSAL">ENSAL</mat-option>
+            <mat-option value="SERVITUR">SERVITUR</mat-option>
+            <mat-option value="INFOTUR">INFOTUR</mat-option>
+            <mat-option value="ENPA">ENPA</mat-option>
+            <mat-option value="Planificación_Económica">Planificación_Económica</mat-option>
+            <mat-option value="Havanatur">Havanatur</mat-option>
+            <mat-option value="SMC">SMC</mat-option>
+            <mat-option value="ACPA">ACPA</mat-option>
+            <mat-option value="CIGET">CIGET</mat-option>
+            <mat-option value="EPMALCO">EPMALCO</mat-option>
+            <mat-option value="ADMIN">ADMIN</mat-option>
+
+    </mat-select>
+</mat-form-field>
+</div>
+</div>
+
+<!----------------------------------------------4---------------------------------------------->
+<!---------centro que es en categoria el titulo--------> 
+<div class="row">   
+  <div class="col-md-6">
+      <mat-form-field appearance="fill" class="mt20 w100">
+          <mat-label>Centro</mat-label>
+          <mat-select name="categoria" required [(ngModel)] = "examen.categoria.categoriaId">
+              <mat-option *ngFor = "let c of categorias" [value] = "c.categoriaId"> 
+                  {{ c.titulo }}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+</div>
+
+<div class="col-md-6">
+  <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Consejo popular</mat-label>
+      <input 
+      [(ngModel)] = "examen.consejoPopular"
+      type="text"
+      name="consejoPopular"
+      placeholder="Dígite el consejo popular"
+      matInput>
+  </mat-form-field>
+</div>
+</div>
+<!----------------------------------------------5---------------------------------------------->
+
+<mat-form-field class="mt20 w100" appearance="fill">
+  <mat-label>Dirección</mat-label>
+  <textarea 
+  [(ngModel)] = "examen.direccion"
+  type="text"
+  name="direccion"
+  required
+  placeholder="Dígite la dirección"
+  matInput
+  rows="1"></textarea>
+</mat-form-field>
+
+<mat-form-field class="mt20 w100" appearance="fill">
+  <!-- <mat-label>Descripción</mat-label> -->
+  <mat-label>Cliente</mat-label>
+  <textarea 
+  [(ngModel)] = "examen.descripcion"
+  type="text"
+  name="descripcion"
+  required
+  placeholder="Dígite el cliente"
+  matInput
+  rows="1"></textarea>
+</mat-form-field>
+
+<div class="row"> 
+  <div class="col-md-6">   
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Programa/Proyecto</mat-label>                   
+      <mat-select name="programaProyecto"  [(ngModel)] = "examen.programaProyecto">
+        <mat-option value="Otros_Programas">Otros Programas</mat-option>
+        <mat-option value="PM_Manuel_Marrero_Cruz">PM Manuel Marrero Cruz</mat-option>
+        <mat-option value="VCM_Jorge_Luis_Tapia">VCM Jorge Luis Tapia</mat-option>
+        <mat-option value="VCM_Inés_Chapman">VCM Inés Chapman</mat-option>
+      </mat-select>
+  </mat-form-field>                    
+  </div>
+  </div>
+
+<!----------------------------------------------6----------------------------------------------> 
+<br><br><br>
+<p class=" "><b>Información del servicio</b></p> 
+
+<!----------------------------------------------6---SERVICIO-------------------------------------------> 
+
+<div class="row">   
+  <div class="col-md-6">
+      <mat-form-field class="mt20 w100" appearance="fill">
+          <mat-label>Teléfono de contacto</mat-label>
+          <textarea 
+          [(ngModel)] = "examen.telefonoDeContacto"
+          type="text"
+          name="telefonoDeContacto"
+          placeholder="Dígite el teléfono de contacto"
+          matInput
+          rows="1"></textarea>
+      </mat-form-field>
+</div>
+
+  <div class="col-md-6">   
+          <mat-form-field class="mt20 w100" appearance="fill">
+            <mat-label>Solicitud</mat-label>                   
+            <mat-select name="solicitud" required [(ngModel)] = "examen.solicitud">
+              <mat-option value="Alta">Alta</mat-option>
+              <mat-option value="Baja">Baja</mat-option>
+              <mat-option value="CVIV">CVIV</mat-option>
+              <mat-option value="Alta_Mig">Alta por Migración</mat-option>
+              <mat-option value="CL">CL</mat-option>
+            </mat-select>
+        </mat-form-field>                    
+</div>
+</div>
+
+<!----------------------------------------------7---------------------------------------------->
+<div class="row">   
+  <div class="col-md-6">
+      <mat-form-field class="mt20 w100" appearance="fill">
+          <mat-label>Velocidad</mat-label>                   
+          <mat-select name="velocidad" required [(ngModel)] = "examen.velocidad">
+            <mat-option value="2Mbps">2Mbps</mat-option>
+            <mat-option value="4Mbps">4Mbps</mat-option>
+            <mat-option value="6Mbps">6Mbps</mat-option>
+            <mat-option value="8Mbps">8Mbps</mat-option>
+            <mat-option value="10Mbps">10Mbps</mat-option>
+            <mat-option value="20Mbps">20Mbps</mat-option>
+            <mat-option value="34Mbps">34Mbps</mat-option>
+            <mat-option value="45Mbps">45Mbps</mat-option>
+            <mat-option value="60Mbps">60Mbps</mat-option>
+            <mat-option value="80Mbps">80Mbps</mat-option>
+            <mat-option value="100Mbps">100Mbps</mat-option>
+            <mat-option value="155Mbps">155Mbps</mat-option>
+            <mat-option value="250Mbps">250Mbps</mat-option>
+            <mat-option value="500Mbps">500Mbps</mat-option>
+            <mat-option value="1Gbps">1Gbps</mat-option>
+            <mat-option value="64Kbps">64Kbps</mat-option>
+            <mat-option value="128Kbps">128Kbps</mat-option>
+            <mat-option value="512_128Kbps">512_128Kbps</mat-option>
+            <mat-option value="512_256Kbps">512_256Kbps</mat-option>
+            <mat-option value="1024_512Kbps">1024_512Kbps</mat-option>
+            <mat-option value="1536_512Kbps">1536_512Kbps</mat-option>
+            <mat-option value="2048_512Kbps">2048_512Kbps</mat-option>
+            <mat-option value="2048_1024Kbps">2048_1024Kbps</mat-option>
+            <mat-option value="4096_1024Kbps">4096_1024Kbps</mat-option>
+            <mat-option value="6144_1024Kbps">6144_1024Kbps</mat-option>
+            <mat-option value="8192_1024Kbps">8192_1024Kbps</mat-option>
+            <mat-option value="10240_1024Kbps">10240_1024Kbps</mat-option>
+            <mat-option value="12288_1024Kbps">12288_1024Kbps</mat-option>
+            <mat-option value="3072_1024Kbps">3072_1024Kbps</mat-option>
+            <mat-option value="Paquete_Móvil">Paquete_Móvil</mat-option>
+            <mat-option value="ADMIN">ADMIN</mat-option>
+
+          </mat-select>
+      </mat-form-field> 
+</div>
+
+  <div class="col-md-6">             
+        <mat-form-field class="mt20 w100" appearance="fill">
+          <mat-label>Enlace</mat-label>
+          <textarea 
+          [(ngModel)] = "examen.enlace"
+          type="text"
+          name="enlace"
+          placeholder="Dígite el enlace"
+          matInput
+          rows="1"></textarea>
+      </mat-form-field>
+</div>
+</div>
+
+<!----------------------------------------------8---------------------------------------------->
+<div class="row">   
+  <div class="col-md-6">
+  <mat-form-field class="mt20 w100" appearance="fill">
+    <mat-label>No.ADSL</mat-label>
+    <textarea 
+    [(ngModel)] = "examen.noAdsl"
+    type="text"
+    name="noAdsl"
+    placeholder="Dígite número de Telef. asociado al ADSL"
+    matInput
+    rows="1"></textarea>
+ </mat-form-field>
+
+</div>
+
+<div class="col-md-6"> 
+
+ <mat-form-field class="mt20 w100" appearance="fill">
+    <mat-label>cuota</mat-label>
+    <textarea 
+    [(ngModel)] = "examen.cuota"
+    type="text"
+    name="cuota"
+    placeholder="Dígite la cuota"
+    matInput
+    rows="1"></textarea>
+ </mat-form-field>
+
+</div>
+</div>
+
+<!----------------------------------------------9---------------------------------------------->
+
+<div class="row">   
+  <div class="col-md-6">
+  <mat-form-field class="mt20 w100" appearance="fill">
+    <mat-label>Costo de instalación</mat-label>
+    <textarea 
+    [(ngModel)] = "examen.costoDeInstalacion"
+    type="text"
+    name="noAdsl"
+    placeholder="Dígite el costo de instalación"
+    matInput
+    rows="1"></textarea>
+ </mat-form-field>
+</div>
+<div class="col-md-6">   
+  <mat-form-field class="mt20 w100" appearance="fill">
+    <mat-label>Tipo de Servicio</mat-label>                   
+    <mat-select name="tipoDeServicio"  [(ngModel)] = "examen.tipoDeServicio">
+      <mat-option value="Conectividad_IP">Conectividad IP</mat-option>
+      <mat-option value="Dedicado_Internacional">Dedicado Internacional</mat-option>
+      <mat-option value="Plana_Empresarial">Plana Empresarial</mat-option>
+      <mat-option value="Pto_Pto_Nacional">Pto_Pto_Nacional</mat-option>
+      <mat-option value="Otros">Otros</mat-option>
+    </mat-select>
+</mat-form-field>                    
+</div>
+</div>
+<!----------------------------------------------9´´´---------------------------------------------->
+
+<div class="row">   
+<div class="col-md-6">
+  <mat-form-field class="mt20 w100" appearance="fill">
+    <mat-label>Estado del servicio</mat-label>                   
+    <mat-select name="estadoDelServicio" required [(ngModel)] = "examen.estadoDelServicio">
+      <mat-option value="Solicitud_Nueva">Solicitud_Nueva</mat-option>
+      <mat-option value="Pdte_Usuario">Pdte_Usuario</mat-option>
+      <mat-option value="En_Proceso">En_Proceso</mat-option>
+      <mat-option value="Con_OS_Siprec">Con_OS_Siprec</mat-option>
+      <mat-option value="OK_Red_Móvil">OK_Red_Móvil</mat-option>
+      <mat-option value="OK">OK</mat-option>
+      <mat-option value="DI">DI</mat-option>
+      <mat-option value="Cancelada_Usuario">Cancelada_Usuario</mat-option>
+    </mat-select>
+</mat-form-field>
+</div>
+<div class="col-md-6">   
+<mat-form-field class="mt20 w100" appearance="fill">
+  <mat-label>Instalada/Pendiente/Por definir</mat-label>                   
+  <mat-select name="instalada"  [(ngModel)] = "examen.instalada">
+    <mat-option value="Instalada">Instalada</mat-option>
+    <mat-option value="Pendiente_de_Inlalacion">Pendiente_de_Instalación</mat-option>
+    <mat-option value="Pendiente_por_Definir">Pendiente_por_Definir</mat-option>
+  </mat-select>
+</mat-form-field>                    
+</div>
+</div>
+<!----------------------------------------------10---------------------------------------------->
+<!------------------------------------Fecha+++----------10----------{{examenData.fechaDeSolicitud }}------------------------------------>
+ 
+<div class="row">   
+  <div class="col-md-6">
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Fecha de solicitud</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="examen.fechaDeSolicitud" name="fechaDeSolicitud">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>  
+</div>
+
+</div>
+
+<!--------------------------------fecha--------------11---------------------------------------------->
+<mat-slide-toggle class="mt20" name = "activo" [(ngModel)] = "examen.activo" color="primary">
+  Estado de publicación
+</mat-slide-toggle>        
+<br><br>
+<div class="container text-center">
+  <button mat-raised-button color="primary">Guardar</button>
+</div>
+<br><br><br> 
+<mat-divider></mat-divider><br><br>
+<!----------------------------------------------11---------------------------------------------->
+
+
+<!----------------------------------------------OPERACIONES--------------------------------------------->
+
+<p class=" center-text blue-text"><b>INFORMACION DESARROLLO / INVERSIONES   (solo Admin)</b></p> <br>
+<p class=" "><b>Información de operaciones</b></p>
+
+<div class="row">   
+  <div class="col-md-6">
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Estado de calificacón de los centros</mat-label>                   
+      <mat-select name="estadoDeCalificacionDeLosCentros"  [(ngModel)] = "examen.estadoDeCalificacionDeLosCentros">
+        <mat-option value="Vacio">Vacio</mat-option>
+        <mat-option value="Apto_Asimétrico">Apto_Asimétrico</mat-option>
+          <mat-option value="Apto_Simétrico">Apto_Simétrico</mat-option>
+          <mat-option value="Apto_Móvil">Apto_Móvil</mat-option>
+          <mat-option value="No_Apto">No_Apto</mat-option>
+          <mat-option value="Pdte_Puerta">Pdte_Puerta</mat-option>
+          <mat-option value="DI">DI</mat-option>
+      </mat-select>
+  </mat-form-field> 
+  
+</div>
+<div class="col-md-6">   
+  <mat-form-field class="mt20 w100" appearance="fill">
+    <mat-label>Observación</mat-label>
+    <textarea 
+    [(ngModel)] = "examen.observacion"
+    type="text"
+    name="observacion"
+    placeholder="Dígite la observacion"
+    matInput
+    rows="1"></textarea>
+ </mat-form-field>                    
+</div>
+</div>
+
+<div class="row">   
+  <div class="col-md-6">
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Evaluación</mat-label>                   
+      <mat-select name="evaluacion" [(ngModel)] = "examen.evaluacion">
+    <mat-option value="Operaciones">Operaciones</mat-option>
+    <mat-option value="Inversiones">Inversiones</mat-option>
+    </mat-select>
+  </mat-form-field>                    
+</div>
+<div class="col-md-6">   
+  <mat-form-field class="mt20 w100" appearance="fill">
+    <mat-label>Observación Esp. Operaciones</mat-label>
+    <textarea 
+    [(ngModel)] = "examen.observacionesEspecialistaDeOperaciones"
+    type="text"
+    name="observacionesEspecialistaDeOperaciones"
+    placeholder="Dígite las observaciones Esp.(Operaciones)"
+    matInput
+    rows="1"></textarea>
+ </mat-form-field>                    
+</div>
+</div>
+
+<!----------------------------------------------FIN OPERACIONES---------------------------------------------->
+
+<!----------------------------------------------INVERSIONES---------------------------------------------->
+<br><br>
+<p class=" "><b>Información de inversiones</b></p>
+
+<div class="row">   
+  <div class="col-md-6">
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Propuesta de solucion técnica (Tipo de acceso)</mat-label>
+      <textarea 
+      [(ngModel)] = "examen.propuestaDeSoluionTecnica"
+      type="text"
+      name="propuestaDeSoluionTecnica"
+      placeholder="Dígite la propuesta"
+      matInput
+      rows="1"></textarea>
+   </mat-form-field> 
+  
+</div>
+<div class="col-md-6">   
+  <mat-form-field class="mt20 w100" appearance="fill">
+    <mat-label>Tipo de recursos a demandar</mat-label>
+    <textarea 
+    [(ngModel)] = "examen.tipoDeRecursosADemandar"
+    type="text"
+    name="tipoDeRecursosADemandar"
+    placeholder="Dígite el tipo de recurso a demandar"
+    matInput
+    rows="1"></textarea>
+ </mat-form-field>                    
+</div>
+</div>
+
+<div class="row">   
+  <div class="col-md-6">
+    <mat-form-field class="mt20 w100" appearance="fill">
+      <mat-label>Observación Esp. Inversiones</mat-label>
+      <textarea 
+      [(ngModel)] = "examen.observacionEspInversiones"
+      type="text"
+      name="observacionEspInversiones"
+      placeholder="Dígite las observaciones Esp.(Inversiones) "
+      matInput
+      rows="1"></textarea>
+   </mat-form-field> 
+  
+</div>
+<div class="col-md-6">   
+  <mat-form-field class="mt20 w100" appearance="fill">
+    <mat-label>Fecha estimada a proponer</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="examen.fechaDeEjecucionEstimadaAProponer" name="fechaDeEjecucionEstimadaAProponer">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>                  
+</div>
+</div>
+
+
+
+<!--------------------------------------FIN--------INVERSIONES---------------------------------------------->
+
+
+<!----------------------------------------------original-------------------------------------------- -->  
+       
+   <br><br>
+          <div class="container text-center">
+            <button mat-raised-button color="primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-card>

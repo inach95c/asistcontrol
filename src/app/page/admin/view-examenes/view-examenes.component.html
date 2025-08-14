@@ -1,0 +1,197 @@
+<div class="col-md-13">
+  <br><h1>Solicitudes disponibles</h1> 
+<div>
+   <!-- Inicio Contenedor de Búsquedas y Filtros -->         
+              
+                <!-- ************************************************************************** -->
+                 <!-- Inicio Panel de Búsqueda y Filtros -->
+                 <mat-card-content>
+                  <mat-expansion-panel [expanded]="panelExpandido">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Panel de Búsqueda y Filtros</mat-panel-title>
+                    </mat-expansion-panel-header>
+                
+                    <!-- Contenedor para organizar los filtros en dos filas -->
+                    <div class="form-container">
+                      <!-- Primera fila -->
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Escriba CTLC</mat-label>
+                            <textarea [(ngModel)]="searchQuery" matInput rows="1"></textarea>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Calificación CTLC</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionadoCalificacion">
+                              <mat-option *ngFor="let estadoCalificacion of estadoDeCalificacionDeLosCentros" [value]="estadoCalificacion">
+                                {{ estadoCalificacion }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Estado del Servicio</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionado">
+                              <mat-option *ngFor="let estado of estadosDelServicio" [value]="estado">
+                                {{ estado }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                
+                      <!-- Segunda fila -->
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Evaluación</mat-label>
+                            <mat-select [(ngModel)]="estadoSeleccionadoEvaluacion">
+                              <mat-option *ngFor="let estadoEvaluacion of evaluacion" [value]="estadoEvaluacion">
+                                {{ estadoEvaluacion }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fecha desde</mat-label>
+                            <input matInput [matDatepicker]="pickerInicio" [(ngModel)]="fechaInicio">
+                            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerInicio></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Fecha hasta</mat-label>
+                            <input matInput [matDatepicker]="pickerFin" [(ngModel)]="fechaFin">
+                            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerFin></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="button-container">
+                      <button mat-raised-button class="btn-violet" (click)="search()" style="margin-right: 10px;">Buscar</button>
+                      <button mat-raised-button class="btn-red" (click)="limpiarBusqueda()">Limpiar</button>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-card-content>
+                
+              <!-- ************************************************************************** -->
+
+                    <!-- Inicio Resultados con paginación -->
+        <div *ngIf="searchResults.length > 0" class="search-results mt20">
+        <br>
+          
+          <div style="display: flex; justify-content: flex-end;">
+            <button mat-raised-button class="btn-violet" (click)="exportarExcel()">Exp .xlsx 📄</button>
+          </div>
+          <br>
+        
+          <div class="row">
+            <div class="col-md-6" *ngFor="let result of searchResultsFiltrados()">
+              
+
+              <mat-card class="mb20">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{ result.titulo }}</mat-card-title>
+                  <mat-card-subtitle>{{ result.categoria?.titulo }}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <p>{{ result.descripcion }}</p>
+                  
+                </mat-card-content>
+                <mat-card-actions>
+                  <div>
+                    <button mat-button color="primary" class="ml20">Solicitud: {{ result.solicitud }}/{{ result.velocidad }}</button>
+                    <!--<button mat-stroked-button color="primary" class="ml20">Velocidad: {{ result.velocidad }}</button> -->
+                    <button mat-button color="primary" class="ml20">Estado de Calif: {{ result.estadoDeCalificacionDeLosCentros }}</button>
+                  </div>
+                  <div class="botones-secundarios">
+                    <button mat-flat-button class="detalles-btn" (click)="infoExamen(result)">Detalles</button>
+                    <button [routerLink]="'/admin/examen/'+result.examenId" mat-flat-button color="primary">Actualizar</button>
+                    <button mat-flat-button color="warn" (click)="eliminarExamen(result.examenId)">Eliminar</button>
+                  </div>       
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        
+          
+         
+          <!-- fin test-->
+       
+
+          <div class="pagination-container">
+          <!-- Selector de número de elementos por página -->
+          <div class="pagination-settings">
+            <label for="numElementos">Elementos por página:</label>
+            <select id="numElementos" (change)="cambiarElementosPorPagina($event)">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </div> 
+          <!-- Controles de paginación --> 
+          <div class="pagination">
+            <button (click)="paginaAnterior()" [disabled]="paginaActual === 1">Anterior</button>
+            <span>{{ paginaActual }} - {{ totalPaginas() }}</span>
+            <button (click)="paginaSiguiente()" [disabled]="paginaActual >= totalPaginas()">Siguiente</button>
+          </div>
+          </div> 
+
+        </div>
+
+    </div>
+</div>
+<br>
+<div class="container text-center mt20">
+  <button routerLink="/admin/add-examen" mat-raised-button color="primary">Agregar solicitud</button>
+</div>  
+<br>
+
+<!-- plantilla original 
+<mat-card class="mt10" *ngFor = "let e of examenes">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+          {{ e.titulo }}      
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{ e.descripcion }}
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-actions>
+        <div>
+          <button mat-stroked-button color="primary" class="ml20">Solicitud: {{ e.solicitud }}</button>
+          <button mat-stroked-button color="primary" class="ml20">Velocidad: {{ e.velocidad }}</button>
+          <button mat-stroked-button color="primary" class="ml20">Estado de Calificación: {{ e.estadoDeCalificacionDeLosCentros }}</button>
+        </div>
+        <div class="botones-secundarios">
+          <button mat-flat-button class="detalles-btn" (click)="infoExamen(e)">Detalles</button>
+          <button [routerLink]="'/admin/examen/'+e.examenId" mat-flat-button color="primary">Actualizar</button>
+          <button mat-flat-button color="warn" (click)="eliminarExamen(e.examenId)">Eliminar</button>
+        </div>       
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+  
+  <div class="container text-center mt20">
+    <button routerLink="/admin/add-examen" mat-raised-button color="primary">Agregar solicitud</button>
+  </div>   
+-->
+
+  
+  

@@ -1,0 +1,84 @@
+.dialog-content {
+  padding: 20px 24px;
+  max-width: 600px;
+  margin: auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Form fields generales */
+mat-form-field {
+  width: 100%;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+mat-label {
+  font-weight: 500;
+  color: #444;
+}
+
+.mat-select-value,
+.mat-input-element {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+/* Layout de filas */
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Compactar datepickers y time inputs */
+.mat-form-field-infix {
+  min-height: 36px;
+}
+
+/* Botones con estilo */
+.form-row.buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+button {
+  font-size: 13px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Íconos dentro de campos */
+mat-icon {
+  font-size: 20px;
+  vertical-align: middle;
+  color: #616161;
+}
+
+
+
+/**responsivo****/
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row.buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+
+
+
+
+/************************************************************************************/

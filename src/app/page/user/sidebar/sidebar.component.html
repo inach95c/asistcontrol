@@ -1,0 +1,192 @@
+ <!-- <mat-card>
+    <mat-action-list>
+      <div mat-subheader>Categorías</div>
+      <button routerLink="/user-dashboard/0" mat-list-item>
+        <mat-icon mat-list-icon>card_travel</mat-icon>
+      
+        <mat-badge [matBadge]=" totalExamenesEstadoDelServicio_Con_OS_Siprec " matBadgePosition="above after" matBadgeColor="warn">
+          Solicitudes
+             
+        </mat-badge>
+      </button>
+      <button routerLink="/reportes" mat-list-item>
+        <mat-icon mat-list-icon>perm_media</mat-icon>Reportes
+      </button>
+      <button routerLink="/indicadores" mat-list-item>
+        <mat-icon mat-list-icon>bar_chart</mat-icon>Indicadores
+      </button>
+      <button routerLink="/buscar" mat-list-item>
+        <mat-icon mat-list-icon>search</mat-icon>Buscar
+      </button>
+      <mat-divider></mat-divider><br>
+      <div mat-subheader>Centros de TC</div>  
+
+      <button [routerLink] = "'/user-dashboard/'+c.categoriaId" mat-list-item *ngFor = "let c of categorias">
+        <mat-icon mat-list-icon>quiz</mat-icon> 
+        {{ c.titulo}}  
+      </button>          
+
+    </mat-action-list>
+    
+  </mat-card>
+
+-->
+              
+ <!--
+        <mat-divider></mat-divider><br>
+
+        <div mat-subheader>Centros de TC</div>  
+
+        <button [routerLink]="'/user-dashboard/'+c.categoriaId" mat-list-item *ngFor="let c of categorias">
+            <mat-icon mat-list-icon>quiz</mat-icon> 
+            {{ c.titulo }}  
+            <mat-badge [matBadge]="conteoExamenesPorCategoria[c.titulo] || 0" matBadgePosition="above after" matBadgeColor="accent">
+                 -
+            </mat-badge>
+        </button>      
+      
+
+     ------------------------------------otra version------------------ 
+
+      <mat-card>
+        <mat-action-list>
+            <div mat-subheader>Categorías</div>
+    
+            <button routerLink="/user-dashboard/0" mat-list-item>
+                <mat-icon mat-list-icon>card_travel</mat-icon>
+                <mat-badge [matBadge]="totalExamenesEstadoDelServicio_Con_OS_Siprec" matBadgePosition="above after" matBadgeColor="warn">
+                    Solicitudes -
+                </mat-badge>
+            </button>
+    
+            <button routerLink="/user-dashboard/user/reportes-user" mat-list-item>
+                <mat-icon mat-list-icon>perm_media</mat-icon>Reportes
+            </button>
+    
+            <button routerLink="/user-dashboard/user/indicadores-user" mat-list-item>
+                <mat-icon mat-list-icon>bar_chart</mat-icon>Indicadores
+            </button>       
+             
+
+    </mat-action-list>
+</mat-card>
+
+-->
+
+
+
+<!-- 🧭 Título del panel 
+<mat-card class="sidebar-container">
+
+  
+  <div class="sidebar-title">
+    <mat-icon class="panel-icon">person</mat-icon>
+    <span>Panel de usuario</span>
+  </div>
+
+  <mat-action-list>
+
+    <button routerLink="/user-dashboard/user/login-asistencia" mat-list-item class="aligned-button" matTooltip="Asistencia" matTooltipPosition="right">
+      <mat-icon>assignment_turned_in</mat-icon>
+      <span>Asistencia</span>
+    </button>
+
+    <button routerLink="/user-dashboard/user/horario-personal" mat-list-item class="aligned-button" matTooltip="Horario personal" matTooltipPosition="right">
+      <mat-icon>schedule</mat-icon>
+      <span>Horario personal</span>
+    </button>
+
+    <button routerLink="/user-dashboard/user/historial-user" mat-list-item class="aligned-button" matTooltip="Historial resumido" matTooltipPosition="right">
+      <mat-icon>receipt_long</mat-icon>
+      <span>Historial resumido</span>
+    </button>
+
+    <button routerLink="/user-dashboard/user/profile-user" mat-list-item class="aligned-button" matTooltip="Perfil" matTooltipPosition="right">
+      <mat-icon>person</mat-icon>
+      <span>Perfil</span>
+    </button>
+        
+  </mat-action-list>
+</mat-card>
+
+-->
+
+<mat-card class="sidebar-container">
+  <!-- 🧭 Título del panel -->
+<div class="sidebar-title">
+  
+  <span>📋 Opciones</span>
+</div>
+
+
+
+  <mat-action-list>
+    <button
+      routerLink="/user-dashboard/user/login-asistencia"
+      mat-list-item
+      class="aligned-button"
+      matTooltip="Asistencia"
+      matTooltipPosition="right"
+      (click)="cerrarMenu.emit()">
+      <mat-icon>assignment_turned_in</mat-icon>
+      <span>Asistencia</span>
+    </button>
+
+    <button
+      routerLink="/user-dashboard/user/horario-personal"
+      mat-list-item
+      class="aligned-button"
+      matTooltip="Horario personal"
+      matTooltipPosition="right"
+      (click)="cerrarMenu.emit()">
+      <mat-icon>schedule</mat-icon>
+      <span>Horario personal</span>
+    </button>
+
+    <button
+      routerLink="/user-dashboard/user/resumen-salario-personal"
+      mat-list-item
+      class="aligned-button"
+      matTooltip="Resumen salarial"
+      matTooltipPosition="right"
+      (click)="cerrarMenu.emit()">
+      <mat-icon>attach_money</mat-icon>
+      <span>Resumen salarial</span>
+    </button>
+
+
+    <button
+      routerLink="/user-dashboard/user/historial-user"
+      mat-list-item
+      class="aligned-button"
+      matTooltip="Historial resumido"
+      matTooltipPosition="right"
+      (click)="cerrarMenu.emit()">
+      <mat-icon>receipt_long</mat-icon>
+      <span>Historial resumido</span>
+    </button>
+
+     <button
+      routerLink="/user-dashboard/user/profile-user"
+      mat-list-item
+      class="aligned-button"
+      matTooltip="Perfil"
+      matTooltipPosition="right"
+      (click)="cerrarMenu.emit()">
+      <mat-icon>person</mat-icon>
+      <span>Perfil</span>
+    </button>
+
+    <!-- 🔚 Botón para cerrar sesión -->
+    <button
+      mat-list-item
+      class="aligned-button cerrar-sesion-btn"
+      matTooltip="Cerrar sesión"
+      matTooltipPosition="right"
+      (click)="cerrarSesion(); cerrarMenu.emit()">
+      <mat-icon color="warn">logout</mat-icon>
+      <span>Salir</span>
+    </button>
+    
+  </mat-action-list>
+</mat-card>

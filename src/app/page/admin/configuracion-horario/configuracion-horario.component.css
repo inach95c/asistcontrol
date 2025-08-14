@@ -1,0 +1,31 @@
+.tolerancia-config-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.config-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  color: #3f51b5;
+}
+
+.tolerancia-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tolerancia-field {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}

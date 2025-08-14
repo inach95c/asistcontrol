@@ -1,0 +1,17 @@
+<h2 style="text-align:center;">Mi QR de asistencia</h2>
+
+<div style="text-align:center;">
+  <button mat-raised-button color="primary" (click)="generarQr()">📲 Generar QR</button>
+</div>
+
+<!-- Indicador de carga -->
+<div *ngIf="cargando" style="margin-top: 20px; text-align:center;">
+  <mat-spinner diameter="40"></mat-spinner>
+  <p>Cargando QR...</p>
+</div>
+
+<!-- Imagen generada del QR -->
+<div *ngIf="qrImagenUrl" style="margin-top: 30px; text-align:center;">
+  <img [src]="qrImagenUrl" alt="QR generado" style="max-width:300px; border: 2px solid #ccc; padding:10px; border-radius: 8px;" />
+  <p style="margin-top:10px; font-style:italic;">Escanea desde el kiosko para registrar asistencia</p>
+</div>

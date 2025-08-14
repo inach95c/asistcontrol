@@ -1,0 +1,25 @@
+.inasistencia-panel {
+  margin: 24px;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.titulo-inasistencia {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #d32f2f;
+  text-align: center;
+}
+
+.estado-ausente {
+  color: tomato;
+  font-weight: bold;
+}
+
+.mensaje-vacio {
+  text-align: center;
+  color: green;
+  font-size: 1.1em;
+  margin-top: 16px;
+}

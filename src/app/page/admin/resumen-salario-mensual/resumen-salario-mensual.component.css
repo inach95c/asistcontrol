@@ -1,0 +1,40 @@
+.panel-container {
+  padding: 20px;
+}
+
+.asistencia-card {
+  padding: 20px;
+}
+
+.titulo-panel {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+
+.asistencia-tabla {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.botones-accion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.campo-mini {
+  width: 120px;
+  min-width: 100px;
+  max-width: 160px;
+}
+
+.campo-mini input {
+  padding: 4px 6px;
+  font-size: 13px;
+  height: 28px;
+}
+

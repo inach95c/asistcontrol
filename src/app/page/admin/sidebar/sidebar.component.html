@@ -1,0 +1,163 @@
+<!-- 🍔 Encabezado del menú hamburguesa fijo en la parte superior (solo en móvil) -->
+<div class="hamburger-header" *ngIf="isMobile">
+  <button mat-icon-button (click)="toggleSidebar()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="menu-label">
+    <span>{{ selectedView }}</span>
+  </div>
+</div>
+
+<!-- 📦 Contenedor del sidebar con animación y visibilidad dinámica -->
+<div class="sidebar-container sidebar-slide" *ngIf="showSidebar">
+  <!-- 🧭 Título del panel -->
+  <div class="sidebar-title">
+    <span>📋 Opciones</span>
+  </div>
+
+  <!-- 🔄 Accordion que controla la exclusividad de los paneles -->
+  <mat-accordion>
+
+    <!-- 🏠 Panel: Inicio y Perfil -->
+    <mat-expansion-panel #inicioPanel (opened)="closeOthers(inicioPanel)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="panel-icon">dashboard</mat-icon>
+          Inicio 
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-action-list>
+        <button mat-list-item routerLink="/admin" (click)="closeSidebarOnNavigate('Inicio')">
+          <mat-icon>dashboard</mat-icon><span>Inicio</span>
+        </button>
+        <button mat-list-item routerLink="/admin/profile" (click)="closeSidebarOnNavigate('Perfil')">
+          <mat-icon>person</mat-icon><span>Perfil</span>
+        </button>
+      </mat-action-list>
+    </mat-expansion-panel>
+
+    <!-- 👥 Panel: Gestión de empleados -->
+    <mat-expansion-panel #empleadosPanel (opened)="closeOthers(empleadosPanel)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="panel-icon">groups</mat-icon>
+          Gestión de empleados
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-action-list>
+        <button mat-list-item routerLink="/admin/empleados" (click)="closeSidebarOnNavigate('Empleados')">
+          <mat-icon>badge</mat-icon><span>Empleados</span>
+        </button>
+        <button mat-list-item routerLink="/admin/usuarios" (click)="closeSidebarOnNavigate('Usuarios')">
+          <mat-icon>group</mat-icon><span>Usuarios</span>
+        </button>
+        <button mat-list-item routerLink="/admin/signup" (click)="closeSidebarOnNavigate('Registro')">
+          <mat-icon>person_add</mat-icon><span>Registro de usuarios</span>
+        </button>
+      </mat-action-list>
+    </mat-expansion-panel>
+
+    <!-- ⏱️ Panel: Control de horarios -->
+    <mat-expansion-panel #horariosPanel (opened)="closeOthers(horariosPanel)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="panel-icon">calendar_month</mat-icon>
+          Control de horarios
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-action-list>
+        <button mat-list-item routerLink="/admin/asignar-horarios/id" (click)="closeSidebarOnNavigate('Asignar horarios')">
+          <mat-icon>schedule</mat-icon><span>Asignar horarios</span>
+        </button>
+        <button mat-list-item routerLink="/admin/resumen-horarios" (click)="closeSidebarOnNavigate('Resumen horarios')">
+          <mat-icon>calendar_today</mat-icon><span>Resumen horarios</span>
+        </button>
+      </mat-action-list>
+    </mat-expansion-panel>
+
+    <!-- 📋 Panel: Registros de asistencias -->
+    <mat-expansion-panel #registrosPanel (opened)="closeOthers(registrosPanel)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="panel-icon">fact_check</mat-icon>
+          Registros de asistencias
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-action-list>
+        <button mat-list-item routerLink="/admin/asistencia-admin" (click)="closeSidebarOnNavigate('Asistencia')">
+          <mat-icon>how_to_reg</mat-icon><span>Asistencia</span>
+        </button>
+        <button mat-list-item routerLink="/admin/registro-asistencia-diaria" (click)="closeSidebarOnNavigate('Asistencia diaria')">
+          <mat-icon>fact_check</mat-icon><span>Registro asistencia diaria</span>
+        </button>
+        <button mat-list-item routerLink="/admin/inasistencias" (click)="closeSidebarOnNavigate('Inasistencias')">
+          <mat-icon>report_problem</mat-icon><span>Reporte de inasistencias</span>
+        </button>
+        <button mat-list-item routerLink="/admin/horas-trabajadas-mensualmente" (click)="closeSidebarOnNavigate('Horas mensuales')">
+          <mat-icon>access_time</mat-icon><span>Horas trabajadas mensualmente</span>
+        </button>
+        <button mat-list-item routerLink="/admin/horas-extras" (click)="closeSidebarOnNavigate('Horas extras')">
+          <mat-icon>alarm</mat-icon><span>Reporte de horas extras</span>
+        </button>
+      </mat-action-list>
+    </mat-expansion-panel>
+
+    <!-- 💰 Panel: Resumen salarial -->
+<mat-expansion-panel #salarioPanel (opened)="closeOthers(salarioPanel)">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon class="panel-icon">attach_money</mat-icon>
+      Resumen salarial
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-action-list>
+    <button mat-list-item routerLink="/admin/resumen-salario-mensual" (click)="closeSidebarOnNavigate('Resumen salarial')">
+      <mat-icon>bar_chart</mat-icon><span>Resumen mensual</span>
+    </button>
+  </mat-action-list>
+</mat-expansion-panel>
+
+
+    <!-- 📊 Panel: Estadísticas -->
+    <mat-expansion-panel #estadisticasPanel (opened)="closeOthers(estadisticasPanel)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="panel-icon">insights</mat-icon>
+          Estadísticas
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-action-list>
+        <button mat-list-item routerLink="/admin/porcentaje-por-usuario" (click)="closeSidebarOnNavigate('Estadísticas asistencia')">
+          <mat-icon>insights</mat-icon><span>Porcentaje por Usuario</span>
+        </button>
+        <button mat-list-item routerLink="/admin/estadisticas-asistecia" (click)="closeSidebarOnNavigate('Resumen agrupado')">
+          <mat-icon>leaderboard</mat-icon><span>Resumen de asistencias agrupadas</span>
+        </button>
+      </mat-action-list>
+    </mat-expansion-panel>
+
+    <!-- ⚙️ Panel: Configuración -->
+    <mat-expansion-panel #configPanel (opened)="closeOthers(configPanel)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="panel-icon">settings</mat-icon>
+          Configuración
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-action-list>
+
+        <button mat-list-item routerLink="/admin/configuracion-horario" (click)="closeSidebarOnNavigate('Configuracion Horario')">
+          <mat-icon>tune</mat-icon><span>Configuración de Tolerancia </span>
+        </button> 
+                 
+        <button mat-list-item routerLink="/admin/kiosk-asistencia" (click)="closeSidebarOnNavigate('QR scan')">
+          <mat-icon>qr_code_scanner</mat-icon><span>QR a scanear</span>
+        </button>
+        <button mat-list-item (click)="logout(); closeSidebarOnNavigate('Salir')">
+          <mat-icon>logout</mat-icon><span>Salir</span>
+        </button>
+      </mat-action-list>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>

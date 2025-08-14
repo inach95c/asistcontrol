@@ -1,0 +1,47 @@
+.contenedor-principal {
+  margin: 24px;
+  padding: 16px;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.titulo-pagina {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #3f51b5;
+  text-align: center;
+  width: 100%;
+}
+
+.busqueda-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  justify-content: center;
+}
+
+.busqueda-input {
+  flex: 1 1 300px;
+  min-width: 280px;
+}
+
+.icono-buscar {
+  height: 36px;
+  width: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.icono-buscar:hover {
+  background-color: #d32f2f;
+  color: white;
+}
+
+
+
+

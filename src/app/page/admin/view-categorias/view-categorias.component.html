@@ -1,0 +1,69 @@
+<!-- <mat-card>
+    <mat-list>
+        <div mat-subheader>
+            Todos los Centros de Telecomunicaciones
+  </div>
+        <div class="container text-center mt20">
+        <button routerLink="/admin/add-categoria" mat-raised-button color="primary">Agregar categoría</button>
+    </div>
+    <br>
+
+        <mat-list-item *ngFor = "let c of categorias">
+                
+            
+            <div mat-line>{{ c.titulo }}</div>
+            <div mat-line>{{ c.descripcion }}</div>
+            <mat-card-actions>
+                <button [routerLink] = "'/admin/categoria/'+c.categoriaId" mat-flat-button color="primary" class="m20">Actualizar</button>
+                <button routerLink="/admin/add-categoria" mat-flat-button color="warn" class="ml10" (click) = "eliminarCategoria(c.categoriaId)">Eliminar</button>                
+            </mat-card-actions>
+            <mat-divider></mat-divider> 
+        </mat-list-item>
+        
+        
+    </mat-list>
+    
+
+    <div class="container text-center mt20">
+        <button routerLink="/admin/add-categoria" mat-raised-button color="primary">Agregar categoría</button>
+        
+    </div>
+</mat-card>
+-->
+
+<mat-card>
+    <mat-list>
+        <div mat-subheader>Todos los Centros de Telecomunicaciones</div>
+        <br>
+
+        <mat-form-field class="search-box">
+        <mat-label>Buscar CTLC</mat-label>
+        <input matInput (keyup)="applyFilter($event.target.value)">
+        </mat-form-field>
+        <br>
+
+       <!-- <mat-list-item *ngFor="let c of paginatedCategorias">-->
+        <mat-list-item *ngFor="let c of paginatedCategorias.slice().reverse()">
+
+            <div mat-line>{{ c.titulo }}</div>
+            <div mat-line>{{ c.descripcion }}</div>
+            <mat-card-actions>
+                <button [routerLink]="'/admin/categoria/'+c.categoriaId" mat-flat-button color="primary" class="m20">Actualizar</button>
+                <button mat-flat-button color="warn" class="ml10" (click)="eliminarCategoria(c.categoriaId)">Eliminar</button>
+            </mat-card-actions>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+
+        <div class="container text-center mt20">
+        <button routerLink="/admin/add-categoria" mat-raised-button color="primary">Agregar categoría</button>
+    </div>
+</mat-card>
+
+<br>
+
+<mat-paginator [length]="filteredCategorias.length" 
+               [pageSize]="5" 
+               [pageSizeOptions]="[5, 10, 20]" 
+               (page)="onPageChange($event)">
+</mat-paginator>

@@ -1,0 +1,9 @@
+ <!-- slider stylesheet -->
+<link rel="stylesheet" href="ruta/del/archivo/owl.carousel.min.css">
+
+
+
+ <!-- font wesome stylesheet -->
+<link rel="stylesheet" href="ruta/del/archivo/font-awesome.min.css">
+
+      

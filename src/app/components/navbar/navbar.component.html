@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <!-- <a [routerLink]="'/'" mat-icon-button class="example-icon" aria-label="Home">-->
+    <a>
+    <!-- <mat-icon>lan</mat-icon>-->
+    <img src="/assets/lan.png"  class="perfil-imagen" title="Inicio">
+  </a>
+   
+  
+ 
+  <span class="soltxd-title">
+    <h5>Asist Control</h5>
+  </span>
+
+  <span class="example-spacer"></span>
+  
+
+  <!-- iniciar sesion -->
+  <a *ngIf="!login.isLoggedIn()" [routerLink]="'/login'" class="iniciar-sesion-container" aria-label="Iniciar sesión">
+    <img src="/assets/iniciar.png" alt="Iniciar sesión" class="perfil-imagen" title="Iniciar sesión">
+    
+  </a>
+  
+<!-- registrar 
+  <a *ngIf="!login.isLoggedIn()" [routerLink]="'/admin'" class="registrar-container" aria-label="Registrar">
+    <img src="/assets/registrar.png" alt="Registrar" class="perfil-imagen" title="Registro de usuarios">
+    
+  </a>
+  -->
+
+  <!-- cerrar sesion 
+  <a *ngIf="login.isLoggedIn()" (click)="logout()" class="cerrar-sesion-container" aria-label="Cerrar sesión">
+    <img [src]="login.getUser().profileImage || '/assets/cerrar.png'" alt="Foto de perfil" class="perfil-imagen" title="Cerrar sesión">
+    
+  </a>
+  -->
+  
+  
+  
+
+  <!-- Perfil del usuario con imagen -->
+  <button *ngIf="login.isLoggedIn()" mat-button style="margin-right: 10px;" class="perfil-container" aria-label="Perfil" routerLink="/admin/profile">
+    <img [src]="login.getUser().profileImage || '/assets/perfil1.png'" alt="Foto de perfil" class="perfil-imagen" title="Perfil de usuario">
+    {{ login.getUser().username }}
+  </button>
+  
+
+  <!-- Notificación de exámenes pendientes 
+  <mat-badge *ngIf="cantidadExamenesPendientes > 0" [matBadge]="cantidadExamenesPendientes" matBadgePosition="above after" matBadgeColor="warn">
+    <mat-icon (click)="mostrarDetalles()">notifications</mat-icon>
+  </mat-badge>
+
+
+  Insignia de exámenes con estado Con_OS_Siprec 
+  <mat-badge *ngIf="totalExamenesEstadoDelServicio_Con_OS_Siprec > 0" [matBadge]="totalExamenesEstadoDelServicio_Con_OS_Siprec" matBadgePosition="above after" matBadgeColor="accent">
+    <mat-icon>assignment</mat-icon>
+  </mat-badge>
+
+-->
+
+</mat-toolbar>

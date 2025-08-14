@@ -1,0 +1,63 @@
+<mat-card class="resumen mat-elevation-z2">
+  <!-- <h3>Resumen de Asistencia</h3>-->
+
+  <p *ngIf="ultimoRegistro">
+    Último registro: <strong>{{ ultimoRegistro.tipo }}</strong> —
+    {{ ultimoRegistro.fechaHora | date: 'yyyy-MM-dd' }} |
+    {{ ultimoRegistro.fechaHora | date: 'HH:mm' }}
+  </p>
+
+  <br>
+
+  <p>
+    Hoy:
+    <span [ngClass]="entradaHoy ? 'verde' : 'rojo'">
+      {{ entradaHoy ? '✅ Entrada registrada' : '❌ Sin entrada' }}
+    </span>
+    &nbsp;|&nbsp;
+    <span [ngClass]="salidaHoy ? 'verde' : 'rojo'">
+      {{ salidaHoy ? '✅ Salida registrada' : '❌ Sin salida' }}
+    </span>
+  </p>
+
+  <br>
+
+  <p>Total de asistencias este mes: <strong>{{ totalMes }}</strong></p>
+
+  <br>
+
+  <div *ngIf="dataSource.data.length">
+  <p class="verde">✅ Registros cargados correctamente: {{ dataSource.data.length }}</p>
+</div>
+
+</mat-card>
+<!--
+<mat-card class="historial-tabla mat-elevation-z2">
+  <h3>Historial Completo</h3>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z1" style="width: 100%;">
+
+    <ng-container matColumnDef="fechaHora">
+      <th mat-header-cell *matHeaderCellDef> Fecha y Hora </th>
+      <td mat-cell *matCellDef="let a">
+        {{ a.fechaHora | date: 'yyyy-MM-dd' }} | {{ a.fechaHora | date: 'HH:mm' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef> Tipo </th>
+      <td mat-cell *matCellDef="let a"> {{ a.tipo }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+  
+</mat-card>
+-->
+
+
+<div *ngIf="!dataSource.data.length">
+  <p class="rojo">❌ Aún no hay registros para mostrar.</p>
+</div>
+

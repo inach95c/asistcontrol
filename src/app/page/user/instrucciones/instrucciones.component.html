@@ -1,0 +1,62 @@
+<div class="bootstrap-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-card class="mt20">
+            <mat-card-header>
+              <mat-card-title>
+                Lea las instrucciones de esta página cuidadosamente
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-subtitle></mat-card-subtitle>
+            <mat-card-content class="ml30">
+              <h1>{{ examen.titulo }}</h1>
+              <p>{{ examen.descripcion }}</p>
+              <mat-divider></mat-divider>
+            <br>
+            <h1>Instrucciones importantes para Operaciones e Inversiones</h1>
+  
+            <ul>
+              <li>La siguiente plantilla es solo para fines de optimizar la calificación de las diferentes solicitudes de Transmisión de Datos </li>
+              <li>Si la solicitud <b>{{ examen.titulo }}</b> no aparece evaluada por operaciones los campos de inversiones se deshabilitarán</li>
+              
+            </ul>
+            <mat-divider></mat-divider>
+            <br>
+            <h1>Descripción</h1>
+            <ul>
+              <li>Presione el boton <b>Empezar</b> para iniciar la calificación</li>
+              <li>En la parte izquierda se encuentra la Información Comercial, que incluye datos del cliente e información del servicio solicitado</li>
+              <li>En la parte derecha aparece informacion relacionada con el estado del servicio y la propia calificación realizada por los CTLC</li>
+              <li>Aclarar que la solicitud cambiará de estado una vez cuente con la aprobación del Grupo Comercial</li>
+              <li>En la parte central se dispone de los campos a llenar por el Grupo de Operaciones de la Red e Inversiones</li> 
+              <li>Desplácese hacia abajo para pasar a los restantes campos y termine haciendo clic en el botón Guardar</li>
+              <li>El informe de la calificación se genera automáticamente en forma de copia exel</li>
+            </ul>
+          </mat-card-content>
+       <!--     <mat-card-actions class="text-center mb20">
+          <button (click) = "empezarExamen()" mat-raised-button color="primary">
+              Comenzar prueba 
+            </button>
+          </mat-card-actions>
+       <br>
+          <mat-card-actions class="text-center mb20">  
+            <button  (click) = "empezarExamenInversiones()" mat-raised-button color="primary">
+              Comenzar prueba Inversiones
+            </button>
+          </mat-card-actions>
+          --> 
+      
+      <mat-card-actions class="text-center mb20">
+        <button (click) = "empezarExamenOperaciones()" mat-raised-button color="primary">
+          Comenzar Calificación
+        </button>
+      </mat-card-actions>
+
+          
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,46 @@
+<h1 mat-dialog-title class="dialog-title">Detalles de la Solicitud: {{ data.titulo }}</h1>
+<mat-dialog-content class="dialog-content">
+    <h3 class="dialog-title1">Información Comercial</h3>
+    <mat-divider></mat-divider>
+    <br>
+  <p><strong>Descripcion:</strong> {{ data.descripcion }}</p>
+  <p><strong>Prioridad:</strong> {{ data.prioridad }}</p>
+  <p><strong>Categoría del Cliente:</strong> {{ data.categoriaDelCliente }}</p>
+  <p><strong>Organismo:</strong> {{ data.organismo }}</p>
+  <p><strong>Seguimiento:</strong> {{ data.seguimiento }}</p>
+  <p><strong>Consejo Popular:</strong> {{ data.consejoPopular }}</p>
+  <p><strong>Dirección:</strong> {{ data.direccion }}</p>
+  <h3 class="dialog-title1">Información del Servicio</h3>
+    <mat-divider></mat-divider>
+    <br>
+  <p><strong>Teléfono de Contacto:</strong> {{ data.telefonoDeContacto }}</p>
+  <p><strong>Solicitud:</strong> {{ data.solicitud }}</p>
+  <p><strong>Velocidad:</strong> {{ data.velocidad }}</p>
+  <p><strong>Enlace:</strong> {{ data.enlace }}</p>
+  <p><strong>No. Adsl:</strong> {{ data.noAdsl }}</p>
+  <p><strong>Estado del Servicio:</strong> {{ data.estadoDelServicio }}</p>
+  <p><strong>Tipo de Servicio:</strong> {{ data.tipoDeServicio }}</p>
+  <p><strong>Programa / Proyecto:</strong> {{ data.programaProyecto }}</p>
+  <p><strong>Fecha de Solicitud:</strong> {{ data.fechaDeSolicitud }}</p>
+  <h3 class="dialog-title1">Información de Operaciones</h3>
+  <mat-divider></mat-divider>
+  <br>
+  <p><strong>Estado de Calificación de los Centros:</strong> {{ data.estadoDeCalificacionDeLosCentros }}</p>
+  <p><strong>Observación:</strong> {{ data.observacion }}</p>
+  <p><strong>Evaluación:</strong> {{ data.evaluacion }}</p>
+  <p><strong>Observaciones Especialista de Operaciones:</strong> {{ data.observacionesEspecialistaDeOperaciones }}</p>
+  <p><strong>Fecha Respuesta Calificación Operaciones:</strong> {{ data.fechaRespuestaCalificacionOperaciones }}</p>
+  <h3 class="dialog-title1">Información de Inversiones</h3>
+    <mat-divider></mat-divider>
+    <br>
+  <p><strong>Propuesta de Solución Técnica:</strong> {{ data.propuestaDeSoluionTecnica }}</p>
+  <p><strong>Tipo de Recursos a Demandar:</strong> {{ data.tipoDeRecursosADemandar }}</p>
+  <p><strong>Fecha de Ejecución Estimada a Proponer:</strong> {{ data.fechaDeEjecucionEstimadaAProponer }}</p>
+  <p><strong>Observación Especialista de Inversiones:</strong> {{ data.observacionEspInversiones }}</p>
+  
+  
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions" >
+  <button mat-button (click) = "imprimirPagina()" >Imprimir</button>
+  <button mat-button (click)="cerrarDialogo()">Cerrar</button>
+</mat-dialog-actions>

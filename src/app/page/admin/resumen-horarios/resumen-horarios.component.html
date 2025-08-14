@@ -1,0 +1,84 @@
+<div class="panel-container">
+  <mat-card class="mat-elevation-z6 asistencia-card">
+    
+      <h2 class="titulo-panel" style="text-align: center; margin-bottom: 20px;">
+        <mat-icon style="vertical-align: middle; margin-right: 6px;">schedule</mat-icon>
+        Resumen de Horarios Asignados
+      </h2>
+    
+    <br>
+
+    <!-- Filtros 
+    <div class="filtro-tabla-derecha">
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar por nombre</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput [(ngModel)]="filtroBusqueda" (ngModelChange)="aplicarFiltro()" placeholder="Ej. Juan..." />
+      </mat-form-field>
+    </div>-->
+
+    <div class="filtro-tabla-derecha">
+  <mat-form-field appearance="outline" class="filtro-busqueda-form compacto">
+    <mat-label>Nombre</mat-label>
+    <mat-icon matPrefix class="icono-busqueda">search</mat-icon>
+    <input
+      matInput
+      [(ngModel)]="filtroBusqueda"
+      (ngModelChange)="aplicarFiltro()"
+      placeholder="Juan..."
+    />
+  </mat-form-field>
+</div>
+
+
+
+
+   <br><br>
+    <div class="contenedor-boton-exportar">
+      <button mat-raised-button color="accent" (click)="exportarExcel()">
+        <mat-icon style="margin-right: 6px;">file_download</mat-icon>
+        Exportar
+      </button>
+    </div>
+
+    <br>
+
+    <!-- Tabla o listado -->
+    <div *ngIf="usuariosHorarios && usuariosFiltrados.length > 0; else noData">
+      <div *ngFor="let nombre of usuariosOrdenados()" class="usuario-card">
+        <mat-card class="mat-elevation-z3" style="margin-bottom: 15px;">
+          <mat-card-header>
+            <mat-card-title>{{ nombre }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-list dense>
+              <mat-list-item *ngFor="let h of getHorariosPorNombre(nombre)">
+                <mat-icon matListIcon color="accent">schedule</mat-icon>
+                <div matLine>
+                  <strong>{{ h.fechaInicio | date: 'dd/MM/yyyy' }}</strong>
+                  <span class="mx-2">|</span>
+                  {{ h.horaEntrada }} – {{ h.horaSalida }}
+                  <span class="mx-2">|</span>
+                  <span *ngIf="h.turno">Turno: <em>{{ h.turno }}</em></span>
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Paginador -->
+      <mat-paginator
+        [length]="usuariosFiltrados.length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 20]"
+        (page)="cambiarPagina($event)">
+      </mat-paginator>
+    </div>
+
+    <!-- Mensaje sin datos -->
+    <ng-template #noData>
+      <p class="mensaje-sin-datos">No hay horarios asignados para mostrar.</p>
+    </ng-template>
+  </mat-card>
+</div>

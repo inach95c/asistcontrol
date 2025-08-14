@@ -1,0 +1,105 @@
+/* Contenedor principal */
+.perfil-container {
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+/* Tarjeta de perfil */
+.perfil-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  border-radius: 12px;
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+/* Encabezado */
+.perfil-titulo {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: 500;
+  color: #3f51b5;
+}
+
+/* Imagen de perfil */
+.profile-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  margin-bottom: 16px;
+}
+
+/* Nombre destacado */
+.perfil-nombre {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* Tabla de datos */
+.table {
+  width: 100%;
+  margin-top: 12px;
+  border-collapse: collapse;
+  background-color: #fff;
+  font-size: 15px;
+}
+
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-weight: 500;
+  color: #555;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table td:first-child {
+  font-weight: 600;
+  color: #3f51b5;
+  width: 50%;
+  text-align: left;
+}
+
+.table td:last-child {
+  text-align: right;
+}
+
+/* Estado dinámico */
+.perfil-estado-activo {
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.perfil-estado-inactivo {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+  .perfil-card {
+    padding: 24px 16px;
+    border-radius: 8px;
+  }
+
+  .perfil-titulo {
+    font-size: 20px;
+  }
+
+  .perfil-nombre {
+    font-size: 18px;
+  }
+
+  .table td {
+    font-size: 14px;
+  }
+}

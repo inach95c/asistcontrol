@@ -1,0 +1,265 @@
+.formulario-container {
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+.formulario-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+/* Responsive padding en pantallas pequeñas */
+@media screen and (max-width: 480px) {
+  .formulario-card {
+    padding: 24px 16px;
+    border-radius: 8px;
+  }
+
+  .formulario-titulo {
+    font-size: 20px;
+  }
+
+  .subtitulo-jornada,
+  .subtitulo-asistencia {
+    font-size: 17px;
+    text-align: center;
+  }
+
+  .text-horario {
+    font-size: 15px;
+  }
+
+  .detalle-jornada,
+  .estado-marca {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.formulario-titulo {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 22px;
+  font-weight: 500;
+  color: #3f51b5;
+}
+
+.formato-hora,
+.reloj-actual {
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.snackbar-confirmado {
+  background-color: #4caf50;
+  color: #fff;
+  font-weight: 500;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.snackbar-alerta {
+  background-color: #ffc107;
+  color: #000;
+  font-weight: 500;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.subtitulo-jornada,
+.subtitulo-asistencia {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #2E86C1;
+  font-weight: bold;
+}
+
+.detalle-jornada,
+.estado-marca {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.icono-horario {
+  margin-right: 8px;
+  font-size: 24px;
+}
+
+.texto-horario {
+  font-size: 16px;
+  color: #333;
+}
+
+.texto-ok {
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+.texto-alerta {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.tarjeta-jornada,
+.tarjeta-asistencia {
+  margin-top: 16px;
+  padding: 16px;
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.mensaje-sin-horario {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 15px;
+  color: #888;
+}
+
+
+
+.mensaje-jornada {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px;
+  margin-top: 12px;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.jornada-activa {
+  background-color: #e0f7e9;
+  color: #2e7d32;
+}
+
+.jornada-inactiva {
+  background-color: #fdecea;
+  color: #c62828;
+}
+
+
+
+
+
+.qr-escaner-bloque {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn-escanear {
+  width: 100%;
+  font-weight: 500;
+}
+
+.video-qr {
+  width: 100%;
+  max-width: 320px;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+.mensaje-qr {
+  margin-top: 10px;
+  font-size: 15px;
+  color: #444;
+  font-weight: 500;
+}
+
+
+
+
+
+.btn-escanear-normal {
+  width: 100%;
+  font-weight: 500;
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+.btn-escanear-alerta {
+  width: 100%;
+  font-weight: 500;
+  background-color: #ffc107;
+  color: #000;
+}
+
+
+
+
+
+/***********************************************************/
+
+/* Estilo para jornada completada alineado con horario-personal */
+.jornada-completa {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #90caf9;
+}
+
+/* Contención visual del escáner dentro de la tarjeta */
+.scanner-zona {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.video-qr {
+  width: 100%;
+  max-width: 320px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.video-qr:hover {
+  transform: scale(1.02);
+}
+
+/* Animación en botón de escaneo */
+button.mat-raised-button {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+button.mat-raised-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+/*test*/
+
+.advertencia-horario {
+  color: #e53935;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 6px;
+}
+
+.mensaje-fuera-horario {
+  color: #f9a825;
+  font-weight: 600;
+  margin-top: 6px;
+}

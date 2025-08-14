@@ -1,0 +1,135 @@
+<div class="formulario-container">
+  <mat-card class="formulario-card mat-elevation-z6">
+    <h2 class="formulario-titulo">📝 Registrar Asistencia</h2>
+
+    <!-- Fecha actual -->
+    <div class="formato-hora reloj-actual">
+      🕒 {{ fechaHoraActual | date: 'yyyy-MM-dd' }} | {{ fechaHoraActual | date: 'HH:mm:ss' }}
+    </div>
+
+    <br>
+
+    <!-- Advertencia si no hay horario -->
+    <div *ngIf="sinHorarioAsignado" class="advertencia-horario">
+      ⚠️ No tienes horario asignado para hoy.
+    </div>
+
+    <!-- Advertencia si está fuera del horario 
+    <div *ngIf="!estaDentroDelHorario && !sinHorarioAsignado" class="mensaje-fuera-horario">
+      ⏰ Estás fuera del horario laboral asignado.
+    </div>-->
+
+    <br>
+
+    <!-- Mensaje jornada -->
+    <mat-card class="mat-elevation-z1 mensaje-jornada"
+              [ngClass]="{
+                'jornada-activa': !jornadaCompletada && (entradaRegistrada || salidaRegistrada),
+                'jornada-completa': jornadaCompletada
+              }">
+      {{ mensajeJornada }}
+    </mat-card>
+
+    <br>
+
+    <!-- Aviso si falta salida -->
+    <div *ngIf="salidaPendiente" class="mensaje-pendiente-salida">
+      ⚠️ Te falta registrar la salida
+    </div>
+
+    <br>
+
+    <!-- Botón de escanear si está dentro del horario y no hay jornada completada 
+    <div class="qr-escaner-bloque"
+         *ngIf="!sinHorarioAsignado && estaDentroDelHorario && !jornadaCompletada">
+      <button mat-raised-button
+              [ngClass]="salidaPendiente ? 'btn-escanear-alerta' : 'btn-escanear-normal'"
+              (click)="toggleEscaner()">
+        📷 {{ mostrarScanner ? 'Ocultar escáner' : 'Escanear código QR' }}
+      </button>
+    </div>
+
+    <div class="qr-escaner-bloque" *ngIf="!sinHorarioAsignado">
+      <button mat-raised-button [ngClass]="salidaPendiente ? 'btn-escanear-alerta' : 'btn-escanear-normal'"
+        (click)="toggleEscaner()">
+        📷 {{ mostrarScanner ? 'Ocultar escáner' : 'Escanear código QR' }}
+      </button>
+    </div>
+
+    <div class="qr-escaner-bloque" *ngIf="!sinHorarioAsignado && !jornadaCompletada">
+      <button mat-raised-button [ngClass]="salidaPendiente ? 'btn-escanear-alerta' : 'btn-escanear-normal'"
+        (click)="toggleEscaner()">
+        📷 {{ mostrarScanner ? 'Ocultar escáner' : 'Escanear código QR' }}
+      </button>
+    </div>-->
+
+
+    <div class="qr-escaner-bloque" *ngIf="mostrarBotonEscanear">
+  <button mat-raised-button
+          [ngClass]="salidaPendiente ? 'btn-escanear-alerta' : 'btn-escanear-normal'"
+          (click)="toggleEscaner()">
+    📷 {{ mostrarScanner ? 'Ocultar escáner' : 'Escanear código QR' }}
+  </button>
+</div>
+
+
+
+
+
+    <br>
+
+    <!-- Scanner embebido -->
+    <div *ngIf="mostrarScanner" class="scanner-zona">
+      <video #video autoplay muted playsinline class="video-qr"></video>
+      <canvas #canvas hidden></canvas>
+
+      <mat-card class="resultado-escaner mat-elevation-z2">
+        <div *ngIf="escaneoActivo">
+          <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+          <p>⏳ Escaneando... QR expira en {{ qrExpiraEnSegundos }} segundos</p>
+        </div>
+
+        <div *ngIf="tokenEscaneado && !escaneoActivo">
+          <p><span style="font-size: 24px;">✅</span> <strong>Token escaneado:</strong></p>
+          <code>{{ tokenEscaneado }}</code>
+        </div>
+
+        <div *ngIf="!tokenEscaneado && !escaneoActivo">
+          <p><span style="font-size: 24px;">❌</span> No se pudo leer el QR.</p>
+        </div>
+
+        <div *ngIf="tipoQrDetectado">
+          Tipo de QR detectado:
+          <span [ngStyle]="{ color: tipoQrDetectado === 'JWT' ? 'green' : 'blue' }">
+            {{ tipoQrDetectado }}
+          </span>
+        </div>
+
+        <p *ngIf="mensajeQr" class="mensaje-qr">
+          {{ mensajeQr }}
+        </p>
+      </mat-card>
+    </div>
+
+    <!-- Tabla de asistencia -->
+    <div *ngIf="mostrarTabla" class="tabla-historial-container">
+      <h3 class="subtitulo-asistencia">📃 Historial de asistencia</h3>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 tabla-asistencia">
+        <ng-container matColumnDef="fechaHora">
+          <th mat-header-cell *matHeaderCellDef>Fecha y Hora</th>
+          <td mat-cell *matCellDef="let element">{{ element.fechaHora }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef>Tipo</th>
+          <td mat-cell *matCellDef="let element">{{ element.tipo }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+    </div>
+  </mat-card>
+</div>

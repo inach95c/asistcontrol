@@ -1,0 +1,198 @@
+<!--<div class="col-md-13">
+  <br><h1>Usuarios disponibles</h1> 
+<div>
+  <br>
+
+<div *ngIf="usuarios.length > 0; else sinUsuarios">
+  <table mat-table [dataSource]="usuarios" class="mat-elevation-z8">
+    
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let usuario"> {{ usuario.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let usuario"> {{ usuario.username }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let usuario"> {{ usuario.nombre }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef> Apellido </th>
+      <td mat-cell *matCellDef="let usuario"> {{ usuario.apellido }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let usuario"> {{ usuario.email }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="telefono">
+      <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+      <td mat-cell *matCellDef="let usuario"> {{ usuario.telefono }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ctlc">
+      <th mat-header-cell *matHeaderCellDef> CTLC </th>
+      <td mat-cell *matCellDef="let usuario"> {{ usuario.ctlc }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accion">
+      <th mat-header-cell *matHeaderCellDef> Acción </th>
+      <td mat-cell *matCellDef="let usuario">
+        <button mat-button class="btn-eliminar" (click)="eliminarUsuario(usuario.id)">Eliminar</button>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let usuario; columns: displayedColumns;"></tr>
+
+  </table>
+  
+</div>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+<ng-template #sinUsuarios>
+  <p>No hay usuarios disponibles.</p>
+</ng-template>
+-->
+
+<!-- Inicio Panel de Búsqueda y Filtros  esto ba debajo
+                <mat-card-content>
+                  <mat-expansion-panel [expanded]="panelExpandido">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Panel de Búsqueda y Filtros</mat-panel-title>
+                    </mat-expansion-panel-header>
+              
+                    <div class="form-container">
+                      
+                      <div class="form-row">
+                        <div class="form-group">
+                          <mat-form-field appearance="fill">
+                            <mat-label>Escriba CTLC</mat-label>
+                            <textarea [(ngModel)]="searchQuery" matInput rows="1"></textarea>
+                          </mat-form-field>
+                          <button mat-raised-button class="btn-violet" (click)="buscarUsuarios()" style="margin-right: 10px;">Buscar</button>
+                          <button mat-raised-button class="btn-red" (click)="eliminarUsuario()">Limpiar</button>
+                        </div>                                                      
+                      </div>               
+                    </div>               
+                    
+                  </mat-expansion-panel>
+                </mat-card-content>
+          <br>
+-->
+<div class="panel-container">
+  <mat-card class="mat-elevation-z6 asistencia-card">
+    <h2 class="titulo-panel" style="text-align: center; margin-bottom: 20px;">
+      <mat-icon style="vertical-align: middle; margin-right: 6px;">badge</mat-icon>
+      Usuarios registrados
+    </h2>
+
+    <br>
+
+    <div class="botones-accion">
+      <button mat-raised-button color="primary" (click)="mostrarFiltrosUsuariosSwal()">
+        <mat-icon class="icono-boton">filter_alt</mat-icon>
+        Filtrar
+      </button>
+
+      <button mat-stroked-button color="warn" (click)="limpiarFiltros()">
+        <mat-icon class="icono-boton">delete</mat-icon>
+        Limpiar
+      </button>
+    </div>
+
+    <br>
+
+    <div class="contenedor-boton-exportar">
+      <button mat-raised-button color="accent" (click)="exportarExcel()">
+        <mat-icon style="margin-right: 6px;">file_download</mat-icon>
+        Exportar
+      </button>
+    </div>
+
+    <!-- Tabla -->
+    <div *ngIf="dataSource.data.length > 0; else sinUsuarios">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 asistencia-tabla">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let usuario"> {{ usuario.id }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
+          <td mat-cell *matCellDef="let usuario"> {{ usuario.username }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+          <td mat-cell *matCellDef="let usuario"> {{ usuario.nombre }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="apellido">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido</th>
+          <td mat-cell *matCellDef="let usuario"> {{ usuario.apellido }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+          <td mat-cell *matCellDef="let usuario"> {{ usuario.email }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Teléfono</th>
+          <td mat-cell *matCellDef="let usuario"> {{ usuario.telefono }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ctlc">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Área</th>
+          <td mat-cell *matCellDef="let usuario"> {{ usuario.ctlc }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tarifaPorHora">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Tarifa/Hora</th>
+          <td mat-cell *matCellDef="let usuario"> {{ usuario.tarifaPorHora | currency:'USD':'symbol':'1.2-2' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tarifaHoraExtra">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Tarifa Extra</th>
+          <td mat-cell *matCellDef="let usuario">
+            {{ usuario.tarifaHoraExtra | currency:'USD':'symbol':'1.2-2' }}
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="accion">
+          <th mat-header-cell *matHeaderCellDef>Acción</th>
+          <td mat-cell *matCellDef="let usuario">
+            <button mat-icon-button color="primary" (click)="accionSeleccionada('editar', usuario)" matTooltip="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button color="warn" (click)="accionSeleccionada('eliminar', usuario)" matTooltip="Eliminar">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let usuario; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <ng-template #sinUsuarios>
+      <p>No hay usuarios disponibles.</p>
+    </ng-template>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+</div>

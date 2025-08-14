@@ -1,0 +1,69 @@
+<!-- <h2 mat-dialog-title>Editar Asistencia</h2>
+
+<mat-dialog-content>
+
+  <p><strong>Usuario:</strong> {{ data.usuario?.nombre || data.usuario?.username || 'Sin nombre' }}</p>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Fecha y Hora</mat-label>
+    <input
+      matInput
+      type="datetime-local"
+      [(ngModel)]="fechaHoraLocal"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Tipo de Asistencia</mat-label>
+    <mat-select [(ngModel)]="tipo" required>
+      <mat-option value="ENTRADA">ENTRADA</mat-option>
+      <mat-option value="SALIDA">SALIDA</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="guardar()" [disabled]="!fechaHoraLocal || !tipo">
+    Guardar
+  </button>
+</mat-dialog-actions>
+-->
+
+
+<h2 mat-dialog-title>Editar Asistencia</h2>
+
+<mat-dialog-content>
+
+  <p><strong>Usuario:</strong> {{ data.usuario?.nombre || data.usuario?.username || 'Sin nombre' }}</p>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Fecha</mat-label>
+    <input matInput type="date" [(ngModel)]="fecha" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Hora de Entrada</mat-label>
+    <input matInput type="time" [(ngModel)]="horaEntrada" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Hora de Salida</mat-label>
+    <input matInput type="time" [(ngModel)]="horaSalida" />
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="guardar()"
+    [disabled]="!fecha || (!horaEntrada && !horaSalida)">
+    Guardar
+  </button>
+</mat-dialog-actions>
+

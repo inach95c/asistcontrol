@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+
+<!-- 📱 Barra superior móvil con hamburguesa -->
+<div *ngIf="mostrarHamburguesa" class="mobile-toolbar">
+  <button mat-icon-button (click)="toggleSidebar()" class="hamburguesa-btn">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="toolbar-title">Panel de Usuario</span>
+</div>
+
+<!-- 🧱 Estructura principal -->
+<div class="layout-wrapper">
+
+  <!-- Menú lateral animado con cierre condicional SOLO en móvil -->
+  <app-sidebar-user
+    *ngIf="sidebarVisible"
+    #sidebarMenu
+    @sidebarAnimation
+    (cerrarMenu)="cerrarSidebarDesdeClick()">
+  </app-sidebar-user>
+
+  <!-- Contenido dinámico -->
+  <div class="layout-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

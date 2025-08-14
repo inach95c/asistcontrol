@@ -1,0 +1,42 @@
+<div class="kiosk-container">
+
+  <!-- Logo institucional 
+  <img src="assets/logo.png" alt="Logo institucional" class="logo-img" />-->
+
+  <!-- Reloj en vivo 
+  <p class="clock-display">🕒 {{ horaActual }}</p>-->
+
+  <h2>Registro por QR</h2>
+
+  <!-- Selector con botón de bloqueo -->
+  <div class="selector-wrapper">
+    <label for="tipoEvento">Tipo de evento:</label>
+    <select id="tipoEvento" [(ngModel)]="tipoSeleccionado" [disabled]="selectorBloqueado" (change)="onTipoEventoChange()">
+      <option *ngFor="let tipo of tiposEventos" [value]="tipo">{{ tipo }}</option>
+    </select>
+    <button (click)="toggleBloqueo()" class="bloqueo-button">
+      {{ selectorBloqueado ? '🔓 Desbloquear' : '🔒 Bloquear tipo' }}
+    </button>
+  </div>
+
+  <p>Escanee este código para registrar su asistencia</p>
+
+  <!-- QR dinámico -->
+  <div class="qr-wrapper" *ngIf="qrImageSrc">
+    <img [src]="qrImageSrc" alt="QR dinámico" />
+  </div>
+
+  <!-- Temporizador y barra -->
+  <p class="temporizador">⏳ Código válido por: {{ tiempoRestante }} segundos</p>
+  <p class="sub-text">Se actualiza automáticamente cada minuto o al cambiar el tipo</p>
+
+  <div class="progress-bar">
+    <div class="progress-fill" [style.width.%]="100 - ((tiempoRestante / 60) * 100)"></div>
+  </div>
+
+  <!-- Mensaje flotante -->
+  <div *ngIf="mensajeFlotante" class="floating-message">
+    {{ mensajeFlotante }}
+  </div>
+
+</div>

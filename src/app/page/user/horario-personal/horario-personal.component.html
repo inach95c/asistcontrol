@@ -1,0 +1,99 @@
+<div class="formulario-container">
+  <!-- Tarjeta Principal -->
+  <mat-card class="formulario-card mat-elevation-z6">
+    <h2 class="formulario-titulo">📅 Horario del Día</h2>
+
+    <!-- Fecha actual -->
+    <div class="formato-hora reloj-actual">
+      🕒 {{ fechaHoraActual | date: 'yyyy-MM-dd' }} | {{ fechaHoraActual | date: 'HH:mm:ss' }}
+    </div>
+
+    <!-- Horario asignado -->
+    <div *ngIf="horariosDelDia.length > 0">
+
+      <!-- Bloque jornada -->
+      <mat-card *ngFor="let turno of horariosDelDia" class="mat-elevation-z2 tarjeta-jornada">
+  <h3 class="subtitulo-jornada">🗓️ Turno asignado</h3>
+
+  <div class="detalle-jornada">
+    <mat-icon class="icono-horario" color="primary">login</mat-icon>
+    <span class="texto-horario"><strong>Entrada:</strong> {{ turno.horaEntrada }}</span>
+  </div>
+
+  <div class="detalle-jornada">
+    <mat-icon class="icono-horario" color="warn">logout</mat-icon>
+    <span class="texto-horario"><strong>Salida:</strong> {{ turno.horaSalida }}</span>
+  </div>
+
+  <div class="estado-turno">
+  <span class="estado-emoji">{{ obtenerEstadoTurno(turno).emoji }}</span>
+  <span class="estado-texto">{{ obtenerEstadoTurno(turno).texto }}</span>
+</div>
+
+</mat-card>
+
+
+      <!-- Bloque asistencia 
+      <mat-card class="mat-elevation-z2 tarjeta-asistencia">
+        <h3 class="subtitulo-asistencia">📌 Estado de asistencia</h3>
+
+        <div class="estado-marca">
+          <mat-icon color="primary">task_alt</mat-icon>
+          <span><strong>Entrada registrada:</strong> 
+            <span [ngClass]="entradaRegistrada ? 'texto-ok' : 'texto-alerta'">
+              {{ entradaRegistrada ? '✅ Sí' : '❌ No' }}
+            </span>
+          </span>
+        </div>
+
+        <div class="estado-marca">
+          <mat-icon color="warn">task_alt</mat-icon>
+          <span><strong>Salida registrada:</strong> 
+            <span [ngClass]="salidaRegistrada ? 'texto-ok' : 'texto-alerta'">
+              {{ salidaRegistrada ? '✅ Sí' : '❌ No' }}
+            </span>
+          </span>
+        </div>
+      </mat-card>-->
+
+      <!-- Bloque jornada actual dinámica -->
+    <mat-card class="mat-elevation-z1 mensaje-jornada"
+          [ngClass]="{
+            'jornada-activa': jornadaActiva && !entradaRegistrada && !salidaRegistrada,
+            'jornada-inactiva': !jornadaActiva && !salidaPendiente,
+            'jornada-completa': entradaRegistrada && salidaRegistrada
+          }">
+  {{ mensajeJornada }}
+</mat-card>
+
+
+      <!-- Aviso si falta salida -->
+       <br>
+      <div *ngIf="salidaPendiente" class="mensaje-pendiente-salida">
+        ⚠️ Te falta registrar la salida
+      </div>
+
+      <!-- Botón y escáner solo si está dentro de la jornada y falta alguna marca -->
+      <div *ngIf="mostrarBotonEscanear" class="qr-escaner-bloque">
+
+        <button mat-raised-button
+                [ngClass]="salidaPendiente ? 'btn-escanear-alerta' : 'btn-escanear-normal'"
+                (click)="toggleEscaner()">
+          📷 {{ mostrarScanner ? 'Ocultar escáner' : 'Escanear código QR' }}
+        </button>
+
+        <div *ngIf="mostrarScanner" class="scanner-zona">
+          <video #video autoplay muted playsinline class="video-qr"></video>
+          <canvas #canvas hidden></canvas>
+          <p class="mensaje-qr">{{ mensajeQr }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensaje si no hay horario -->
+    <div *ngIf="horariosDelDia.length === 0" class="mensaje-sin-horario">
+  <p>💤 No tienes turnos asignados para hoy</p>
+</div>
+
+  </mat-card>
+</div>

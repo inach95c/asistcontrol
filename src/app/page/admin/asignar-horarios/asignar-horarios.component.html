@@ -1,0 +1,247 @@
+<!--<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Asignar Horario a Múltiples Usuarios</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="horarioForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Usuarios</mat-label>
+        <mat-select formControlName="usuariosIds" multiple>
+            <mat-option *ngFor="let usuario of usuarios" [value]="usuario.id">
+              {{ usuario.nombre }} {{ usuario.apellido }} ({{ usuario.dni }})
+            </mat-option>
+          </mat-select>
+
+
+
+          <mat-error *ngIf="horarioForm.get('usuariosIds')?.hasError('required')">
+            Selecciona al menos un usuario
+          </mat-error>
+        </mat-form-field>
+
+        <div class="form-row">
+          <mat-form-field appearance="fill">
+            <mat-label>Desde</mat-label>
+            <input matInput [matDatepicker]="pickerInicio" formControlName="fechaInicio">
+            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+            <mat-datepicker #pickerInicio></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Hasta</mat-label>
+            <input matInput [matDatepicker]="pickerFin" formControlName="fechaFin">
+            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFin></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <mat-slide-toggle formControlName="dividirPorDias" color="accent">
+          Asignar un horario por cada día del rango
+        </mat-slide-toggle>
+
+        <div class="form-row">
+          <mat-form-field appearance="fill">
+            <mat-label>Hora de entrada</mat-label>
+            <input matInput type="time" formControlName="horaEntrada">
+            <mat-error *ngIf="horarioForm.get('horaEntrada')?.hasError('required')">
+              Ingrese hora de entrada
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Hora de salida</mat-label>
+            <input matInput type="time" formControlName="horaSalida">
+            <mat-error *ngIf="horarioForm.get('horaSalida')?.hasError('required')">
+              Ingrese hora de salida
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row buttons" style="margin-top: 10px;">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!horarioForm.valid">
+            <mat-icon>save</mat-icon> Guardar Horario
+          </button>
+
+          <button mat-raised-button color="warn" type="button"
+                  (click)="eliminarHorariosSeleccionados()"
+                  [disabled]="!horarioForm.value.usuariosIds?.length">
+            <mat-icon>delete</mat-icon> Eliminar horarios de usuario(s)
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-form-field appearance="outline" class="full-width mt-3" style="margin-top: 20px;">
+    <mat-label>Buscar usuario</mat-label>
+    <input matInput (keyup)="aplicarFiltro($event)" placeholder="Nombre o apellido">
+  </mat-form-field>
+
+  <mat-card style="margin-top: 20px;">
+    <mat-card-header>
+      <mat-card-title>Horarios Asignados</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z1 full-width">
+
+        
+        <ng-container matColumnDef="usuario">
+          <th mat-header-cell *matHeaderCellDef> Usuario </th>
+          <td mat-cell *matCellDef="let h">
+            {{ h.usuario?.nombre }} {{ h.usuario?.apellido }}
+          </td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="horaEntrada">
+          <th mat-header-cell *matHeaderCellDef> Entrada </th>
+          <td mat-cell *matCellDef="let h"> {{ h.horaEntrada }} </td>
+        </ng-container>
+
+       
+        <ng-container matColumnDef="horaSalida">
+          <th mat-header-cell *matHeaderCellDef> Salida </th>
+          <td mat-cell *matCellDef="let h"> {{ h.horaSalida }} </td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="fechaInicio">
+          <th mat-header-cell *matHeaderCellDef> Fecha Inicio </th>
+          <td mat-cell *matCellDef="let h"> {{ h.fechaInicio | date:'dd/MM/yyyy' }} </td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="fechaFin">
+          <th mat-header-cell *matHeaderCellDef> Fecha Fin </th>
+          <td mat-cell *matCellDef="let h"> {{ h.fechaFin | date:'dd/MM/yyyy' }} </td>
+        </ng-container>
+
+        
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let h">
+            <button mat-icon-button color="primary" (click)="abrirDialogoEditar(h)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="eliminarHorario(h.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
+ -->
+
+ 
+
+<div class="panel-container">
+  <mat-card class="mat-elevation-z6 asistencia-card">
+    <h2 class="titulo-panel" style="text-align: center; margin-bottom: 20px;">
+  <mat-icon style="vertical-align: middle; margin-right: 6px;">event</mat-icon>
+  Asignar Horarios
+</h2>
+
+<br>
+
+    
+  <button mat-raised-button color="primary" (click)="abrirDialogoAsignar()">
+    <mat-icon class="icono-boton">schedule</mat-icon>
+    Nuevo
+  </button>      
+
+
+    <div [@fadeIn] class="container">
+      <!-- Panel expandible -->
+      
+
+      <!-- Tabla de horarios asignados -->
+       
+      <div class="contenedor-boton-exportar">
+      <button mat-raised-button color="accent" (click)="exportarExcel()">
+        <mat-icon style="margin-right: 6px;">file_download</mat-icon>
+        Exportar
+      </button>
+    </div>
+
+
+      <mat-card style="margin-top: 20px;">
+        <mat-card-header>
+          <mat-card-title></mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="filtro-tabla-derecha">
+            <mat-form-field appearance="outline">
+              <mat-label>Buscar usuario</mat-label>
+              <mat-icon matPrefix>search</mat-icon>
+              <input matInput (keyup)="aplicarFiltro($event)" placeholder="Usuario" />
+            </mat-form-field>
+          </div>
+
+           <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 asistencia-tabla">
+
+          <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 full-width">
+
+            Usuario -->
+            <ng-container matColumnDef="usuario">
+              <th mat-header-cell *matHeaderCellDef>Usuario</th>
+              <td mat-cell *matCellDef="let h">{{ h.usuario?.nombre }} {{ h.usuario?.apellido }}</td>
+            </ng-container>
+
+            <!-- Entrada -->
+            <ng-container matColumnDef="horaEntrada">
+              <th mat-header-cell *matHeaderCellDef>Entrada</th>
+              <td mat-cell *matCellDef="let h">{{ h.horaEntrada }}</td>
+            </ng-container>
+
+            <!-- Salida -->
+            <ng-container matColumnDef="horaSalida">
+              <th mat-header-cell *matHeaderCellDef>Salida</th>
+              <td mat-cell *matCellDef="let h">{{ h.horaSalida }}</td>
+            </ng-container>
+
+            <!-- Fecha Inicio -->
+            <ng-container matColumnDef="fechaInicio">
+              <th mat-header-cell *matHeaderCellDef>Fecha Inicio</th>
+              <td mat-cell *matCellDef="let h">{{ h.fechaInicio | date:'dd/MM/yyyy' }}</td>
+            </ng-container>
+
+            <!-- Fecha Fin -->
+            <ng-container matColumnDef="fechaFin">
+              <th mat-header-cell *matHeaderCellDef>Fecha Fin</th>
+              <td mat-cell *matCellDef="let h">{{ h.fechaFin | date:'dd/MM/yyyy' }}</td>
+            </ng-container>
+
+            <!-- Acciones -->
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef>Acciones</th>
+              <td mat-cell *matCellDef="let h">
+                <button mat-icon-button color="primary" (click)="abrirDialogoEditar(h)" matTooltip="Editar">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="eliminarHorario(h.id)" matTooltip="Eliminar">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>

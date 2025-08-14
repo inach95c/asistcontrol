@@ -1,0 +1,14 @@
+.w100{
+    width: 100%;
+  }
+
+  .green-button {
+    background-color: green; /* Fondo verde */
+    color: white; /* Texto blanco para mejor contraste */
+  }
+
+  .blue-text {
+    color: blue;
+  }
+  
+  

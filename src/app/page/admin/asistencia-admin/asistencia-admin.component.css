@@ -1,0 +1,15 @@
+
+.estado-tarde {
+  color: red;
+  font-weight: bold;
+}
+.estado-puntual {
+  color: green;
+  font-weight: bold;
+}
+
+
+.extra-alta {
+  font-weight: bold;
+  color: #d32f2f; /* rojo intenso */
+}
