@@ -376,18 +376,18 @@ obtenerEstadoTurno(turno: Horario): { emoji: string; texto: string } {
 
 if (entradaRegistrada && !salidaRegistrada) {
   if (ahora > fin) {
-   return { emoji: '⚠️', texto: 'Turno vencido' };
+   return { emoji: '🕒', texto: '' };
    //return { emoji: '⚠️', texto: 'Turno vencido' };
   } else {
-    return { emoji: '⏳', texto: 'Falta salida' };
+    return { emoji: '🕒', texto: '' };
   }
 }
 
 if (!entradaRegistrada && !salidaRegistrada) {
   if (ahora >= inicio && ahora <= fin) {
-    return { emoji: '🕒', texto: 'Pendiente' };
+    return { emoji: '🕒', texto: '' };
   } else {
-    return { emoji: '❌', texto: 'No registrado' };
+    return { emoji: '🕒', texto: '' };
   }
 }
 

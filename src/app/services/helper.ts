@@ -7,25 +7,8 @@ export default baserUrl;
 /*Es importante jugar con este archivo a la hora de desplegar el proyecto*/
 
 
-
+ // para local ok  
 /*
-
-let baseUrl = '';
-
-if (window.location.hostname === 'localhost') {
-  // Entorno local
-  baseUrl = 'http://localhost:8080';
-  
-} else {
-  // Entorno de producción: reemplaza con tu URL real del backend
-  baseUrl = 'https://tu-servidor-backend.com';
-}
-
-export default baseUrl;
-*/
-
-/* ok  
-
 let baserUrl = '';
 
 if (window.location.protocol === 'https:') {
@@ -35,27 +18,17 @@ if (window.location.protocol === 'https:') {
 }
 
 export default baserUrl;
-
 */
 
 
-/*
 
-let baserUrl = '';
 
-if (window.location.protocol === 'https:') {
-  baserUrl = ''; // 👉 solo raíz, sin /api
-} else {
-  baserUrl = 'http://192.168.1.100:8080';
-}
-
-export default baserUrl;
-*/
-
+ // para produccion y esta ok
 
 import { environment } from '../../environments/environment';
 
 const baserUrl = environment.backendUrl;
 
 export default baserUrl;
+
 

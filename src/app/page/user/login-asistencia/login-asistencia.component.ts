@@ -9,7 +9,7 @@ import { Horario } from '../../../models/horario';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
-import { AsistenciaStateService } from 'src/app/services/asistencia-state.service';
+import { AsistenciaStateService } from '../../../services/asistencia-state.service';
 
 declare var jsQR: any;
 

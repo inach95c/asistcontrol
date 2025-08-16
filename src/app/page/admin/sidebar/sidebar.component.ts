@@ -66,6 +66,8 @@ export class SidebarComponent implements OnInit {
     window.location.reload();
   }
 
+  
+
   // 📁 Cierra los demás paneles cuando uno se abre
   closeOthers(openedPanel: MatExpansionPanel) {
     this.allPanels.forEach(panel => {
